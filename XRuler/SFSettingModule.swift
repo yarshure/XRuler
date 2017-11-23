@@ -73,7 +73,7 @@ open  class SFSettingModule {
         }
         return nil
     }
-    func searchDomain(_ d:String) ->[String] {
+    public func searchDomain(_ d:String) ->[String] {
         //带点search
         let dest = d.delLastN(1)
         if let r = findRuleByString(dest, useragent: "") {
@@ -92,7 +92,7 @@ open  class SFSettingModule {
         return []
     }
     //这个是给DNS 转发用的，做cache
-    func queryDomain(_ domain:String) ->String? {
+    public func queryDomain(_ domain:String) ->String? {
         //用户设置的host 不代.
         if let r = rule {
             for item in r.hosts {
@@ -132,7 +132,7 @@ open  class SFSettingModule {
         
     }
 
-    var ipRuleEnable:Bool{
+    public var ipRuleEnable:Bool{
         get {
             if let r = rule {
                 return r.ipRuleEnable
@@ -141,7 +141,7 @@ open  class SFSettingModule {
         }
     }
     
-    func reSetSettings(_ fileName:String) ->Bool{
+    public func reSetSettings(_ fileName:String) ->Bool{
 //        NSLog("[SFSettingModule] reload rule setting")
 //        proxy.removeAll()
 //        //guard let configName = readConfig() else  {return false}
@@ -227,7 +227,7 @@ open  class SFSettingModule {
 //    }
     
 
-    func proxyByName(_ name:String) -> SFProxy?{
+    public func proxyByName(_ name:String) -> SFProxy?{
         
         let up = name.uppercased()
         if up == "DIRECT"  {
@@ -247,7 +247,7 @@ open  class SFSettingModule {
 
       
     }
-    func randomProxy() ->SFProxy?{
+    public func randomProxy() ->SFProxy?{
         let p = ProxyGroupSettings.share.findProxy("any")
         return p
 //        let count = Int(proxy.count)
@@ -256,7 +256,7 @@ open  class SFSettingModule {
 //        let firstKey = Array(proxy.keys)[r]
 //        return proxy[firstKey]!
     }
-    func findIPFromCache(_ hostName:String) ->String?{
+    public func findIPFromCache(_ hostName:String) ->String?{
         let  request_atyp:SOCKS5HostType = hostName.validateIpAddr()
         if  request_atyp  == .IPV4{
             return hostName
@@ -272,7 +272,7 @@ open  class SFSettingModule {
         }
         return nil
     }
-    func getIPFromDNS(_ hostName:String) ->String? {
+    public  func getIPFromDNS(_ hostName:String) ->String? {
         //see here http://stackoverflow.com/questions/25890533/how-can-i-get-a-real-ip-address-from-dns-query-in-swift
         let  request_atyp:SOCKS5HostType = hostName.validateIpAddr()
         if  request_atyp  == .IPV4{
@@ -330,7 +330,7 @@ open  class SFSettingModule {
 //        //return JSON.init(NSNull())
 //    }
 
-    func findRuleByStringDB(_ hostname:String, useragent:String)->SFRuleResult {
+    public func findRuleByStringDB(_ hostname:String, useragent:String)->SFRuleResult {
        
         
         var  ruler:SFRuler
@@ -362,7 +362,7 @@ open  class SFSettingModule {
         let result:SFRuleResult = SFRuleResult.init(request: hostname,r: ruler)
         return result
     }
-    func findRuleByString(_ hostname:String, useragent:String)->SFRuleResult? {
+    public func findRuleByString(_ hostname:String, useragent:String)->SFRuleResult? {
         //hostname or ip string
         
         var  ruler:SFRuler
@@ -430,7 +430,7 @@ open  class SFSettingModule {
     }
 
     
-    func findIPRuler(_ ip:String) ->  SFRuler{
+    public func findIPRuler(_ ip:String) ->  SFRuler{
        
         var  ruler:SFRuler = SFRuler()
         
@@ -464,14 +464,14 @@ open  class SFSettingModule {
         
         
     }
-    func findIPRuleResult(_ ip:String,host:String) ->  SFRuleResult{
+    public func findIPRuleResult(_ ip:String,host:String) ->  SFRuleResult{
         let  ruler:SFRuler = findIPRuler(ip)
         ruler.ipAddress = ip
         let result:SFRuleResult = SFRuleResult.init(request: ip,r: ruler)
         result.ipAddr = ip
         return result
     }
-    func findRule(_ hostname:String) ->SFRuler? {
+    public func findRule(_ hostname:String) ->SFRuler? {
         // a.b.c.d.f
         
         let list = hostname.components(separatedBy: ".")
@@ -519,5 +519,8 @@ open  class SFSettingModule {
 //            
 //        }
         
+    }
+    public func findRuleResult(_ dest:String) -> SFRuleResult?{
+        return nil
     }
 }
