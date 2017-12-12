@@ -37,7 +37,7 @@ public enum SFRulerType :Int{
         case .tzt: return "302"
         }
     }
-    static func gen(_ type:String) ->SFRulerType {
+    public static func gen(_ type:String) ->SFRulerType {
         //var typeIndex = 0
         switch type {
         case "DOMAIN-KEYWORD":

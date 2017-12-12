@@ -309,7 +309,8 @@ public class ProxyGroupSettings:CommonModel {
 //        }
 
     }
-    
+    public func loadProxyFromFile() {
+    }
 //    public func loadProxyFromFile() {
 //        //MARK: fixme
 //        let url = groupContainerURL().appendingPathComponent(XRuler.kProxyGroupFile)
@@ -339,13 +340,13 @@ public class ProxyGroupSettings:CommonModel {
 //            return proxyMan!.chainProxys
 //        }
 //    }
-//    public var proxys:[SFProxy] {
-//
-//        get {
-//            return proxyMan!.proxys
-//        }
-//        set {
-//            proxyMan?.proxys = newValue
-//        }
-//    }
+    public var proxys:[SFProxy] {
+
+        get {
+            return proxyMan!.proxys
+        }
+        set {
+            proxyMan?.proxys = newValue
+        }
+    }
 }

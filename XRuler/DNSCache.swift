@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct DNSCache {
-    var domain:String
-    var ips:[String]
-    init(d:String, i:[String]) {
+public struct DNSCache {
+    public var domain:String
+    public var ips:[String]
+    public init(d:String, i:[String]) {
         domain = d
         ips = i
     }

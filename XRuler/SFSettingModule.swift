@@ -11,6 +11,7 @@ import Foundation
 import SwiftyJSON
 import AxLogger
 import Xcon
+import NetworkExtension
 open  class SFSettingModule {
     //static let setting = SFSettingModule()
     public static var config:String = ""
@@ -22,10 +23,88 @@ open  class SFSettingModule {
 //        print("config url:\(urlContain.path!)")
 //        return SFSettingModule(path: urlContain.path!)
 //    }()
-    let httpProxyModeSocket = true
-    var httpProxyEnable = true
-    var httpsProxyEnable = true
-    var socksProxyEnable = false
+    public enum  HTTPProxyMode{
+         case socket
+         case tunnel
+    }
+    public func check(){
+        
+    }
+    func ipStringV4(_ ip:UInt32) ->String{
+        let a = (ip & 0xFF)
+        let b = (ip >> 8 & 0xFF)
+        let c = (ip >> 16 & 0xFF)
+        let d = (ip >> 24 & 0xFF)
+        return "\(a)." + "\(b)." + "\(c)." + "\(d)"
+    }
+    public func exclulesRoute() ->[NEIPv4Route] {
+        var excludedRoutes = [NEIPv4Route]()
+        guard let rule = rule else  {
+           
+            return excludedRoutes
+        }
+        
+        if let general =  rule.general  {
+            
+            for item in general.bypasstun {
+                let x = item.components(separatedBy: "/")
+                if x.count == 2{
+                    if let net = x.first, let mask = x.last {
+                        //2,3,4
+                        let netmask :UInt32 = 0xffffffff << (32 - UInt32( mask)!)
+                        
+                        let route = NEIPv4Route(destinationAddress: net, subnetMask: ipStringV4(netmask.byteSwapped))
+                        route.gatewayAddress = NEIPv4Route.default().gatewayAddress
+                        excludedRoutes.append(route)
+                    }
+                }
+            }
+        }
+        return excludedRoutes
+    }
+    public func rewrite(url:String) {
+        //MARK: --todo url rewrite feature
+//        if  let r =  SFSettingModule.setting.rule{
+//            if let ruler = r.rewriteRule(self.Url){
+//                if ruler.type == .header {
+//                    if let r = self.Url.range(of: ruler.name){
+//                        self.Url.replaceSubrange(r, with: ruler.proxyName)
+//                        let dest = ruler.proxyName
+//                        let dlist = dest.components(separatedBy: "/")
+//                        for dd in dlist {
+//                            if !dd.isEmpty && !dd.hasPrefix("http"){
+//                                self.params["Host"] = dd
+//                                return true
+//                            }
+//
+//                        }
+//
+//
+//
+//                    }
+//                }
+//
+//
+//            }
+//        }
+    }
+    public var mode:HTTPProxyMode = .tunnel
+    
+    public func updateProxySetting(setting:NEProxySettings){
+        if let g =  rule!.general{
+            if !g.skipproxy.isEmpty {
+                setting.exceptionList  = g.skipproxy
+            }
+            
+            setting.excludeSimpleHostnames = true
+            
+        }
+    }
+    
+    public let httpProxyModeSocket = true
+    public var httpProxyEnable = true
+    public var httpsProxyEnable = true
+    public var socksProxyEnable = false
     public var udprelayer = true
     //var hosts:[DNSRecord] = []//
     //var proxy:[String:SFProxy] = [:]
@@ -57,13 +136,13 @@ open  class SFSettingModule {
 //        }
        
     }
-    func addDNSCacheRecord(_ r:DNSCache) {
+    public func addDNSCacheRecord(_ r:DNSCache) {
         dnsCache.append(r)
     }
     public func cleanDNSCache(){
         dnsCache.removeAll()
     }
-    func searchIPAddress(_ ip:String) ->String? {
+    public func searchIPAddress(_ ip:String) ->String? {
         for r in dnsCache {
             for i in r.ips {
                 if ip == i {
