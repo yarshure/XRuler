@@ -97,14 +97,14 @@ public class Receipt:CommonModel {
 }
 public class ProxyGroupSettings:CommonModel {
     public static let share:ProxyGroupSettings = {
-        let url = groupContainerURL("").appendingPathComponent(XRuler.kProxyGroupFile)
+        let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyGroupFile)
         var content:String = "{}"
         do {
             content = try String.init(contentsOf: url, encoding: .utf8)
         }catch let e {
-            print("\(e)")
+            print("\(#file)\(e)")
         }
-        print("ProxyGroup store:\(content)")
+        
         guard let set = Mapper<ProxyGroupSettings>().map(JSONString: content) else {
             fatalError()
         }
@@ -115,7 +115,7 @@ public class ProxyGroupSettings:CommonModel {
             set.proxyMan = ps
         }
         
-        
+        print("ProxyGroup store:\(content.count)")
         return set
     }()
     //var defaults:NSUserDefaults?// =

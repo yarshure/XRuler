@@ -16,7 +16,7 @@ public class XRuler {
         }
         
     }
-    public static var kProxyGroupFile:String = ""
+    public static var kProxyGroupFile:String = ".proxygroup"
     public static var groupIdentifier:String = ""
     static func logX(_ msg:String,items: Any...,level:AxLoggerLevel , category:String="default",file:String=#file,line:Int=#line,ud:[String:String]=[:],tags:[String]=[],time:Date=Date()){
         
