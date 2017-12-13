@@ -190,25 +190,42 @@ open  class SFSettingModule {
     public func config(_ path:String){
         
 
-        //var  fn = ProxyGroupSettings.share.config
+        var  fn = ProxyGroupSettings.share.config
+        var destPath:String
+        #if os(mac)
         
-        XRuler.log("Read Config From :\(path)", level: .Info)
+        #else
+        #endif
+        
         if  fm.fileExists(atPath:path) {
-            rule = SFRule.init(path: path, loadRule: true)
-            rule!.config()
-            rule!.configInfo()
-            if let g = rule!.general {
-                AxLogger.logleve = g.axloglevel
-                XRuler.log("log level :\(g.axloglevel.description) ",level: .Info)
-                
-            }
-            XRuler.log("Config load Finished ",level: .Info)
+            XRuler.log("Read Config From :\(path)", level: .Info)
+            destPath = path
         }else {
-            let u = fm.containerURL(forSecurityApplicationGroupIdentifier: XRuler.groupIdentifier)!
-            XRuler.log("Config File Don't exist \(u.path) ",level: .Info)
-            XRuler.log("Config File Don't exist \(path) ",level: .Info)
+            
+            let bundle = Bundle.init(for: SFSettingModule.self)
+            if let p = bundle.path(forResource: "Default", ofType: ".conf") {
+                destPath =   p
+                XRuler.log("Read Config From Default:\(destPath)", level: .Info)
+            }else {
+                fatalError()
+            }
+            
+            
+//            let u = fm.containerURL(forSecurityApplicationGroupIdentifier: XRuler.groupIdentifier)!
+//            XRuler.log("Config File Don't exist \(u.path) ",level: .Info)
+//            XRuler.log("Config File Don't exist \(path) ",level: .Info)
         }
         
+        
+        rule = SFRule.init(path: destPath, loadRule: true)
+        rule!.config()
+        rule!.configInfo()
+        if let g = rule!.general {
+            AxLogger.logleve = g.axloglevel
+            XRuler.log("log level :\(g.axloglevel.description) ",level: .Info)
+            
+        }
+        XRuler.log("Config load Finished ",level: .Info)
     }
 
     public var ipRuleEnable:Bool{
@@ -444,6 +461,12 @@ open  class SFSettingModule {
     public func findRuleByString(_ hostname:String, useragent:String)->SFRuleResult? {
         //hostname or ip string
         
+        if let r = SFSettingModule.setting.findRuleResult(hostname){
+            return r
+        }
+        
+        
+        
         var  ruler:SFRuler
         var ipaddr:String = ""
         if !useragent.isEmpty {
@@ -496,7 +519,7 @@ open  class SFSettingModule {
                     //ruler.name
                 }else {
                     XRuler.log("now send async dns request \(hostname)",level: .Debug)
-                    //ruler = rule!.finalRuler
+                    //ruler = rule.finalRuler
                     return nil
                 }
             }
@@ -601,5 +624,8 @@ open  class SFSettingModule {
     }
     public func findRuleResult(_ dest:String) -> SFRuleResult?{
         return nil
+    }
+    deinit {
+        XRuler.log("[SFSettingModule deinit]", items: "", level: .Info)
     }
 }

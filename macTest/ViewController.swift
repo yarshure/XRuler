@@ -12,8 +12,14 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //XRuler.groupIdentifier = "745WQDK4L7.com.yarshure.Surf"
+        XRuler.groupIdentifier = "745WQDK4L7.com.yarshure.Surf"
         _ = ProxyGroupSettings.share.proxys
+        print(ProxyGroupSettings.share.config)
+        SFSettingModule.setting.config("/xx")
+        if let x = SFSettingModule.setting.findRuleByString("secure-appldnld.apple.com", useragent: ""){
+            print(x)
+        }
+        
         // Do any additional setup after loading the view.
     }
 

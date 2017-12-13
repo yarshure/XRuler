@@ -49,6 +49,7 @@
 		6913C4091FE0CA94006483C1 /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C4071FE0CA94006483C1 /* Sodium.framework */; };
 		6913C40A1FE0CA98006483C1 /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C4071FE0CA94006483C1 /* Sodium.framework */; };
 		6913C40B1FE0CA98006483C1 /* Sodium.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C4071FE0CA94006483C1 /* Sodium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6913C41B1FE17AF5006483C1 /* Default.conf in Resources */ = {isa = PBXBuildFile; fileRef = 6913C41A1FE17AF4006483C1 /* Default.conf */; };
 		693A35931FC69B47007FDE26 /* XRuler.h in Headers */ = {isa = PBXBuildFile; fileRef = 693A35911FC69B47007FDE26 /* XRuler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		693A359A1FC69B63007FDE26 /* SFSettingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35991FC69B63007FDE26 /* SFSettingModule.swift */; };
 		693A359D1FC69C1E007FDE26 /* AxLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693A359B1FC69C1D007FDE26 /* AxLogger.framework */; };
@@ -109,6 +110,7 @@
 		6913C3FB1FE0C069006483C1 /* CommonCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CommonCrypto.framework; path = Carthage/Build/Mac/CommonCrypto.framework; sourceTree = SOURCE_ROOT; };
 		6913C4021FE0C21F006483C1 /* kcp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = kcp.framework; path = Carthage/Build/Mac/kcp.framework; sourceTree = SOURCE_ROOT; };
 		6913C4071FE0CA94006483C1 /* Sodium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sodium.framework; path = Carthage/Build/Mac/Sodium.framework; sourceTree = SOURCE_ROOT; };
+		6913C41A1FE17AF4006483C1 /* Default.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Default.conf; sourceTree = "<group>"; };
 		693A358E1FC69B47007FDE26 /* XRuler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XRuler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		693A35911FC69B47007FDE26 /* XRuler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XRuler.h; sourceTree = "<group>"; };
 		693A35921FC69B47007FDE26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				693A359B1FC69C1D007FDE26 /* AxLogger.framework */,
 				693A359C1FC69C1E007FDE26 /* SwiftyJSON.framework */,
 				693A35991FC69B63007FDE26 /* SFSettingModule.swift */,
+				6913C41A1FE17AF4006483C1 /* Default.conf */,
 				693A35AD1FC69DAC007FDE26 /* General.swift */,
 				693A35B51FC6A11D007FDE26 /* SFRuleResult.swift */,
 				693A35D81FC6B207007FDE26 /* State.swift */,
@@ -361,6 +364,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6913C41B1FE17AF5006483C1 /* Default.conf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
