@@ -18,6 +18,7 @@ public class XRuler {
     }
     public static var kProxyGroupFile:String = ".proxygroup"
     public static var groupIdentifier:String = ""
+    
     static func logX(_ msg:String,items: Any...,level:AxLoggerLevel , category:String="default",file:String=#file,line:Int=#line,ud:[String:String]=[:],tags:[String]=[],time:Date=Date()){
         
         if level != AxLoggerLevel.Debug {
@@ -25,4 +26,13 @@ public class XRuler {
         }
         
     }
+    public static func load(_ group:String,proxy:String){
+        XRuler.groupIdentifier = group
+        XRuler.kProxyGroupFile = proxy
+        
+    }
+    public static func reload(){
+        
+    }
+    
 }

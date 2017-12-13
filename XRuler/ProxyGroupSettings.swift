@@ -97,6 +97,7 @@ public class Receipt:CommonModel {
 }
 public class ProxyGroupSettings:CommonModel {
     public static let share:ProxyGroupSettings = {
+        assert(XRuler.groupIdentifier.count != 0)
         let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyGroupFile)
         var content:String = "{}"
         do {

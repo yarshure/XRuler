@@ -12,7 +12,7 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        XRuler.groupIdentifier = "745WQDK4L7.com.yarshure.Surf"
+        //XRuler.groupIdentifier = "745WQDK4L7.com.yarshure.Surf"
         _ = ProxyGroupSettings.share.proxys
         // Do any additional setup after loading the view.
     }
