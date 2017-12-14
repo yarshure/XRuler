@@ -11,63 +11,35 @@
 		6913C3CD1FE0BF16006483C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6913C3CC1FE0BF16006483C1 /* ViewController.swift */; };
 		6913C3CF1FE0BF16006483C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6913C3CE1FE0BF16006483C1 /* Assets.xcassets */; };
 		6913C3D21FE0BF16006483C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6913C3D01FE0BF16006483C1 /* Main.storyboard */; };
-		6913C3D81FE0BF32006483C1 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693A35B71FC6A16E007FDE26 /* ObjectMapper.framework */; };
-		6913C3D91FE0BF32006483C1 /* ObjectMapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 693A35B71FC6A16E007FDE26 /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6913C3DA1FE0BF32006483C1 /* Xcon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693A35B31FC6A040007FDE26 /* Xcon.framework */; };
-		6913C3DB1FE0BF32006483C1 /* Xcon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 693A35B31FC6A040007FDE26 /* Xcon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6913C3DC1FE0BF32006483C1 /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693A35A71FC69D28007FDE26 /* MMDB.framework */; };
-		6913C3DD1FE0BF32006483C1 /* MMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 693A35A71FC69D28007FDE26 /* MMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6913C3DE1FE0BF32006483C1 /* AxLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693A359B1FC69C1D007FDE26 /* AxLogger.framework */; };
-		6913C3DF1FE0BF32006483C1 /* AxLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 693A359B1FC69C1D007FDE26 /* AxLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6913C3E01FE0BF32006483C1 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693A359C1FC69C1E007FDE26 /* SwiftyJSON.framework */; };
-		6913C3E11FE0BF32006483C1 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 693A359C1FC69C1E007FDE26 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6913C3E41FE0BF3E006483C1 /* XRuler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693A358E1FC69B47007FDE26 /* XRuler.framework */; };
-		6913C3E61FE0BF94006483C1 /* XSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3E51FE0BF94006483C1 /* XSocket.framework */; };
-		6913C3E81FE0BF9C006483C1 /* XSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3E51FE0BF94006483C1 /* XSocket.framework */; };
-		6913C3E91FE0BF9C006483C1 /* XSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3E51FE0BF94006483C1 /* XSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6913C3EA1FE0BFC3006483C1 /* XSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3E51FE0BF94006483C1 /* XSocket.framework */; };
-		6913C3ED1FE0BFEB006483C1 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3EC1FE0BFEA006483C1 /* CocoaAsyncSocket.framework */; };
-		6913C3EE1FE0BFEB006483C1 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3EC1FE0BFEA006483C1 /* CocoaAsyncSocket.framework */; };
-		6913C3F01FE0BFEE006483C1 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3EC1FE0BFEA006483C1 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6913C3F21FE0C012006483C1 /* IDZSwiftCommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3F11FE0C012006483C1 /* IDZSwiftCommonCrypto.framework */; };
-		6913C3F31FE0C012006483C1 /* IDZSwiftCommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3F11FE0C012006483C1 /* IDZSwiftCommonCrypto.framework */; };
-		6913C3F41FE0C016006483C1 /* IDZSwiftCommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3F11FE0C012006483C1 /* IDZSwiftCommonCrypto.framework */; };
-		6913C3F51FE0C016006483C1 /* IDZSwiftCommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3F11FE0C012006483C1 /* IDZSwiftCommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6913C3F71FE0C03C006483C1 /* Crypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3F61FE0C03C006483C1 /* Crypto.framework */; };
-		6913C3F81FE0C03C006483C1 /* Crypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3F61FE0C03C006483C1 /* Crypto.framework */; };
-		6913C3F91FE0C041006483C1 /* Crypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3F61FE0C03C006483C1 /* Crypto.framework */; };
-		6913C3FA1FE0C041006483C1 /* Crypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3F61FE0C03C006483C1 /* Crypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6913C3FC1FE0C06A006483C1 /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3FB1FE0C069006483C1 /* CommonCrypto.framework */; };
-		6913C3FE1FE0C06E006483C1 /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3FB1FE0C069006483C1 /* CommonCrypto.framework */; };
-		6913C3FF1FE0C06E006483C1 /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3FB1FE0C069006483C1 /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6913C4001FE0C119006483C1 /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C3FB1FE0C069006483C1 /* CommonCrypto.framework */; };
-		6913C4031FE0C220006483C1 /* kcp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C4021FE0C21F006483C1 /* kcp.framework */; };
-		6913C4041FE0C220006483C1 /* kcp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C4021FE0C21F006483C1 /* kcp.framework */; };
-		6913C4051FE0C225006483C1 /* kcp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C4021FE0C21F006483C1 /* kcp.framework */; };
-		6913C4061FE0C225006483C1 /* kcp.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C4021FE0C21F006483C1 /* kcp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6913C4081FE0CA94006483C1 /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C4071FE0CA94006483C1 /* Sodium.framework */; };
-		6913C4091FE0CA94006483C1 /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C4071FE0CA94006483C1 /* Sodium.framework */; };
-		6913C40A1FE0CA98006483C1 /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C4071FE0CA94006483C1 /* Sodium.framework */; };
-		6913C40B1FE0CA98006483C1 /* Sodium.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6913C4071FE0CA94006483C1 /* Sodium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6913C41B1FE17AF5006483C1 /* Default.conf in Resources */ = {isa = PBXBuildFile; fileRef = 6913C41A1FE17AF4006483C1 /* Default.conf */; };
 		693A35931FC69B47007FDE26 /* XRuler.h in Headers */ = {isa = PBXBuildFile; fileRef = 693A35911FC69B47007FDE26 /* XRuler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		693A359A1FC69B63007FDE26 /* SFSettingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35991FC69B63007FDE26 /* SFSettingModule.swift */; };
-		693A359D1FC69C1E007FDE26 /* AxLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693A359B1FC69C1D007FDE26 /* AxLogger.framework */; };
-		693A359E1FC69C1E007FDE26 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693A359C1FC69C1E007FDE26 /* SwiftyJSON.framework */; };
 		693A35A01FC69C38007FDE26 /* SFRuler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A359F1FC69C38007FDE26 /* SFRuler.swift */; };
 		693A35A21FC69C7F007FDE26 /* ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35A11FC69C7F007FDE26 /* ext.swift */; };
 		693A35A41FC69C9C007FDE26 /* DNSCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35A31FC69C9C007FDE26 /* DNSCache.swift */; };
 		693A35A61FC69CCA007FDE26 /* SFRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35A51FC69CCA007FDE26 /* SFRule.swift */; };
-		693A35A81FC69D28007FDE26 /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693A35A71FC69D28007FDE26 /* MMDB.framework */; };
 		693A35AA1FC69D43007FDE26 /* SFConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35A91FC69D43007FDE26 /* SFConfig.swift */; };
 		693A35AC1FC69D5D007FDE26 /* XRuler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35AB1FC69D5D007FDE26 /* XRuler.swift */; };
 		693A35AE1FC69DAC007FDE26 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35AD1FC69DAC007FDE26 /* General.swift */; };
-		693A35B41FC6A040007FDE26 /* Xcon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693A35B31FC6A040007FDE26 /* Xcon.framework */; };
 		693A35B61FC6A11D007FDE26 /* SFRuleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35B51FC6A11D007FDE26 /* SFRuleResult.swift */; };
-		693A35B81FC6A16E007FDE26 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693A35B71FC6A16E007FDE26 /* ObjectMapper.framework */; };
 		693A35BA1FC6A297007FDE26 /* ProxyGroupSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35B91FC6A297007FDE26 /* ProxyGroupSettings.swift */; };
 		693A35D91FC6B207007FDE26 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35D81FC6B207007FDE26 /* State.swift */; };
 		693A35DB1FC6B305007FDE26 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35DA1FC6B305007FDE26 /* Flow.swift */; };
+		69C7DC2D1FE2524800FB7FA2 /* XRuleriOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 69C7DC2B1FE2524800FB7FA2 /* XRuleriOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		69C7DC311FE253AC00FB7FA2 /* SFSettingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35991FC69B63007FDE26 /* SFSettingModule.swift */; };
+		69C7DC321FE253B100FB7FA2 /* Default.conf in Resources */ = {isa = PBXBuildFile; fileRef = 6913C41A1FE17AF4006483C1 /* Default.conf */; };
+		69C7DC331FE253B500FB7FA2 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35AD1FC69DAC007FDE26 /* General.swift */; };
+		69C7DC341FE253B800FB7FA2 /* SFRuleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35B51FC6A11D007FDE26 /* SFRuleResult.swift */; };
+		69C7DC351FE253BB00FB7FA2 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35D81FC6B207007FDE26 /* State.swift */; };
+		69C7DC361FE253BE00FB7FA2 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35DA1FC6B305007FDE26 /* Flow.swift */; };
+		69C7DC371FE253C100FB7FA2 /* XRuler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35AB1FC69D5D007FDE26 /* XRuler.swift */; };
+		69C7DC381FE253C400FB7FA2 /* SFRuler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A359F1FC69C38007FDE26 /* SFRuler.swift */; };
+		69C7DC391FE253C700FB7FA2 /* SFConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35A91FC69D43007FDE26 /* SFConfig.swift */; };
+		69C7DC3A1FE253CA00FB7FA2 /* DNSCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35A31FC69C9C007FDE26 /* DNSCache.swift */; };
+		69C7DC3B1FE253CD00FB7FA2 /* SFRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35A51FC69CCA007FDE26 /* SFRule.swift */; };
+		69C7DC3C1FE253D000FB7FA2 /* ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35A11FC69C7F007FDE26 /* ext.swift */; };
+		69C7DC3D1FE253D400FB7FA2 /* ProxyGroupSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35B91FC6A297007FDE26 /* ProxyGroupSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,18 +49,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6913C3FA1FE0C041006483C1 /* Crypto.framework in Embed Frameworks */,
-				6913C40B1FE0CA98006483C1 /* Sodium.framework in Embed Frameworks */,
-				6913C3F51FE0C016006483C1 /* IDZSwiftCommonCrypto.framework in Embed Frameworks */,
-				6913C3F01FE0BFEE006483C1 /* CocoaAsyncSocket.framework in Embed Frameworks */,
-				6913C3DB1FE0BF32006483C1 /* Xcon.framework in Embed Frameworks */,
-				6913C3DD1FE0BF32006483C1 /* MMDB.framework in Embed Frameworks */,
-				6913C4061FE0C225006483C1 /* kcp.framework in Embed Frameworks */,
-				6913C3E91FE0BF9C006483C1 /* XSocket.framework in Embed Frameworks */,
-				6913C3D91FE0BF32006483C1 /* ObjectMapper.framework in Embed Frameworks */,
-				6913C3DF1FE0BF32006483C1 /* AxLogger.framework in Embed Frameworks */,
-				6913C3FF1FE0C06E006483C1 /* CommonCrypto.framework in Embed Frameworks */,
-				6913C3E11FE0BF32006483C1 /* SwiftyJSON.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,34 +63,27 @@
 		6913C3D11FE0BF16006483C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6913C3D31FE0BF16006483C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6913C3D41FE0BF16006483C1 /* macTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macTest.entitlements; sourceTree = "<group>"; };
-		6913C3E51FE0BF94006483C1 /* XSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XSocket.framework; path = Carthage/Build/Mac/XSocket.framework; sourceTree = SOURCE_ROOT; };
-		6913C3EC1FE0BFEA006483C1 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/Mac/CocoaAsyncSocket.framework; sourceTree = SOURCE_ROOT; };
-		6913C3F11FE0C012006483C1 /* IDZSwiftCommonCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDZSwiftCommonCrypto.framework; path = Carthage/Build/Mac/IDZSwiftCommonCrypto.framework; sourceTree = SOURCE_ROOT; };
-		6913C3F61FE0C03C006483C1 /* Crypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crypto.framework; path = Carthage/Build/Mac/Crypto.framework; sourceTree = SOURCE_ROOT; };
-		6913C3FB1FE0C069006483C1 /* CommonCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CommonCrypto.framework; path = Carthage/Build/Mac/CommonCrypto.framework; sourceTree = SOURCE_ROOT; };
-		6913C4021FE0C21F006483C1 /* kcp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = kcp.framework; path = Carthage/Build/Mac/kcp.framework; sourceTree = SOURCE_ROOT; };
-		6913C4071FE0CA94006483C1 /* Sodium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sodium.framework; path = Carthage/Build/Mac/Sodium.framework; sourceTree = SOURCE_ROOT; };
 		6913C41A1FE17AF4006483C1 /* Default.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Default.conf; sourceTree = "<group>"; };
 		693A358E1FC69B47007FDE26 /* XRuler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XRuler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		693A35911FC69B47007FDE26 /* XRuler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XRuler.h; sourceTree = "<group>"; };
 		693A35921FC69B47007FDE26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		693A35991FC69B63007FDE26 /* SFSettingModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSettingModule.swift; sourceTree = "<group>"; };
-		693A359B1FC69C1D007FDE26 /* AxLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AxLogger.framework; path = Carthage/Build/Mac/AxLogger.framework; sourceTree = SOURCE_ROOT; };
-		693A359C1FC69C1E007FDE26 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = SOURCE_ROOT; };
 		693A359F1FC69C38007FDE26 /* SFRuler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFRuler.swift; sourceTree = "<group>"; };
 		693A35A11FC69C7F007FDE26 /* ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ext.swift; sourceTree = "<group>"; };
 		693A35A31FC69C9C007FDE26 /* DNSCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNSCache.swift; sourceTree = "<group>"; };
 		693A35A51FC69CCA007FDE26 /* SFRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFRule.swift; sourceTree = "<group>"; };
-		693A35A71FC69D28007FDE26 /* MMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMDB.framework; path = Carthage/Build/Mac/MMDB.framework; sourceTree = SOURCE_ROOT; };
 		693A35A91FC69D43007FDE26 /* SFConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFConfig.swift; sourceTree = "<group>"; };
 		693A35AB1FC69D5D007FDE26 /* XRuler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRuler.swift; sourceTree = "<group>"; };
 		693A35AD1FC69DAC007FDE26 /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
-		693A35B31FC6A040007FDE26 /* Xcon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Xcon.framework; path = Carthage/Build/Mac/Xcon.framework; sourceTree = SOURCE_ROOT; };
 		693A35B51FC6A11D007FDE26 /* SFRuleResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFRuleResult.swift; sourceTree = "<group>"; };
-		693A35B71FC6A16E007FDE26 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/Mac/ObjectMapper.framework; sourceTree = SOURCE_ROOT; };
 		693A35B91FC6A297007FDE26 /* ProxyGroupSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyGroupSettings.swift; sourceTree = "<group>"; };
 		693A35D81FC6B207007FDE26 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		693A35DA1FC6B305007FDE26 /* Flow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
+		69C7DBF01FE2517000FB7FA2 /* mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = mac.xcconfig; sourceTree = "<group>"; };
+		69C7DC021FE251B600FB7FA2 /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iOS.xcconfig; sourceTree = "<group>"; };
+		69C7DC291FE2524700FB7FA2 /* XRuler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XRuler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		69C7DC2B1FE2524800FB7FA2 /* XRuleriOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XRuleriOS.h; sourceTree = "<group>"; };
+		69C7DC2C1FE2524800FB7FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,25 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6913C3EE1FE0BFEB006483C1 /* CocoaAsyncSocket.framework in Frameworks */,
 				6913C3E41FE0BF3E006483C1 /* XRuler.framework in Frameworks */,
-				6913C3F31FE0C012006483C1 /* IDZSwiftCommonCrypto.framework in Frameworks */,
-				6913C3F81FE0C03C006483C1 /* Crypto.framework in Frameworks */,
-				6913C3F41FE0C016006483C1 /* IDZSwiftCommonCrypto.framework in Frameworks */,
-				6913C3DA1FE0BF32006483C1 /* Xcon.framework in Frameworks */,
-				6913C40A1FE0CA98006483C1 /* Sodium.framework in Frameworks */,
-				6913C4001FE0C119006483C1 /* CommonCrypto.framework in Frameworks */,
-				6913C4051FE0C225006483C1 /* kcp.framework in Frameworks */,
-				6913C4041FE0C220006483C1 /* kcp.framework in Frameworks */,
-				6913C3F91FE0C041006483C1 /* Crypto.framework in Frameworks */,
-				6913C3EA1FE0BFC3006483C1 /* XSocket.framework in Frameworks */,
-				6913C3DC1FE0BF32006483C1 /* MMDB.framework in Frameworks */,
-				6913C3D81FE0BF32006483C1 /* ObjectMapper.framework in Frameworks */,
-				6913C4091FE0CA94006483C1 /* Sodium.framework in Frameworks */,
-				6913C3DE1FE0BF32006483C1 /* AxLogger.framework in Frameworks */,
-				6913C3FE1FE0C06E006483C1 /* CommonCrypto.framework in Frameworks */,
-				6913C3E01FE0BF32006483C1 /* SwiftyJSON.framework in Frameworks */,
-				6913C3E81FE0BF9C006483C1 /* XSocket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,18 +99,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6913C3F71FE0C03C006483C1 /* Crypto.framework in Frameworks */,
-				6913C4081FE0CA94006483C1 /* Sodium.framework in Frameworks */,
-				6913C3F21FE0C012006483C1 /* IDZSwiftCommonCrypto.framework in Frameworks */,
-				6913C3ED1FE0BFEB006483C1 /* CocoaAsyncSocket.framework in Frameworks */,
-				693A359E1FC69C1E007FDE26 /* SwiftyJSON.framework in Frameworks */,
-				693A35A81FC69D28007FDE26 /* MMDB.framework in Frameworks */,
-				6913C4031FE0C220006483C1 /* kcp.framework in Frameworks */,
-				6913C3E61FE0BF94006483C1 /* XSocket.framework in Frameworks */,
-				693A35B81FC6A16E007FDE26 /* ObjectMapper.framework in Frameworks */,
-				693A35B41FC6A040007FDE26 /* Xcon.framework in Frameworks */,
-				6913C3FC1FE0C06A006483C1 /* CommonCrypto.framework in Frameworks */,
-				693A359D1FC69C1E007FDE26 /* AxLogger.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69C7DC251FE2524700FB7FA2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +137,7 @@
 			children = (
 				693A35901FC69B47007FDE26 /* XRuler */,
 				6913C3C91FE0BF16006483C1 /* macTest */,
+				69C7DC2A1FE2524800FB7FA2 /* XRuleriOS */,
 				693A358F1FC69B47007FDE26 /* Products */,
 				6913C3E31FE0BF3E006483C1 /* Frameworks */,
 			);
@@ -217,6 +148,7 @@
 			children = (
 				693A358E1FC69B47007FDE26 /* XRuler.framework */,
 				6913C3C81FE0BF16006483C1 /* macTest.app */,
+				69C7DC291FE2524700FB7FA2 /* XRuler.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,18 +156,6 @@
 		693A35901FC69B47007FDE26 /* XRuler */ = {
 			isa = PBXGroup;
 			children = (
-				6913C4071FE0CA94006483C1 /* Sodium.framework */,
-				6913C4021FE0C21F006483C1 /* kcp.framework */,
-				6913C3FB1FE0C069006483C1 /* CommonCrypto.framework */,
-				6913C3F61FE0C03C006483C1 /* Crypto.framework */,
-				6913C3F11FE0C012006483C1 /* IDZSwiftCommonCrypto.framework */,
-				6913C3EC1FE0BFEA006483C1 /* CocoaAsyncSocket.framework */,
-				6913C3E51FE0BF94006483C1 /* XSocket.framework */,
-				693A35B71FC6A16E007FDE26 /* ObjectMapper.framework */,
-				693A35B31FC6A040007FDE26 /* Xcon.framework */,
-				693A35A71FC69D28007FDE26 /* MMDB.framework */,
-				693A359B1FC69C1D007FDE26 /* AxLogger.framework */,
-				693A359C1FC69C1E007FDE26 /* SwiftyJSON.framework */,
 				693A35991FC69B63007FDE26 /* SFSettingModule.swift */,
 				6913C41A1FE17AF4006483C1 /* Default.conf */,
 				693A35AD1FC69DAC007FDE26 /* General.swift */,
@@ -249,10 +169,21 @@
 				693A35A51FC69CCA007FDE26 /* SFRule.swift */,
 				693A35A11FC69C7F007FDE26 /* ext.swift */,
 				693A35B91FC6A297007FDE26 /* ProxyGroupSettings.swift */,
+				69C7DBF01FE2517000FB7FA2 /* mac.xcconfig */,
 				693A35911FC69B47007FDE26 /* XRuler.h */,
 				693A35921FC69B47007FDE26 /* Info.plist */,
 			);
 			path = XRuler;
+			sourceTree = "<group>";
+		};
+		69C7DC2A1FE2524800FB7FA2 /* XRuleriOS */ = {
+			isa = PBXGroup;
+			children = (
+				69C7DC021FE251B600FB7FA2 /* iOS.xcconfig */,
+				69C7DC2B1FE2524800FB7FA2 /* XRuleriOS.h */,
+				69C7DC2C1FE2524800FB7FA2 /* Info.plist */,
+			);
+			path = XRuleriOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +194,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				693A35931FC69B47007FDE26 /* XRuler.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69C7DC261FE2524700FB7FA2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69C7DC2D1FE2524800FB7FA2 /* XRuleriOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +244,24 @@
 			productReference = 693A358E1FC69B47007FDE26 /* XRuler.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		69C7DC281FE2524700FB7FA2 /* XRuleriOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 69C7DC2E1FE2524800FB7FA2 /* Build configuration list for PBXNativeTarget "XRuleriOS" */;
+			buildPhases = (
+				69C7DC241FE2524700FB7FA2 /* Sources */,
+				69C7DC251FE2524700FB7FA2 /* Frameworks */,
+				69C7DC261FE2524700FB7FA2 /* Headers */,
+				69C7DC271FE2524700FB7FA2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XRuleriOS;
+			productName = XRuleriOS;
+			productReference = 69C7DC291FE2524700FB7FA2 /* XRuler.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -329,6 +286,10 @@
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
+					69C7DC281FE2524700FB7FA2 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 693A35881FC69B47007FDE26 /* Build configuration list for PBXProject "XRuler" */;
@@ -346,6 +307,7 @@
 			targets = (
 				693A358D1FC69B47007FDE26 /* XRuler */,
 				6913C3C71FE0BF16006483C1 /* macTest */,
+				69C7DC281FE2524700FB7FA2 /* XRuleriOS */,
 			);
 		};
 /* End PBXProject section */
@@ -365,6 +327,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6913C41B1FE17AF5006483C1 /* Default.conf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69C7DC271FE2524700FB7FA2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69C7DC321FE253B100FB7FA2 /* Default.conf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +366,25 @@
 				693A35DB1FC6B305007FDE26 /* Flow.swift in Sources */,
 				693A35A01FC69C38007FDE26 /* SFRuler.swift in Sources */,
 				693A35BA1FC6A297007FDE26 /* ProxyGroupSettings.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69C7DC241FE2524700FB7FA2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69C7DC3B1FE253CD00FB7FA2 /* SFRule.swift in Sources */,
+				69C7DC3A1FE253CA00FB7FA2 /* DNSCache.swift in Sources */,
+				69C7DC391FE253C700FB7FA2 /* SFConfig.swift in Sources */,
+				69C7DC331FE253B500FB7FA2 /* General.swift in Sources */,
+				69C7DC3C1FE253D000FB7FA2 /* ext.swift in Sources */,
+				69C7DC371FE253C100FB7FA2 /* XRuler.swift in Sources */,
+				69C7DC361FE253BE00FB7FA2 /* Flow.swift in Sources */,
+				69C7DC311FE253AC00FB7FA2 /* SFSettingModule.swift in Sources */,
+				69C7DC341FE253B800FB7FA2 /* SFRuleResult.swift in Sources */,
+				69C7DC381FE253C400FB7FA2 /* SFRuler.swift in Sources */,
+				69C7DC351FE253BB00FB7FA2 /* State.swift in Sources */,
+				69C7DC3D1FE253D400FB7FA2 /* ProxyGroupSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +556,7 @@
 		};
 		693A35971FC69B47007FDE26 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69C7DBF01FE2517000FB7FA2 /* mac.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -585,7 +575,7 @@
 				INFOPLIST_FILE = XRuler/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yarshure.XRuler;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -596,6 +586,7 @@
 		};
 		693A35981FC69B47007FDE26 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69C7DBF01FE2517000FB7FA2 /* mac.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -614,11 +605,62 @@
 				INFOPLIST_FILE = XRuler/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yarshure.XRuler;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		69C7DC2F1FE2524800FB7FA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69C7DC021FE251B600FB7FA2 /* iOS.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 745WQDK4L7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = XRuleriOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yarshure.XRuler;
+				PRODUCT_MODULE_NAME = XRuler;
+				PRODUCT_NAME = XRuler;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		69C7DC301FE2524800FB7FA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69C7DC021FE251B600FB7FA2 /* iOS.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 745WQDK4L7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = XRuleriOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yarshure.XRuler;
+				PRODUCT_MODULE_NAME = XRuler;
+				PRODUCT_NAME = XRuler;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -648,6 +690,15 @@
 			buildConfigurations = (
 				693A35971FC69B47007FDE26 /* Debug */,
 				693A35981FC69B47007FDE26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		69C7DC2E1FE2524800FB7FA2 /* Build configuration list for PBXNativeTarget "XRuleriOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69C7DC2F1FE2524800FB7FA2 /* Debug */,
+				69C7DC301FE2524800FB7FA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

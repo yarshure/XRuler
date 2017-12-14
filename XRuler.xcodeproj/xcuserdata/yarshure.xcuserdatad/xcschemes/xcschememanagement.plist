@@ -9,15 +9,30 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>XRuleriOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>macTest.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>6913C3C71FE0BF16006483C1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>693A358D1FC69B47007FDE26</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>69C7DC281FE2524700FB7FA2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

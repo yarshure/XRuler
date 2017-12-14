@@ -1,0 +1,11 @@
+//
+//  ios.xcconfig
+//  XRuler
+//
+//  Created by yarshure on 2017/12/14.
+//  Copyright © 2017年 yarshure. All rights reserved.
+//
+OTHER_LDFLAGS = $(inherited)  -framework Xcon
+//-framework Sodium -framework IDZSwiftCommonCrypto -framework CocoaAsyncSocket -framework SwiftyJSON -framework MMDB -weak_framework kcp -framework XSocket -framework ObjectMapper -framework Xcon -framework CommonCrypto -framework AxLogger
+//OTHER_LDFLAGS = $(inherited)  -framework Crypto -framework Sodium -framework IDZSwiftCommonCrypto -framework CocoaAsyncSocket -framework SwiftyJSON -framework MMDB -weak_framework kcp -framework XSocket -framework ObjectMapper -framework Xcon -framework CommonCrypto -framework AxLogger
+LIBRARY_SEARCH_PATHS = $(inherited) "$(PROJECT_DIR)/Carthage/Build/Mac/"

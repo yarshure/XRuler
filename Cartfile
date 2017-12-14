@@ -1,4 +1,4 @@
 github "yarshure/MMDB-Swift.git" "a357488a685efcc0d19f1c476e70fb20abc4fee5"
 
-git "git@bitbucket.org:yarshure/xcon.git" "3333f59b98601e407c96810ae838a49e7fb901b4"
+git "git@bitbucket.org:yarshure/xcon.git" "master"
 
