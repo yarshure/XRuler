@@ -8,18 +8,27 @@
 
 import Cocoa
 import XRuler
+import Xcon
 class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         XRuler.groupIdentifier = "745WQDK4L7.com.yarshure.Surf"
-        _ = ProxyGroupSettings.share.proxys
-        print(ProxyGroupSettings.share.config)
-        SFSettingModule.setting.config("/xx")
-        if let x = SFSettingModule.setting.findRuleByString("secure-appldnld.apple.com", useragent: ""){
+        var url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: XRuler.groupIdentifier)!
+        url.appendPathComponent("abigt.conf")
+        SFSettingModule.setting.config(url.path)
+        if let x = SFSettingModule.setting.findRuleByString("www.google.com", useragent: ""){
             print(x)
+        }else {
+            print("not found")
+        }
+        let x = "https,192.168.11.131,8000,,"
+        if let p = SFProxy.createProxyWithLine(line: x, pname: "CN2"){
+            
+            _  = ProxyGroupSettings.share.addProxy(p)
         }
         
+        print(ProxyGroupSettings.share.proxys)
         // Do any additional setup after loading the view.
     }
 
