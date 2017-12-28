@@ -233,8 +233,8 @@ public class ProxyGroupSettings:CommonModel {
     
     public func findProxy(_ proxyName:String) ->SFProxy? {
         
-        //return proxyMan!.findProxy(proxyName, dynamicSelected: dynamicSelected, selectIndex: selectIndex)
-        return nil
+        return proxyMan!.findProxy(proxyName, dynamicSelected: dynamicSelected, selectIndex: selectIndex)
+        //return nil
         
     }
     public func cutCount() ->Int{
