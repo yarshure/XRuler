@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "69C7DC281FE2524700FB7FA2"
-               BuildableName = "XRuler.framework"
-               BlueprintName = "XRuleriOS"
+               BlueprintIdentifier = "6913C3C71FE0BF16006483C1"
+               BuildableName = "macTest.app"
+               BlueprintName = "macTest"
                ReferencedContainer = "container:XRuler.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,6 +30,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6913C3C71FE0BF16006483C1"
+            BuildableName = "macTest.app"
+            BlueprintName = "macTest"
+            ReferencedContainer = "container:XRuler.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -44,15 +53,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "69C7DC281FE2524700FB7FA2"
-            BuildableName = "XRuler.framework"
-            BlueprintName = "XRuleriOS"
+            BlueprintIdentifier = "6913C3C71FE0BF16006483C1"
+            BuildableName = "macTest.app"
+            BlueprintName = "macTest"
             ReferencedContainer = "container:XRuler.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -62,15 +72,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "69C7DC281FE2524700FB7FA2"
-            BuildableName = "XRuler.framework"
-            BlueprintName = "XRuleriOS"
+            BlueprintIdentifier = "6913C3C71FE0BF16006483C1"
+            BuildableName = "macTest.app"
+            BlueprintName = "macTest"
             ReferencedContainer = "container:XRuler.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
