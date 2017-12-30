@@ -109,7 +109,7 @@ open  class SFSettingModule {
     //var hosts:[DNSRecord] = []//
     //var proxy:[String:SFProxy] = [:]
     //var general:General?
-    var rule:SFRule?
+    var rule:SFRule!
     
     var configFileData = Date()
     var method:Int32 = -1
@@ -190,9 +190,9 @@ open  class SFSettingModule {
     public func config(_ path:String){
         
 
-        var  fn = ProxyGroupSettings.share.config
+        
         var destPath:String
-        #if os(mac)
+        #if os(macOS)
         
         #else
         #endif
@@ -210,16 +210,12 @@ open  class SFSettingModule {
                 fatalError()
             }
             
-            
-//            let u = fm.containerURL(forSecurityApplicationGroupIdentifier: XRuler.groupIdentifier)!
-//            XRuler.log("Config File Don't exist \(u.path) ",level: .Info)
-//            XRuler.log("Config File Don't exist \(path) ",level: .Info)
         }
         
         
-        rule = SFRule.init(path: destPath, loadRule: true)
-        rule!.config()
-        rule!.configInfo()
+        rule =  SFRule.init(path: destPath, loadRule: true)
+        rule.config()
+        rule.configInfo()
         if let g = rule!.general {
             AxLogger.logleve = g.axloglevel
             XRuler.log("log level :\(g.axloglevel.description) ",level: .Info)
@@ -626,6 +622,6 @@ open  class SFSettingModule {
         return nil
     }
     deinit {
-        XRuler.log("[SFSettingModule deinit]", items: "", level: .Info)
+        XRuler.logX("[SFSettingModule deinit]", items: "", level: .Info)
     }
 }

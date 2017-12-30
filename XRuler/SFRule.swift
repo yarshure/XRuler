@@ -199,7 +199,7 @@ class SFRule:SFConfig {
 
     func defaultDNS() {
         
-            NSLog("[SFSettingModule] defaultDNS")
+        XRuler.log("[SFSettingModule] defaultDNS",level: .Info)
             if hosts.count > 100{
                 return;
             }

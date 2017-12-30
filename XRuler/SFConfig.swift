@@ -140,7 +140,7 @@ public class SFConfig {
             content = try String.init(contentsOf: URL.init(fileURLWithPath: path))
             //content = try  NSString.init(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue) as String
         }catch let error {
-            XRuler.log("read \(path) failure ",items: error.localizedDescription, level: .Error)
+            XRuler.logX("read \(path) failure ",items: error.localizedDescription, level: .Error)
             return
         }
         let x = content.components(separatedBy: "\n")
