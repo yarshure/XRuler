@@ -328,11 +328,7 @@ public class ProxyGroupSettings:CommonModel {
                 XRuler.logX("loadProxyFromFile OK", level: .Info)
             }
 
-        }catch let e {
-
-            XRuler.logX("loadProxyFromFile \(e.localizedDescription)", level: .Error)
         }
-        //刷新配置选项
 
     }
     public var chainProxys:[SFProxy]{
