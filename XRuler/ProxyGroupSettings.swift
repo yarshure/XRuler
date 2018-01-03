@@ -303,44 +303,43 @@ public class ProxyGroupSettings:CommonModel {
     }
     public func save() throws {//save to group dir
 
-//        if let js = self.toJSONString() {
-//            let url = groupContainerURL().appendingPathComponent(XRuler.kProxyGroupFile)
-//            print("save to \(url)")
-//            try js.write(to: url, atomically: true, encoding: .utf8)
-//        }
+        if let js = self.toJSONString() {
+            let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyGroupFile)
+            XRuler.log("save to \(url)",level: .Info)
+            try js.write(to: url, atomically: true, encoding: .utf8)
+        }
 
     }
-    public func loadProxyFromFile() {
+    
+    public func loadProxyFromFile() throws {
+      
+        let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyGroupFile)
+        var content:Data
+
+        do {
+            content = try Data.init(contentsOf: url)
+            let json = try JSON.init(data: content)
+            self.widgetProxyCount = json["widgetProxyCount"].intValue
+            self.widgetFlow =  json["widgetFlow"].boolValue
+            self.selectIndex = json["selectIndex"].intValue
+
+            if let man = Mapper<Proxys>().map(JSONObject: json["proxyMan"]){
+                self.proxyMan = man
+                XRuler.logX("loadProxyFromFile OK", level: .Info)
+            }
+
+        }catch let e {
+
+            XRuler.logX("loadProxyFromFile \(e.localizedDescription)", level: .Error)
+        }
+        //刷新配置选项
+
     }
-//    public func loadProxyFromFile() {
-//        //MARK: fixme
-//        let url = groupContainerURL().appendingPathComponent(XRuler.kProxyGroupFile)
-//        var content:Data
-//
-//        do {
-//            content = try Data.init(contentsOf: url)
-//            let json = JSON.init(data: content)
-//            self.widgetProxyCount = json["widgetProxyCount"].intValue
-//            self.widgetFlow =  json["widgetFlow"].boolValue
-//            self.selectIndex = json["selectIndex"].intValue
-//
-//            if let man = Mapper<Proxys>().map(JSONObject: json["proxyMan"]){
-//                self.proxyMan = man
-//                XRuler.logX("loadProxyFromFile OK", level: .Info)
-//            }
-//
-//        }catch let e {
-//
-//            XRuler.logX("loadProxyFromFile \(e.localizedDescription)", level: .Error)
-//        }
-//        //刷新配置选项
-//
-//    }
-//    public var chainProxys:[SFProxy]{
-//        get {
-//            return proxyMan!.chainProxys
-//        }
-//    }
+    public var chainProxys:[SFProxy]{
+        get {
+            return proxyMan!.chainProxys
+        }
+    }
     public var proxys:[SFProxy] {
 
         get {
