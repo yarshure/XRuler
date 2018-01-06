@@ -8,19 +8,19 @@
 
 import Foundation
 import SwiftyJSON
-public class SFTraffic {
+public struct SFTraffic {
     public var rx: UInt = 0
     public var tx: UInt = 0
     public init(){
         
     }
-    public func addRx(x:Int){
+    public mutating func addRx(x:Int){
         rx += UInt(x)
     }
-    public func addTx(x:Int){
+    public mutating func addTx(x:Int){
         tx += UInt(x)
     }
-    public func reset() {
+    public mutating func reset() {
         rx = 0
         tx = 0
     }
@@ -71,7 +71,7 @@ public class SFTraffic {
     public func resp ()-> [String:NSNumber] {
         return ["rx":NSNumber.init(value: rx) ,"tx":NSNumber.init(value: tx)]
     }
-    public func mapObject(j:JSON)  {
+    public mutating func mapObject(j:JSON)  {
         rx = UInt(j["rx"].int64Value)
         tx = UInt(j["tx"].int64Value)
     }
@@ -136,7 +136,7 @@ public final class NetFlow{
     public func mapObject(j: SwiftyJSON.JSON){
         totalFlows.removeAll(keepingCapacity: true)
         for xx in j["total"].arrayValue {
-            let x = SFTraffic()
+            var x = SFTraffic()
             x.mapObject(j: xx)
             totalFlows.append(x)
         }

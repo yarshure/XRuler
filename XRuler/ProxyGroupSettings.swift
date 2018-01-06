@@ -251,25 +251,25 @@ public class ProxyGroupSettings:CommonModel {
     }
 
 
-//    public var proxysAll:[SFProxy] {
-//        get {
-//            var new:[SFProxy] = []
-//            new.append(contentsOf: proxyMan!.proxys)
-//            new.append(contentsOf: proxyMan!.chainProxys)
-//            return new
-//        }
-//    }
+    public var proxysAll:[SFProxy] {
+        get {
+            var new:[SFProxy] = []
+            new.append(contentsOf: proxyMan!.proxys)
+            new.append(contentsOf: proxyMan!.chainProxys)
+            return new
+        }
+    }
    
 
     public func cleanDeleteProxy(){
-//        if let p = proxyMan {
-//            p.deleteproxys.removeAll()
-//            do {
-//                try save()
-//            }catch let e {
-//                print("cleanDeleteProxy \(e.localizedDescription)")
-//            }
-//        }
+        if let p = proxyMan {
+            p.deleteproxys.removeAll()
+            do {
+                try save()
+            }catch let e {
+                print("cleanDeleteProxy \(e.localizedDescription)")
+            }
+        }
     }
     public func addProxy(_ proxy:SFProxy) -> Bool {
         
@@ -328,6 +328,8 @@ public class ProxyGroupSettings:CommonModel {
                 XRuler.logX("loadProxyFromFile OK", level: .Info)
             }
 
+        }catch let e {
+            throw e
         }
 
     }

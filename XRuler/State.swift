@@ -15,10 +15,10 @@ open class SFVPNStatistics {
     public var reportTime = Date()
     public var startTimes = 0
     public var show:Bool = false
-    public let totalTraffice:SFTraffic = SFTraffic()
-    public let currentTraffice:SFTraffic = SFTraffic()
-    public let lastTraffice:SFTraffic = SFTraffic()
-    public let maxTraffice:SFTraffic = SFTraffic()
+    public var totalTraffice:SFTraffic = SFTraffic()
+    public var currentTraffice:SFTraffic = SFTraffic()
+    public var lastTraffice:SFTraffic = SFTraffic()
+    public  var maxTraffice:SFTraffic = SFTraffic()
     
     public var wifiTraffice:SFTraffic = SFTraffic()
     public var cellTraffice:SFTraffic = SFTraffic()
@@ -88,6 +88,70 @@ open class SFVPNStatistics {
         }
         return String(format: "%.2f MB", f/1024.0/1024.0)
         
+    }
+    func resport(memory:UInt64,count:Int) ->Data{
+        reportTime = Date()
+        memoryUsed = memory
+        
+        var status:[String:AnyObject] = [:]
+        status["start"] =  NSNumber.init(value: startDate.timeIntervalSince1970)
+        status["sessionStartTime"] =  NSNumber.init(value: sessionStartTime.timeIntervalSince1970)
+        status["report_date"] =  NSNumber.init(value: reportTime.timeIntervalSince1970)
+        //status["runing"] = NSNumber.init(double:runing)
+        status["total"] = totalTraffice.resp() as AnyObject?
+        status["last"] = lastTraffice.resp() as AnyObject?
+        status["max"] = maxTraffice.resp() as AnyObject?
+        status["memory"] = NSNumber.init(value: memoryUsed) //memoryUsed)
+        
+        
+        status["finishedCount"] = NSNumber.init(value: finishedCount) //
+        status["workingCount"] = NSNumber.init(value: count) //
+        
+        status["cell"] = cellTraffice.resp() as AnyObject?
+        status["wifi"] = wifiTraffice.resp() as AnyObject?
+        status["direct"] = directTraffice.resp() as AnyObject?
+        status["proxy"] = proxyTraffice.resp() as AnyObject?
+        status["netflow"] = netflow.resp() as AnyObject
+        let j = JSON(status)
+        
+        
+        
+        
+        //print("recentRequestData \(j)")
+        var data:Data
+        do {
+            try data = j.rawData()
+        }catch let error  {
+            //AxLogger.log("ruleResultData error \(error.localizedDescription)")
+            //let x = error.localizedDescription
+            //let err = "report error"
+            data =  error.localizedDescription.data(using: .utf8)!// NSData()
+        }
+        return data
+    }
+    func flowData(memory:UInt64) ->Data{
+        reportTime = Date()
+        memoryUsed = memory
+        
+        var status:[String:AnyObject] = [:]
+        
+        status["netflow"] = netflow.resp() as AnyObject
+        let j = JSON(status)
+        
+        
+        
+        
+        //print("recentRequestData \(j)")
+        var data:Data
+        do {
+            try data = j.rawData()
+        }catch let error  {
+            //AxLogger.log("ruleResultData error \(error.localizedDescription)")
+            //let x = error.localizedDescription
+            //let err = "report error"
+            data =  error.localizedDescription.data(using: .utf8)!// NSData()
+        }
+        return data
     }
     
 }

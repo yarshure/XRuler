@@ -15,6 +15,7 @@ public class XRuler {
         if level != AxLoggerLevel.Debug {
             AxLogger.log(msg,level:level)
         }
+        
         if #available(OSXApplicationExtension 10.12, *) {
             os_log("XRuler: %@", log: .default, type: .debug, msg)
         } else {
