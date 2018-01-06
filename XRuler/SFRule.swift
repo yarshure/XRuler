@@ -11,17 +11,17 @@ import SwiftyJSON
 import MMDB
 import AxLogger
 
-struct IPCidr {
-    var sIP:UInt32 = 0
-    var eIP:UInt32 = 0
-    var name:String = ""
-    var proxyName:String = ""
-    init (s:UInt32 , e:UInt32,name:String) {
+public struct IPCidr {
+    public var sIP:UInt32 = 0
+    public var eIP:UInt32 = 0
+    public var name:String = ""
+    public var proxyName:String = ""
+    public init (s:UInt32 , e:UInt32,name:String) {
         sIP = s
         eIP = e
         proxyName = name
     }
-    func find(_ key:UInt32) ->Bool {
+    public func find(_ key:UInt32) ->Bool {
         if key >= sIP && key <= eIP {
             return true
         }

@@ -16,13 +16,7 @@ open  class SFSettingModule {
     //static let setting = SFSettingModule()
     public static var config:String = ""
     public  static let setting:SFSettingModule =  SFSettingModule()
-//    static let setting:SFSettingModule = {
-//        let configName = readConfig()
-//        
-//        var urlContain = groupContainerURL.appendingPathComponent(configName!)
-//        print("config url:\(urlContain.path!)")
-//        return SFSettingModule(path: urlContain.path!)
-//    }()
+
     public enum  HTTPProxyMode{
          case socket
          case tunnel
@@ -65,7 +59,7 @@ open  class SFSettingModule {
     public func rewrite(url:String) {
         //MARK: --todo url rewrite feature
 //        if  let r =  SFSettingModule.setting.rule{
-//            if let ruler = r.rewriteRule(self.Url){
+//            if let ruler = r.rewriteRule(url){
 //                if ruler.type == .header {
 //                    if let r = self.Url.range(of: ruler.name){
 //                        self.Url.replaceSubrange(r, with: ruler.proxyName)
@@ -522,7 +516,7 @@ open  class SFSettingModule {
 
         }
  
-        let result:SFRuleResult = SFRuleResult.init(request: hostname,r: ruler)
+        var result:SFRuleResult = SFRuleResult.init(request: hostname,r: ruler)
         result.ipAddr = ipaddr
         return result
     }
@@ -565,7 +559,7 @@ open  class SFSettingModule {
     public func findIPRuleResult(_ ip:String,host:String) ->  SFRuleResult{
         let  ruler:SFRuler = findIPRuler(ip)
         ruler.ipAddress = ip
-        let result:SFRuleResult = SFRuleResult.init(request: ip,r: ruler)
+        var result:SFRuleResult = SFRuleResult.init(request: ip,r: ruler)
         result.ipAddr = ip
         return result
     }

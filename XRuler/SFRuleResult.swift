@@ -21,7 +21,7 @@ public enum SFRuleResultMethod :Int, CustomStringConvertible{
         }
     }
 }
-public class SFRuleResult {
+public struct SFRuleResult {
     public var req:String = ""
     public var result:SFRuler
     public var ipAddr:String = ""
@@ -35,7 +35,5 @@ public class SFRuleResult {
         r[req] = result.resp() as AnyObject?
         return r
     }
-    deinit {
-        XRuler.log("[SFSettingModule] RuleResult deinit ",level: .Debug)
-    }
+   
 }
