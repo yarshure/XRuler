@@ -89,7 +89,7 @@ open class SFVPNStatistics {
         return String(format: "%.2f MB", f/1024.0/1024.0)
         
     }
-    func resport(memory:UInt64,count:Int) ->Data{
+    public func resport(memory:UInt64,count:Int) ->Data{
         reportTime = Date()
         memoryUsed = memory
         
@@ -129,7 +129,7 @@ open class SFVPNStatistics {
         }
         return data
     }
-    func flowData(memory:UInt64) ->Data{
+    public func flowData(memory:UInt64) ->Data{
         reportTime = Date()
         memoryUsed = memory
         
@@ -138,10 +138,6 @@ open class SFVPNStatistics {
         status["netflow"] = netflow.resp() as AnyObject
         let j = JSON(status)
         
-        
-        
-        
-        //print("recentRequestData \(j)")
         var data:Data
         do {
             try data = j.rawData()
