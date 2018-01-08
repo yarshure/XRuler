@@ -24,7 +24,7 @@ public class XRuler {
                 
             }
         #elseif os(macOS)
-            if #available(iOSApplicationExtension 10.12, *) {
+            if #available(OSXApplicationExtension 10.12, *) {
                 os_log("XRuler: %@", log: .default, type: .debug, msg)
             } else {
                 print(msg)
@@ -50,7 +50,7 @@ public class XRuler {
                     
                 }
             #elseif os(macOS)
-                if #available(iOSApplicationExtension 10.12, *) {
+                if #available(OSXApplicationExtension 10.12, *) {
                     os_log("XRuler: %@", log: .default, type: .debug, msg)
                 } else {
                     print(msg)
