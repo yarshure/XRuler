@@ -89,7 +89,7 @@ open class SFVPNStatistics {
         return String(format: "%.2f MB", f/1024.0/1024.0)
         
     }
-    public func resport(memory:UInt64,count:Int) ->Data{
+    public func report(memory:UInt64,count:Int) ->Data{
         reportTime = Date()
         memoryUsed = memory
         

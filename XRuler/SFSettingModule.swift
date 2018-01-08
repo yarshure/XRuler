@@ -374,8 +374,7 @@ open  class SFSettingModule {
             }
         }
         let host = CFHostCreateWithName(nil,hostName as CFString).takeRetainedValue()
-        //NSLog("getIPFromDNS %@", hostName)
-        let d = Date()
+        
         CFHostStartInfoResolution(host, .addresses, nil)
         var success: DarwinBoolean = false
         if let addresses = CFHostGetAddressing(host, &success)?.takeUnretainedValue() as NSArray?,
@@ -385,19 +384,15 @@ open  class SFSettingModule {
             let value = p.withUnsafeBytes { (ptr: UnsafePointer<sockaddr>)  in
                 return ptr
             }
-            if getnameinfo(UnsafePointer(value), socklen_t(theAddress.length),
+            if getnameinfo(UnsafePointer(value), socklen_t(theAddress.count),
                            &hostname, socklen_t(hostname.count), nil, 0, NI_NUMERICHOST) == 0 {
                 let numAddress = String(cString:hostname)
-                let d2 = Date()
-                let s =  String(format:" DNS request use %.2f",d2.timeIntervalSince(d))
-                print(hostName + " " + numAddress + s)
+                
                 return numAddress
                 
             }
         }
-//        let message = String.init(format:"getIPFromDNS %@ failure!", hostName)
-//        debugLog(message)
-        //logStream.write(message)
+
         return nil
     }
 //    func ipRule(ip:String) ->JSON?{
