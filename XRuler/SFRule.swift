@@ -119,11 +119,12 @@ class SFRule:SFConfig {
     }
     func config() {
         
-        
+        let bundle = Bundle.init(for: XRuler.self)
         for item in geoipRulers {
             if item.name == "CN" {
                 XRuler.log("GEOIP CN enabled",level: .Info)
-                if let path = Bundle.main.path(forResource: "CNIP.bin", ofType: nil) {
+                
+                if let path = bundle.path(forResource: "CNIP.bin", ofType: nil) {
                     let x  = try! Data.init(contentsOf: URL.init(fileURLWithPath: path))
                         cnIPList = x
                         cnIPCount = x.count / 8
@@ -136,7 +137,6 @@ class SFRule:SFConfig {
                 
             }
         }
-        
         
        
         if ipRuleEnable {

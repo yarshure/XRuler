@@ -24,6 +24,12 @@ open  class SFSettingModule {
     public func check(){
         
     }
+    public func custormDNS() ->[String]{
+        if let r = rule{
+            return r.general!.dnsserver
+        }
+        return []
+    }
     func ipStringV4(_ ip:UInt32) ->String{
         let a = (ip & 0xFF)
         let b = (ip >> 8 & 0xFF)
@@ -184,8 +190,29 @@ open  class SFSettingModule {
     public func config(_ path:String){
         
 
-        
         var destPath:String
+        
+        if path == "" {
+            let    fn = ProxyGroupSettings.share.config
+            
+            if fn == "Default.conf" {
+                let bundle = Bundle.init(for: XRuler.self)
+                
+                destPath = bundle.bundleURL.appendingPathComponent(fn).path
+            }else {
+                destPath = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(fn).path
+            }
+        }
+       
+        
+        
+       
+        
+        SFSettingModule.setting.config(path)
+        
+        
+        
+        
         #if os(macOS)
         
         #else
@@ -195,7 +222,7 @@ open  class SFSettingModule {
             XRuler.log("Read Config From :\(path)", level: .Info)
             destPath = path
         }else {
-            
+            //default config
             let bundle = Bundle.init(for: SFSettingModule.self)
             if let p = bundle.path(forResource: "Default", ofType: ".conf") {
                 destPath =   p

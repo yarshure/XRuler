@@ -35,6 +35,8 @@
 		695940001FFBA6BF00CB8ADF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69593FFE1FFBA6BF00CB8ADF /* LaunchScreen.storyboard */; };
 		695940051FFBA6D400CB8ADF /* XRuler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C7DC291FE2524700FB7FA2 /* XRuler.framework */; };
 		695940061FFBA6D400CB8ADF /* XRuler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69C7DC291FE2524700FB7FA2 /* XRuler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		69AD9CD32004916600C01011 /* CNIP.bin in Resources */ = {isa = PBXBuildFile; fileRef = 69AD9CD22004916600C01011 /* CNIP.bin */; };
+		69AD9CD42004916600C01011 /* CNIP.bin in Resources */ = {isa = PBXBuildFile; fileRef = 69AD9CD22004916600C01011 /* CNIP.bin */; };
 		69C7DC2D1FE2524800FB7FA2 /* XRuleriOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 69C7DC2B1FE2524800FB7FA2 /* XRuleriOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		69C7DC311FE253AC00FB7FA2 /* SFSettingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35991FC69B63007FDE26 /* SFSettingModule.swift */; };
 		69C7DC321FE253B100FB7FA2 /* Default.conf in Resources */ = {isa = PBXBuildFile; fileRef = 6913C41A1FE17AF4006483C1 /* Default.conf */; };
@@ -118,6 +120,7 @@
 		69593FFF1FFBA6BF00CB8ADF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		695940011FFBA6BF00CB8ADF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6959400B1FFC639800CB8ADF /* iOSTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSTest.entitlements; sourceTree = "<group>"; };
+		69AD9CD22004916600C01011 /* CNIP.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = CNIP.bin; sourceTree = "<group>"; };
 		69C7DBF01FE2517000FB7FA2 /* mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = mac.xcconfig; sourceTree = "<group>"; };
 		69C7DC021FE251B600FB7FA2 /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iOS.xcconfig; sourceTree = "<group>"; };
 		69C7DC291FE2524700FB7FA2 /* XRuler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XRuler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +210,7 @@
 			children = (
 				693A35991FC69B63007FDE26 /* SFSettingModule.swift */,
 				6913C41A1FE17AF4006483C1 /* Default.conf */,
+				69AD9CD22004916600C01011 /* CNIP.bin */,
 				693A35AD1FC69DAC007FDE26 /* General.swift */,
 				693A35B51FC6A11D007FDE26 /* SFRuleResult.swift */,
 				693A35D81FC6B207007FDE26 /* State.swift */,
@@ -422,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6913C41B1FE17AF5006483C1 /* Default.conf in Resources */,
+				69AD9CD32004916600C01011 /* CNIP.bin in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69C7DC321FE253B100FB7FA2 /* Default.conf in Resources */,
+				69AD9CD42004916600C01011 /* CNIP.bin in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
