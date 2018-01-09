@@ -192,36 +192,8 @@ open  class SFSettingModule {
 
         var destPath:String
         
-        if path == "" {
-            let    fn = ProxyGroupSettings.share.config
-            
-            if fn == "Default.conf" {
-                let bundle = Bundle.init(for: XRuler.self)
-                
-                destPath = bundle.bundleURL.appendingPathComponent(fn).path
-            }else {
-                destPath = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(fn).path
-            }
-        }
-       
         
-        
-       
-        
-        SFSettingModule.setting.config(path)
-        
-        
-        
-        
-        #if os(macOS)
-        
-        #else
-        #endif
-        
-        if  fm.fileExists(atPath:path) {
-            XRuler.log("Read Config From :\(path)", level: .Info)
-            destPath = path
-        }else {
+        if path.isEmpty {
             //default config
             let bundle = Bundle.init(for: SFSettingModule.self)
             if let p = bundle.path(forResource: "Default", ofType: ".conf") {
@@ -231,8 +203,32 @@ open  class SFSettingModule {
                 fatalError()
             }
             
+            
+            
+        }else {
+            if  fm.fileExists(atPath:path) {
+                XRuler.log("Read Config From :\(path)", level: .Info)
+                destPath = path
+            }else {
+                
+                destPath = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(path).path
+                if  fm.fileExists(atPath:destPath) {
+                    XRuler.log("Read Config From :\(destPath)", level: .Info)
+                }else {
+                    let    fn = ProxyGroupSettings.share.config
+                    if !fn.isEmpty {
+                        
+                        destPath = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(fn).path
+                    }else {
+                        fatalError("config error")
+                    }
+                }
+                
+                
+            }
+            
         }
-        
+       
         
         rule =  SFRule.init(path: destPath, loadRule: true)
         rule.config()

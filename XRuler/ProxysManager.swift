@@ -40,13 +40,20 @@ public class Proxys:CommonModel {
             
             
             var proxy:SFProxy?
+            //dynamic first
             if dynamicSelected {
-                proxy =   proxys[selectIndex]
-                return proxy
+                if selectIndex < proxys.count {
+                    proxy =   proxys[selectIndex]
+                    if proxy!.tcpValue >= Double(0.0) {
+                        return proxy
+                    }
+                }
             }
+            //index name equal
+            //name second
             if selectIndex < proxys.count {
                 let p =  proxys[selectIndex]
-                if p.proxyName == proxyName{
+                if p.proxyName == proxyName && p.tcpValue >= 0.0{
                     return p
                 }else {
                     proxy = p
@@ -55,7 +62,8 @@ public class Proxys:CommonModel {
             }
             var proxy2:SFProxy?
             for item in proxys {
-                if item.proxyName == proxyName {
+                
+                if item.proxyName == proxyName && item.tcpValue >= 0.0 {
                     proxy2 =  item
                     break
                 }

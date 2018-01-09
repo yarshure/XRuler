@@ -348,3 +348,75 @@ public class ProxyGroupSettings:CommonModel {
         }
     }
 }
+
+extension ProxyGroupSettings{
+    public func monitorProxys(){
+        //proxys maybe don't available now
+        //only support TCP server
+        let queue = DispatchQueue.init(label: "com.yarshure.monitor", qos: .background, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil)
+        
+        
+        for p in ProxyGroupSettings.share.proxys {
+            if p.kcptun {
+                continue
+            }
+            queue.async(execute: {
+                
+                let start = Date()
+                
+                // Look up the host...
+                let socketfd: Int32 = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
+                let remoteHostName = p.serverAddress
+                //let port = Intp.serverPort
+                
+                guard let remoteHost = gethostbyname2(remoteHostName, AF_INET)else {
+                    return
+                }
+                
+                
+                let d = Date()
+                
+                
+                
+                p.dnsValue = d.timeIntervalSince(start)
+                var remoteAddr = sockaddr_in()
+                remoteAddr.sin_family = sa_family_t(AF_INET)
+                bcopy(remoteHost.pointee.h_addr_list[0], &remoteAddr.sin_addr.s_addr, Int(remoteHost.pointee.h_length))
+                if let port = UInt16(p.serverPort) {
+                    remoteAddr.sin_port = port.bigEndian
+                    
+                }else {
+                    _  = p.serverPort
+                    print("\(p.serverPort) error")
+                    close(socketfd)
+                    p.tcpValue = -1
+                    return
+                }
+                
+                
+                
+                // Now, do the connection...
+                let rc = withUnsafePointer(to: &remoteAddr) {
+                    // Temporarily bind the memory at &addr to a single instance of type sockaddr.
+                    $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                        connect(socketfd, $0, socklen_t(MemoryLayout<sockaddr_in>.stride))
+                    }
+                }
+                
+                
+                if rc < 0 {
+                    print("\(p.serverAddress):\(p.serverPort) socket connect failed")
+                   
+                    p.tcpValue = -1
+                }else {
+                    let end = Date()
+                    p.tcpValue = end.timeIntervalSince(d)
+                    close(socketfd)
+                }
+                
+              
+                
+            })
+        }
+    }
+}

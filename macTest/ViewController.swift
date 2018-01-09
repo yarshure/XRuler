@@ -32,12 +32,14 @@ class ViewController: NSViewController {
             print("not found proxy")
         }
         if let x = SFSettingModule.setting.findRuleByString("www.google.com", useragent: ""){
-            print(x)
-            
+            print(x.result.proxyName)
+            if let px =  ProxyGroupSettings.share.findProxy(x.result.proxyName) {
+                print(px)
+            }
         }else {
             print("not found rule")
         }
-        
+        ProxyGroupSettings.share.monitorProxys()
     }
     func testAddProxy(){
         let x = "https,192.168.11.131,8000,,"
