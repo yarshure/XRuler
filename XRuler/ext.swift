@@ -22,13 +22,7 @@ public enum SFPolicy :String{
     }
 }
 func  groupContainerURL(_ iden:String) ->URL{
-    
     return fm.containerURL(forSecurityApplicationGroupIdentifier: iden)!
-    
-    
-    //#endif
-    //return URL.init(fileURLWithPath: "")
-    
 }
 let  fm = FileManager.default
 extension String{

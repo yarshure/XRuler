@@ -149,5 +149,43 @@ open class SFVPNStatistics {
         }
         return data
     }
-    
+    //shoud every second update
+    public func reportTask() {
+        //let report = SFVPNStatistics.shared
+        lastTraffice.tx = currentTraffice.tx
+        lastTraffice.rx = currentTraffice.rx
+        var snapShot = SFTraffic()
+        snapShot.tx = currentTraffice.tx
+        snapShot.rx = currentTraffice.rx
+        netflow.update(snapShot, type: .total)
+        
+        currentTraffice.tx = 0
+        currentTraffice.rx = 0
+        totalTraffice.addRx(x: Int(lastTraffice.rx))
+        totalTraffice.addTx(x: Int(lastTraffice.tx))
+        
+        updateMax()
+    }
+    init() {
+        reportTimer =  DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: 0), queue: DispatchQueue.main)
+        reportTimer.schedule(deadline: .now(), repeating: DispatchTimeInterval.seconds(1), leeway: DispatchTimeInterval.seconds(1))
+        reportTimer.setEventHandler {
+            [weak self] in
+            XRuler.log("reportTimer ..", level: .Info)
+            self?.reportTask()
+        }
+        reportTimer.setCancelHandler {
+            XRuler.log("cancle reportTimer", level: .Info)
+        }
+    }
+    fileprivate let reportTimer: DispatchSourceTimer
+    public func startReporting(){
+        reportTimer.resume()
+    }
+    public func pauseReporting(){
+        //reportTimer.
+    }
+    public func cancelReporting(){
+        reportTimer.cancel()
+    }
 }

@@ -40,6 +40,7 @@ class ViewController: NSViewController {
             print("not found rule")
         }
         ProxyGroupSettings.share.monitorProxys()
+        testAddProxy()
     }
     func testAddProxy(){
         let x = "https,192.168.11.131,8000,,"
@@ -48,6 +49,7 @@ class ViewController: NSViewController {
             _  = ProxyGroupSettings.share.addProxy(p)
         }
         print(ProxyGroupSettings.share.proxys)
+        SFVPNStatistics.shared.startReporting()
     }
     override var representedObject: Any? {
         didSet {

@@ -152,7 +152,7 @@ public class SFConfig {
         var type:SFConfigSectionType = .general
         for item in x {
             
-            print("\(item)")
+            //print("\(item)")
             if item.hasPrefix("[Host]"){
                 type = .host
                 continue
@@ -169,7 +169,7 @@ public class SFConfig {
                 type = .proxyGroup
                 continue
             }else {
-                print("Line: \(item)")
+                
             }
             switch type {
             case .general:
@@ -271,7 +271,7 @@ public class SFConfig {
                         }
                     }
                 }else {
-                    print("line rule :\(item) parser  error")
+                    //print("line rule :\(item) parser  error")
                 }
                 
             case .host:

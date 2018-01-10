@@ -24,7 +24,7 @@
 		693A35AE1FC69DAC007FDE26 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35AD1FC69DAC007FDE26 /* General.swift */; };
 		693A35B61FC6A11D007FDE26 /* SFRuleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35B51FC6A11D007FDE26 /* SFRuleResult.swift */; };
 		693A35BA1FC6A297007FDE26 /* ProxyGroupSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35B91FC6A297007FDE26 /* ProxyGroupSettings.swift */; };
-		693A35D91FC6B207007FDE26 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35D81FC6B207007FDE26 /* State.swift */; };
+		693A35D91FC6B207007FDE26 /* SFVPNStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35D81FC6B207007FDE26 /* SFVPNStatistics.swift */; };
 		693A35DB1FC6B305007FDE26 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35DA1FC6B305007FDE26 /* Flow.swift */; };
 		694650441FF50CE5000AFBE3 /* ProxysManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694650431FF50CE5000AFBE3 /* ProxysManager.swift */; };
 		694650451FF50CEE000AFBE3 /* ProxysManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694650431FF50CE5000AFBE3 /* ProxysManager.swift */; };
@@ -42,7 +42,7 @@
 		69C7DC321FE253B100FB7FA2 /* Default.conf in Resources */ = {isa = PBXBuildFile; fileRef = 6913C41A1FE17AF4006483C1 /* Default.conf */; };
 		69C7DC331FE253B500FB7FA2 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35AD1FC69DAC007FDE26 /* General.swift */; };
 		69C7DC341FE253B800FB7FA2 /* SFRuleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35B51FC6A11D007FDE26 /* SFRuleResult.swift */; };
-		69C7DC351FE253BB00FB7FA2 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35D81FC6B207007FDE26 /* State.swift */; };
+		69C7DC351FE253BB00FB7FA2 /* SFVPNStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35D81FC6B207007FDE26 /* SFVPNStatistics.swift */; };
 		69C7DC361FE253BE00FB7FA2 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35DA1FC6B305007FDE26 /* Flow.swift */; };
 		69C7DC371FE253C100FB7FA2 /* XRuler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35AB1FC69D5D007FDE26 /* XRuler.swift */; };
 		69C7DC381FE253C400FB7FA2 /* SFRuler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A359F1FC69C38007FDE26 /* SFRuler.swift */; };
@@ -109,7 +109,7 @@
 		693A35AD1FC69DAC007FDE26 /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		693A35B51FC6A11D007FDE26 /* SFRuleResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFRuleResult.swift; sourceTree = "<group>"; };
 		693A35B91FC6A297007FDE26 /* ProxyGroupSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyGroupSettings.swift; sourceTree = "<group>"; };
-		693A35D81FC6B207007FDE26 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		693A35D81FC6B207007FDE26 /* SFVPNStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFVPNStatistics.swift; sourceTree = "<group>"; };
 		693A35DA1FC6B305007FDE26 /* Flow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 		694650431FF50CE5000AFBE3 /* ProxysManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxysManager.swift; sourceTree = "<group>"; };
 		69593FF31FFBA6BF00CB8ADF /* iOSTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,7 +213,7 @@
 				69AD9CD22004916600C01011 /* CNIP.bin */,
 				693A35AD1FC69DAC007FDE26 /* General.swift */,
 				693A35B51FC6A11D007FDE26 /* SFRuleResult.swift */,
-				693A35D81FC6B207007FDE26 /* State.swift */,
+				693A35D81FC6B207007FDE26 /* SFVPNStatistics.swift */,
 				693A35DA1FC6B305007FDE26 /* Flow.swift */,
 				693A35AB1FC69D5D007FDE26 /* XRuler.swift */,
 				693A359F1FC69C38007FDE26 /* SFRuler.swift */,
@@ -497,7 +497,7 @@
 				693A35A61FC69CCA007FDE26 /* SFRule.swift in Sources */,
 				693A359A1FC69B63007FDE26 /* SFSettingModule.swift in Sources */,
 				693A35AA1FC69D43007FDE26 /* SFConfig.swift in Sources */,
-				693A35D91FC6B207007FDE26 /* State.swift in Sources */,
+				693A35D91FC6B207007FDE26 /* SFVPNStatistics.swift in Sources */,
 				693A35AC1FC69D5D007FDE26 /* XRuler.swift in Sources */,
 				694650441FF50CE5000AFBE3 /* ProxysManager.swift in Sources */,
 				693A35A21FC69C7F007FDE26 /* ext.swift in Sources */,
@@ -534,7 +534,7 @@
 				69C7DC311FE253AC00FB7FA2 /* SFSettingModule.swift in Sources */,
 				69C7DC341FE253B800FB7FA2 /* SFRuleResult.swift in Sources */,
 				69C7DC381FE253C400FB7FA2 /* SFRuler.swift in Sources */,
-				69C7DC351FE253BB00FB7FA2 /* State.swift in Sources */,
+				69C7DC351FE253BB00FB7FA2 /* SFVPNStatistics.swift in Sources */,
 				69C7DC3D1FE253D400FB7FA2 /* ProxyGroupSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -99,29 +99,31 @@ public final class NetFlow{
     
     public var directFlows:[SFTraffic] = []
     public var proxyFlows:[SFTraffic] = []
+    //只保存最近60次采样
     public func update(_ flow:SFTraffic, type:FlowType){
-        //        var tmp:[SFTraffic]
-        //        switch type {
-        //        case .total:
-        //           tmp = totalFlows
-        //        case .current :
-        //           tmp = currentFlows
-        //        case .last :
-        //           tmp = lastFlows
-        //        case .max:
-        //           tmp = maxFlows
-        //        case .wifi:
-        //           tmp = wifiFlows
-        //        case .cell:
-        //           tmp = cellFlows
-        //        case .direct:
-        //            tmp = directFlows
-        //        case .proxy:
-        //            tmp = proxyFlows
-        //        }
-        totalFlows.append(flow)
-        if totalFlows.count > 60 {
-            totalFlows.remove(at: 0)
+        var tmp:[SFTraffic]
+        switch type {
+        case .total:
+            tmp = totalFlows
+        case .current :
+            tmp = currentFlows
+        case .last :
+            tmp = lastFlows
+        case .max:
+            tmp = maxFlows
+        case .wifi:
+            tmp = wifiFlows
+        case .cell:
+            tmp = cellFlows
+        case .direct:
+            tmp = directFlows
+        case .proxy:
+            tmp = proxyFlows
+        }
+        
+        tmp.append(flow)
+        if tmp.count > 60 {
+            tmp.remove(at: 0)
         }
     }
     public func resp() -> [String : AnyObject] {
