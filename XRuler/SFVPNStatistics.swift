@@ -168,22 +168,30 @@ open class SFVPNStatistics {
     }
     init() {
         reportTimer =  DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: 0), queue: DispatchQueue.main)
-        reportTimer.schedule(deadline: .now(), repeating: DispatchTimeInterval.seconds(1), leeway: DispatchTimeInterval.seconds(1))
-        reportTimer.setEventHandler {
-            [weak self] in
-            XRuler.log("reportTimer ..", level: .Info)
-            self?.reportTask()
-        }
-        reportTimer.setCancelHandler {
-            XRuler.log("cancle reportTimer", level: .Info)
-        }
+        installTimer()
     }
     fileprivate let reportTimer: DispatchSourceTimer
     public func startReporting(){
+        XRuler.log("Starting reportTimer ..", level: .Info)
+//        if reportTimer.isCancelled {
+//            installTimer()
+//        }
         reportTimer.resume()
+    }
+    func installTimer(){
+        reportTimer.schedule(deadline: .now(), repeating: DispatchTimeInterval.seconds(1), leeway: DispatchTimeInterval.seconds(1))
+        reportTimer.setEventHandler {
+            [weak self] in
+            
+            self?.reportTask()
+        }
+        reportTimer.setCancelHandler {
+            XRuler.log("cancel reportTimer ..", level: .Info)
+        }
     }
     public func pauseReporting(){
         //reportTimer.
+        reportTimer.suspend()
     }
     public func cancelReporting(){
         reportTimer.cancel()
