@@ -35,12 +35,7 @@ class SFRule:SFConfig {
     //var final:JSON
     ////
     //var name:String = ""
-//    var keyworldRulers:[SFRuler] = []
-//    var ipcidrRulers:[SFRuler] = []
-//    var sufixRulers:[SFRuler] = []
-//    var geoipRulers:[SFRuler] = []
-//    var finalRuler:SFRuler = SFRuler()
-//    var agentRuler:[SFRuler] = []
+
     
     ////
     var geoIP:[String:JSON] = [:]//support multi
@@ -48,52 +43,8 @@ class SFRule:SFConfig {
     var db:MMDB?
     var cnIPList:Data?
     var cnIPCount = 0
-    //var agents:[String] = []
-    //var keywords:
-//    init (c:JSON?) {
-//        
-//        finalRuler.proxyName = "Proxy"
-//        //        if let p  = SFPolicy(rawValue:finalRuler.proxyName){
-//        //            finalRuler.policy = p
-//        //        }
-//        finalRuler.type = .FINAL
-//        finalRuler.name = "FINAL"
-//            
-//        let helper = SFRuleHelper.shared
-//        let x = helper.query(3,nameFilter:"")
-//        for item in x {
-//            if item.name == "CN" {
-//                
-//                if let path = Bundle.main.path(forResource:"CNIP.bin", ofType: nil) {
-//                    if let x  = NSData.init(contentsOfFile: path){
-//                        cnIPList = x
-//                        cnIPCount = x.length / 8
-//                        print("cnIPList :\(x.length)cnIPCount :\(cnIPCount)")
-//                    }
-//                }
-//                
-//            }
-//
-//            geoipRulers.append(item)
-//        }
-//        
-//        
-//        //}
-////        self.loadConfig(c)
-////        buildData(c["IP-CIDR"])
-////        mylog("reportMemory \(reportMemory())")
-//    }
-    
-    
-//    init (name:String) {
-//        self.name = name
-//     
-//        //}
-//        //        self.loadConfig(c)
-//        //        buildData(c["IP-CIDR"])
-//        //        mylog("reportMemory \(reportMemory())")
-//    }
-    func configInfo() {
+   
+    public func configInfo() {
         XRuler.log("Config:\(configName)",level: .Info)
         XRuler.log("Hosts:\(hosts.count)", level: .Info)
         
@@ -104,11 +55,7 @@ class SFRule:SFConfig {
         XRuler.log("IPCIDR:\(ipcidrRulers.count)",level: .Info)
         XRuler.log("FINAL:\(finalRuler.proxyName)",level: .Info)
         let count = hosts.count + keyworldRulers.count + sufixRulers.count + geoipRulers.count + agentRuler.count + ipcidrRulers.count
-//        if ProxyGroupSettings.share.historyEnable {
-//            XRuler.log("Request History enabled",level: .Info)
-//        }else {
-//            XRuler.log("Request History disabled",level: .Info)
-//        }
+
         if self.ipRuleEnable {
             
             XRuler.log("IP Address base rule enable",level: .Info)
@@ -301,12 +248,8 @@ class SFRule:SFConfig {
     }
     func createdb()->Bool{
         
-        #if os(iOS)
-            let p = Bundle.main.bundlePath + "/../../Frameworks/MMDB.framework/"
-        #else
-            let p = Bundle.main.bundlePath + "/../../Frameworks/MMDB.framework/"
-        #endif
-        guard let b = Bundle.init(path: p) else {return false }
+        
+        let b = Bundle.init(for: SFSettingModule.self)
         guard let path = b.path(forResource: "GeoLite2-Country.mmdb", ofType: nil) else {return false}
         
         
@@ -315,7 +258,7 @@ class SFRule:SFConfig {
             return false
         }
         db = d
-       XRuler.log("GeoLite2 loaded, maybe have memory issue",level: .Warning)
+       
         return true
 
     }

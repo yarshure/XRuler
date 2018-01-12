@@ -23,9 +23,8 @@ class ViewController: NSViewController {
     }
 
     func testFindProxy(){
-        var url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: XRuler.groupIdentifier)!
-        url.appendPathComponent("abigt.conf")
-        SFSettingModule.setting.config(url.path)
+       
+        SFSettingModule.setting.config("abigt.conf")
         if let p = SFSettingModule.setting.proxyByName("Proxy") {
             print(p)
         }else {
