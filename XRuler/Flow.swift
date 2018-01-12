@@ -90,9 +90,9 @@ public enum FlowType:Int {
 public final class NetFlow{
     //public static let shared = NetFlow()
     public var totalFlows:[SFTraffic] = []
-    public let currentFlows:[SFTraffic] = []
-    public let lastFlows:[SFTraffic] = []
-    public let maxFlows:[SFTraffic] = []
+    public var currentFlows:[SFTraffic] = []
+    public var lastFlows:[SFTraffic] = []
+    public var maxFlows:[SFTraffic] = []
     
     public var wifiFlows:[SFTraffic] = []
     public var cellFlows:[SFTraffic] = []
@@ -125,6 +125,27 @@ public final class NetFlow{
         if tmp.count > 60 {
             tmp.remove(at: 0)
         }
+        //value type write back
+        //totalFlows = tmp
+        switch type {
+        case .total:
+            totalFlows  = tmp
+        case .current :
+            currentFlows = tmp
+        case .last :
+             lastFlows = tmp
+        case .max:
+            maxFlows = tmp
+        case .wifi:
+              wifiFlows = tmp
+        case .cell:
+             cellFlows = tmp
+        case .direct:
+              directFlows = tmp
+        case .proxy:
+             proxyFlows = tmp
+        }
+        
     }
     public func resp() -> [String : AnyObject] {
         var result:[String:AnyObject] = [:]
