@@ -28,6 +28,9 @@
 		693A35DB1FC6B305007FDE26 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35DA1FC6B305007FDE26 /* Flow.swift */; };
 		694650441FF50CE5000AFBE3 /* ProxysManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694650431FF50CE5000AFBE3 /* ProxysManager.swift */; };
 		694650451FF50CEE000AFBE3 /* ProxysManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694650431FF50CE5000AFBE3 /* ProxysManager.swift */; };
+		69521184201431770038E62B /* Mitm.conf in Resources */ = {isa = PBXBuildFile; fileRef = 69521183201431770038E62B /* Mitm.conf */; };
+		69521186201432610038E62B /* Mitm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69521185201432610038E62B /* Mitm.swift */; };
+		69521187201432610038E62B /* Mitm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69521185201432610038E62B /* Mitm.swift */; };
 		69593FF61FFBA6BF00CB8ADF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69593FF51FFBA6BF00CB8ADF /* AppDelegate.swift */; };
 		69593FF81FFBA6BF00CB8ADF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69593FF71FFBA6BF00CB8ADF /* ViewController.swift */; };
 		69593FFB1FFBA6BF00CB8ADF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69593FF91FFBA6BF00CB8ADF /* Main.storyboard */; };
@@ -112,6 +115,8 @@
 		693A35D81FC6B207007FDE26 /* SFVPNStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFVPNStatistics.swift; sourceTree = "<group>"; };
 		693A35DA1FC6B305007FDE26 /* Flow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 		694650431FF50CE5000AFBE3 /* ProxysManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxysManager.swift; sourceTree = "<group>"; };
+		69521183201431770038E62B /* Mitm.conf */ = {isa = PBXFileReference; lastKnownFileType = text; path = Mitm.conf; sourceTree = "<group>"; };
+		69521185201432610038E62B /* Mitm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mitm.swift; sourceTree = "<group>"; };
 		69593FF31FFBA6BF00CB8ADF /* iOSTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69593FF51FFBA6BF00CB8ADF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69593FF71FFBA6BF00CB8ADF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +126,7 @@
 		695940011FFBA6BF00CB8ADF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6959400B1FFC639800CB8ADF /* iOSTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSTest.entitlements; sourceTree = "<group>"; };
 		69AD9CD22004916600C01011 /* CNIP.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = CNIP.bin; sourceTree = "<group>"; };
+		69C1770F200DA5FF004BDB3A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		69C7DBF01FE2517000FB7FA2 /* mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = mac.xcconfig; sourceTree = "<group>"; };
 		69C7DC021FE251B600FB7FA2 /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iOS.xcconfig; sourceTree = "<group>"; };
 		69C7DC291FE2524700FB7FA2 /* XRuler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XRuler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +171,7 @@
 		6913C3C91FE0BF16006483C1 /* macTest */ = {
 			isa = PBXGroup;
 			children = (
+				69521183201431770038E62B /* Mitm.conf */,
 				6913C3CA1FE0BF16006483C1 /* AppDelegate.swift */,
 				6913C3CC1FE0BF16006483C1 /* ViewController.swift */,
 				6913C3CE1FE0BF16006483C1 /* Assets.xcassets */,
@@ -185,6 +192,7 @@
 		693A35841FC69B47007FDE26 = {
 			isa = PBXGroup;
 			children = (
+				69C1770F200DA5FF004BDB3A /* README.md */,
 				693A35901FC69B47007FDE26 /* XRuler */,
 				6913C3C91FE0BF16006483C1 /* macTest */,
 				69C7DC2A1FE2524800FB7FA2 /* XRuleriOS */,
@@ -220,6 +228,7 @@
 				693A35A91FC69D43007FDE26 /* SFConfig.swift */,
 				693A35A31FC69C9C007FDE26 /* DNSCache.swift */,
 				693A35A51FC69CCA007FDE26 /* SFRule.swift */,
+				69521185201432610038E62B /* Mitm.swift */,
 				693A35A11FC69C7F007FDE26 /* ext.swift */,
 				694650431FF50CE5000AFBE3 /* ProxysManager.swift */,
 				693A35B91FC6A297007FDE26 /* ProxyGroupSettings.swift */,
@@ -416,6 +425,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69521184201431770038E62B /* Mitm.conf in Resources */,
 				6913C3CF1FE0BF16006483C1 /* Assets.xcassets in Resources */,
 				6913C3D21FE0BF16006483C1 /* Main.storyboard in Resources */,
 			);
@@ -503,6 +513,7 @@
 				693A35A21FC69C7F007FDE26 /* ext.swift in Sources */,
 				693A35B61FC6A11D007FDE26 /* SFRuleResult.swift in Sources */,
 				693A35A41FC69C9C007FDE26 /* DNSCache.swift in Sources */,
+				69521186201432610038E62B /* Mitm.swift in Sources */,
 				693A35AE1FC69DAC007FDE26 /* General.swift in Sources */,
 				693A35DB1FC6B305007FDE26 /* Flow.swift in Sources */,
 				693A35A01FC69C38007FDE26 /* SFRuler.swift in Sources */,
@@ -532,6 +543,7 @@
 				69C7DC371FE253C100FB7FA2 /* XRuler.swift in Sources */,
 				69C7DC361FE253BE00FB7FA2 /* Flow.swift in Sources */,
 				69C7DC311FE253AC00FB7FA2 /* SFSettingModule.swift in Sources */,
+				69521187201432610038E62B /* Mitm.swift in Sources */,
 				69C7DC341FE253B800FB7FA2 /* SFRuleResult.swift in Sources */,
 				69C7DC381FE253C400FB7FA2 /* SFRuler.swift in Sources */,
 				69C7DC351FE253BB00FB7FA2 /* SFVPNStatistics.swift in Sources */,

@@ -13,17 +13,17 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        XRuler.groupIdentifier = "745WQDK4L7.com.yarshure.Surf"
+       
         
-        
-        testFindProxy()
+        testMitm()
+       // testFindProxy()
         
         
         // Do any additional setup after loading the view.
     }
 
     func testFindProxy(){
-       
+        XRuler.groupIdentifier = "745WQDK4L7.com.yarshure.Surf"
         SFSettingModule.setting.config("abigt.conf")
         if let p = SFSettingModule.setting.proxyByName("Proxy") {
             print(p)
@@ -55,7 +55,10 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-
+    func testMitm(){
+        let p = Bundle.main.path(forResource: "Mitm.conf", ofType: nil)!
+        SFSettingModule.setting.config(p)
+    }
 
 }
 

@@ -9,6 +9,7 @@ import SwiftyJSON
 import Foundation
 import Xcon
 import AxLogger
+import XFoundation
 public struct DNSRecord {
     public var name = ""
     public var ips:String = ""
@@ -54,6 +55,7 @@ public enum SFConfigSectionType:Int, CustomStringConvertible{
     case rule = 2
     case host = 3
     case proxyGroup = 4
+    case mitm = 5
     public var description: String {
         switch self {
         case .general:return "General"
@@ -61,6 +63,7 @@ public enum SFConfigSectionType:Int, CustomStringConvertible{
         case .rule:return "Rule"
         case .host:return "Host"
         case .proxyGroup:return "ProxyGroup"
+        case .mitm:return "MITM"
         }
     }
 }
@@ -83,6 +86,7 @@ public class SFConfig {
     public var loadResult:Bool = true
     public var  general:General?
     public  var delegate:SFConfigDelegate?
+    public var mitmConfig:Mitm!
     public func testJSON(_ json:JSON) ->Bool{
         if json.error != nil {
             //mylog(json)
@@ -167,6 +171,10 @@ public class SFConfig {
                 continue
             }else if item.hasPrefix("[ProxyGroup]") &&  item.hasPrefix("[Proxy Group]"){
                 type = .proxyGroup
+                continue
+            }else if item.hasPrefix("[MITM]")  {
+                type = .mitm
+                self.mitmConfig = Mitm.init(hosts:[],enable: false,passphrase: "",p12: Data())
                 continue
             }else {
                 
@@ -287,7 +295,45 @@ public class SFConfig {
 
             case .proxyGroup:
                 print("ProxyGroup Don't support")
-            
+            case .mitm:
+                guard let r = item.range(of: "=") else {continue}
+                let key = item.to(index: r.upperBound)
+                let value = item.from(index: r.upperBound)
+                print(key + ":" + value)
+                let x = item.components(separatedBy: "=")
+                if let first = x.first {
+                    switch first.trimmingCharacters(in: .whitespacesAndNewlines) {
+                    case "enable":
+                        print(x)
+                        if !x[1].isEmpty{
+                            let enable = x[1].trimmingCharacters(in: .whitespacesAndNewlines)
+                            if enable == "true"{
+                                mitmConfig.enable = true
+                            }
+                        }
+                    case "hostname":
+                        if !x[1].isEmpty{
+                            let hs = x[1].components(separatedBy: ",")
+                            for z in hs {
+                               mitmConfig.hosts.append(z.trimmingCharacters(in: .whitespacesAndNewlines))
+                            }
+                        }
+                    case "ca-passphrase":
+                        if !x[1].isEmpty{
+                            mitmConfig.passphrase = x[1].trimmingCharacters(in: .whitespacesAndNewlines)
+                        }
+                    case "ca-p12":
+                        if !x[1].isEmpty{
+                            let strbase64 = x[1].trimmingCharacters(in: .whitespacesAndNewlines)
+                            if let d = Data.init(base64Encoded: strbase64){
+                                mitmConfig.p12 = d
+                            }
+                            
+                        }
+                    default:
+                        print("default: \(x)")
+                    }
+                }
             }
             
         }

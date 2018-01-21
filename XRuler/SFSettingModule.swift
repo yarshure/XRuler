@@ -30,7 +30,7 @@ open  class SFSettingModule {
         }
         return []
     }
-    func ipStringV4(_ ip:UInt32) ->String{
+    public func ipStringV4(_ ip:UInt32) ->String{
         let a = (ip & 0xFF)
         let b = (ip >> 8 & 0xFF)
         let c = (ip >> 16 & 0xFF)
@@ -117,24 +117,7 @@ open  class SFSettingModule {
     var adBlockRules:[String:String] = [:]
     var dnsCache:[DNSCache] = []
     init() {
-//        if let path = Bundle.main.path(forResource:".adblock", ofType: nil){
-//            do{
-//               let x = try NSString.init(contentsOfFile: path, encoding: NSUTF8StringEncoding)
-//                let lines = x.components(separatedBy: "\n")
-//                for line in lines {
-//                    let x = line.components(separatedBy: "#")
-//                    if x.count == 2 {
-//                        adBlockRules[x.first!] = x.last!
-//                    }else {
-//                        NSLog("%@ line error", line)
-//                    }
-//                }
-//            }catch let e as NSError {
-//                NSLog("read adbloc error %@", e.description)
-//            }
-//            
-//        }
-       
+
     }
     public func addDNSCacheRecord(_ r:DNSCache) {
         dnsCache.append(r)
