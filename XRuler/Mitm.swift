@@ -14,4 +14,17 @@ public struct Mitm {
     var passphrase:String = ""
     var p12:Data
     
+    func getIdentityDict() throws ->[String:Any]{
+        var importResult: CFArray? = nil
+        let err = SecPKCS12Import(
+            p12 as NSData,
+            [kSecImportExportPassphrase as String: passphrase] as NSDictionary,
+            &importResult
+        )
+        guard err == errSecSuccess else {
+            throw NSError(domain: NSOSStatusErrorDomain, code: Int(err), userInfo: nil)
+        }
+        let identityDictionaries = importResult as! [[String:Any]]
+        return identityDictionaries[0]
+    }
 }

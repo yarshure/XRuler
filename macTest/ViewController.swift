@@ -58,6 +58,13 @@ class ViewController: NSViewController {
     func testMitm(){
         let p = Bundle.main.path(forResource: "Mitm.conf", ofType: nil)!
         SFSettingModule.setting.config(p)
+        do {
+           let result =  try SFSettingModule.setting.mitmRootCA()
+           print( result)
+        }catch let e {
+            print(e.localizedDescription)
+        }
+        
     }
 
 }

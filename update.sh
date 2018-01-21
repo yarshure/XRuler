@@ -1,4 +1,4 @@
-carthage update   --cache-builds --platform mac --configuration Debug
+#carthage update   --cache-builds --platform mac --configuration Debug
 export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
     
 cd Carthage/Build/Mac/
