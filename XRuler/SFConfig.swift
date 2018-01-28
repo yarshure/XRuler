@@ -297,34 +297,34 @@ public class SFConfig {
                 print("ProxyGroup Don't support")
             case .mitm:
                 guard let r = item.range(of: "=") else {continue}
-                let key = item.to(index: r.upperBound)
-                let value = item.from(index: r.upperBound)
+                let key = item.to(index: r.lowerBound)
+                let value = String(item[r.upperBound...])
                 print(key + ":" + value)
                 let x = item.components(separatedBy: "=")
-                if let first = x.first {
-                    switch first.trimmingCharacters(in: .whitespacesAndNewlines) {
+               
+                    switch key.trimmingCharacters(in: .whitespacesAndNewlines) {
                     case "enable":
-                        print(x)
-                        if !x[1].isEmpty{
-                            let enable = x[1].trimmingCharacters(in: .whitespacesAndNewlines)
+                       
+                        if !value.isEmpty{
+                            let enable = value.trimmingCharacters(in: .whitespacesAndNewlines)
                             if enable == "true"{
                                 mitmConfig.enable = true
                             }
                         }
                     case "hostname":
-                        if !x[1].isEmpty{
-                            let hs = x[1].components(separatedBy: ",")
+                        if !value.isEmpty{
+                            let hs = value.components(separatedBy: ",")
                             for z in hs {
                                mitmConfig.hosts.append(z.trimmingCharacters(in: .whitespacesAndNewlines))
                             }
                         }
                     case "ca-passphrase":
-                        if !x[1].isEmpty{
-                            mitmConfig.passphrase = x[1].trimmingCharacters(in: .whitespacesAndNewlines)
+                        if !value.isEmpty{
+                            mitmConfig.passphrase = value.trimmingCharacters(in: .whitespacesAndNewlines)
                         }
                     case "ca-p12":
-                        if !x[1].isEmpty{
-                            let strbase64 = x[1].trimmingCharacters(in: .whitespacesAndNewlines)
+                        if !value.isEmpty{
+                            let strbase64 = value.trimmingCharacters(in: .whitespacesAndNewlines)
                             if let d = Data.init(base64Encoded: strbase64){
                                 mitmConfig.p12 = d
                             }
@@ -333,7 +333,7 @@ public class SFConfig {
                     default:
                         print("default: \(x)")
                     }
-                }
+                
             }
             
         }
@@ -341,6 +341,20 @@ public class SFConfig {
 //        let error:SFConfigWriteError = config.writeConfig(config.configName, copy: false, force: true,shareiTunes: false)
 //        print(error.description)
         
+    }
+    func checkMitm(_ remote:String) ->Bool {
+        if mitmConfig == nil {
+            return false
+        }
+        
+        for x in mitmConfig.hosts{
+            if x == remote {
+                return true
+            }
+        }
+        
+        
+        return false
     }
     public  func description() ->String {
         let count = agentRuler.count + keyworldRulers.count +  sufixRulers.count  + ipcidrRulers.count + geoipRulers.count + 1

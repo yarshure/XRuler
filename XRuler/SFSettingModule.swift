@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Security
 import SwiftyJSON
 import AxLogger
 import Xcon
@@ -233,6 +233,37 @@ open  class SFSettingModule {
         }
     }
     
+    public func checkRemoteMitm(_ remote:String) ->Bool {
+        return rule.checkMitm(remote)
+        
+    }
+    /*
+ 
+ ▿ 1 element
+ ▿ 0 : 5 elements
+ ▿ 0 : 2 elements
+ - key : "label"
+ - value : Surge Generated CA 9F537BE0
+ ▿ 1 : 2 elements
+ - key : "chain"
+ ▿ value : 1 element
+ - 0 : <cert(0x10130f5a0) s: Surge Generated CA 9F537BE0 i: Surge Generated CA 9F537BE0>
+ ▿ 2 : 2 elements
+ - key : "identity"
+ - value : <SecIdentity 0x60c000074500 [0x7fff933a2980]>
+ ▿ 3 : 2 elements
+ - key : "trust"
+ - value : <SecTrustRef: 0x608000101440>
+ ▿ 4 : 2 elements
+ - key : "keyid"
+ - value : <44575deb b566121b b1948bf8 13aab400 88f7f8db>
+ */
+    public func mitmRootCA() throws -> [String:Any]{
+        //var identityRef:SecIdentity
+        //let cert = SecCertificateCreateWithData(nil, rule.mitmConfig.p12 as CFData)
+        return try rule.mitmConfig.getIdentityDict()
+        
+    }
     public func reSetSettings(_ fileName:String) ->Bool{
 //        NSLog("[SFSettingModule] reload rule setting")
 //        proxy.removeAll()
