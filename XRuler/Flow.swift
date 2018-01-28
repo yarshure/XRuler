@@ -20,6 +20,14 @@ public struct SFTraffic {
     public mutating func addTx(x:Int){
         tx += UInt(x)
     }
+    //new api
+    public mutating func addFlow(x:Int,RX:Bool){
+        if RX {
+             rx += UInt(x)
+        }else {
+            tx += UInt(x)
+        }
+    }
     public mutating func reset() {
         rx = 0
         tx = 0
