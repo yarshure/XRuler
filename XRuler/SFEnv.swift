@@ -101,6 +101,24 @@ extension NWPath{
         }
     }
 }
+//历史统计功能
+public class SFVPNSession {
+    static  let session = SFVPNSession()
+    public  var startTime:Date = Date()
+    public var endTime : Date = Date(timeIntervalSince1970:0)
+    
+    
+    public func idenString() ->String {
+        let f = DateFormatter();
+        f.dateFormat = "yyyy_MM_dd_HH_mm_ss";
+        return f.string(from: startTime)
+    }
+    public func shortIdenString() ->String {
+        let f = DateFormatter();
+        f.dateFormat = "yyyy_MM_dd_HH_mm_ss";
+        return f.string(from: startTime)
+    }
+}
 public class SFEnv {
     
     static let KB:UInt = 1024
@@ -108,13 +126,15 @@ public class SFEnv {
     static var ipType:SFNetWorkIPType = .ipv4
     static var hwType:SFNetWorkType = .cell
     static var sysMainVer = 10 //version()
+    public static var session:SFVPNSession = SFVPNSession()
+
     init() {
     }
     static func updateEnv(_ ip:String,interface:String){
         ipType = SFNetWorkIPType.init(ip: ip)
         hwType = SFNetWorkType.init(interface: interface)
     }
-    static func updateEnvIP(_ ip:String){
+    static public func updateEnvIP(_ ip:String){
         if !ip.isEmpty{
             ipType = SFNetWorkIPType.init(ip: ip)
         }
