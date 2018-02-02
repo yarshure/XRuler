@@ -40,12 +40,12 @@ public enum SFNetWorkIPType:Int32,CustomStringConvertible {
     }
 }
 //物理层type
-enum SFNetWorkType:Int,CustomStringConvertible {
+public enum SFNetWorkType:Int,CustomStringConvertible {
     case wifi  = 0
     case bluetooth  = 1
     case cell = 2
     case cellshare = 3 //cell share 模式
-    internal var description: String {
+    public var description: String {
         switch self {
         case .wifi:return "WI-FI"
         case .bluetooth:return "BlueTooth"
@@ -53,7 +53,7 @@ enum SFNetWorkType:Int,CustomStringConvertible {
         case .cellshare:return "Cell Share"
         }
     }
-    init(interface:String) {
+    public init(interface:String) {
         
         var t = -1
         switch interface {
@@ -123,8 +123,8 @@ public class SFEnv {
     
     static let KB:UInt = 1024
     
-    static var ipType:SFNetWorkIPType = .ipv4
-    static var hwType:SFNetWorkType = .cell
+    public static var ipType:SFNetWorkIPType = .ipv4
+    public  static var hwType:SFNetWorkType = .cell
     static var sysMainVer = 10 //version()
     public static var session:SFVPNSession = SFVPNSession()
 
