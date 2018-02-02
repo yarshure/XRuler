@@ -54,6 +54,12 @@
 		69C7DC3B1FE253CD00FB7FA2 /* SFRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35A51FC69CCA007FDE26 /* SFRule.swift */; };
 		69C7DC3C1FE253D000FB7FA2 /* ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35A11FC69C7F007FDE26 /* ext.swift */; };
 		69C7DC3D1FE253D400FB7FA2 /* ProxyGroupSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A35B91FC6A297007FDE26 /* ProxyGroupSettings.swift */; };
+		69E4643F20242106004AC291 /* SFEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E4643E20242106004AC291 /* SFEnv.swift */; };
+		69E4644020242106004AC291 /* SFEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E4643E20242106004AC291 /* SFEnv.swift */; };
+		69E4644220242121004AC291 /* SFNetworkInterfaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E4644120242120004AC291 /* SFNetworkInterfaceManager.swift */; };
+		69E4644320242121004AC291 /* SFNetworkInterfaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E4644120242120004AC291 /* SFNetworkInterfaceManager.swift */; };
+		69E4644520242137004AC291 /* NetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E4644420242137004AC291 /* NetInfo.swift */; };
+		69E4644620242137004AC291 /* NetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E4644420242137004AC291 /* NetInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +138,9 @@
 		69C7DC291FE2524700FB7FA2 /* XRuler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XRuler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69C7DC2B1FE2524800FB7FA2 /* XRuleriOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XRuleriOS.h; sourceTree = "<group>"; };
 		69C7DC2C1FE2524800FB7FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69E4643E20242106004AC291 /* SFEnv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFEnv.swift; sourceTree = "<group>"; };
+		69E4644120242120004AC291 /* SFNetworkInterfaceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFNetworkInterfaceManager.swift; sourceTree = "<group>"; };
+		69E4644420242137004AC291 /* NetInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +229,9 @@
 				6913C41A1FE17AF4006483C1 /* Default.conf */,
 				69AD9CD22004916600C01011 /* CNIP.bin */,
 				693A35AD1FC69DAC007FDE26 /* General.swift */,
+				69E4643E20242106004AC291 /* SFEnv.swift */,
+				69E4644420242137004AC291 /* NetInfo.swift */,
+				69E4644120242120004AC291 /* SFNetworkInterfaceManager.swift */,
 				693A35B51FC6A11D007FDE26 /* SFRuleResult.swift */,
 				693A35D81FC6B207007FDE26 /* SFVPNStatistics.swift */,
 				693A35DA1FC6B305007FDE26 /* Flow.swift */,
@@ -505,13 +517,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				693A35A61FC69CCA007FDE26 /* SFRule.swift in Sources */,
+				69E4643F20242106004AC291 /* SFEnv.swift in Sources */,
 				693A359A1FC69B63007FDE26 /* SFSettingModule.swift in Sources */,
 				693A35AA1FC69D43007FDE26 /* SFConfig.swift in Sources */,
 				693A35D91FC6B207007FDE26 /* SFVPNStatistics.swift in Sources */,
 				693A35AC1FC69D5D007FDE26 /* XRuler.swift in Sources */,
 				694650441FF50CE5000AFBE3 /* ProxysManager.swift in Sources */,
+				69E4644520242137004AC291 /* NetInfo.swift in Sources */,
 				693A35A21FC69C7F007FDE26 /* ext.swift in Sources */,
 				693A35B61FC6A11D007FDE26 /* SFRuleResult.swift in Sources */,
+				69E4644220242121004AC291 /* SFNetworkInterfaceManager.swift in Sources */,
 				693A35A41FC69C9C007FDE26 /* DNSCache.swift in Sources */,
 				69521186201432610038E62B /* Mitm.swift in Sources */,
 				693A35AE1FC69DAC007FDE26 /* General.swift in Sources */,
@@ -535,13 +550,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				69C7DC3B1FE253CD00FB7FA2 /* SFRule.swift in Sources */,
+				69E4644020242106004AC291 /* SFEnv.swift in Sources */,
 				69C7DC3A1FE253CA00FB7FA2 /* DNSCache.swift in Sources */,
 				69C7DC391FE253C700FB7FA2 /* SFConfig.swift in Sources */,
 				69C7DC331FE253B500FB7FA2 /* General.swift in Sources */,
 				69C7DC3C1FE253D000FB7FA2 /* ext.swift in Sources */,
 				694650451FF50CEE000AFBE3 /* ProxysManager.swift in Sources */,
+				69E4644620242137004AC291 /* NetInfo.swift in Sources */,
 				69C7DC371FE253C100FB7FA2 /* XRuler.swift in Sources */,
 				69C7DC361FE253BE00FB7FA2 /* Flow.swift in Sources */,
+				69E4644320242121004AC291 /* SFNetworkInterfaceManager.swift in Sources */,
 				69C7DC311FE253AC00FB7FA2 /* SFSettingModule.swift in Sources */,
 				69521187201432610038E62B /* Mitm.swift in Sources */,
 				69C7DC341FE253B800FB7FA2 /* SFRuleResult.swift in Sources */,
