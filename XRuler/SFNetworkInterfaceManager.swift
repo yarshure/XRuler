@@ -34,13 +34,14 @@ public class SFNetworkInterfaceManager: NSObject {
         networkInfo  = getIFAddresses()
         //en1 pdp_ip1
         for info in networkInfo{
-            if info.ifName.hasPrefix("en"){
+            if info.ifName.hasPrefix("en") && (info.ip.range(of: "169.254") == nil){
                 WiFiIPAddress = info.ip
             }
             
             if info.ifName.hasPrefix("pdp_ip"){
                 WWANIPAddress = info.ip
             }
+            XRuler.log(info.ip + " " + info.ifName, level: .Trace)
         }
         
         if SFEnv.hwType == .wifi {

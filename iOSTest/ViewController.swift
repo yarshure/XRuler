@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         XRuler.groupIdentifier = "group.com.yarshure.Surf"
         
         
+        SFNetworkInterfaceManager.updateIPAddress()
         testFindProxy()
         // Do any additional setup after loading the view, typically from a nib.
     }
