@@ -161,27 +161,33 @@ public class SFEnv {
     static func updateEnvHW(_ interface:String){
         hwType = SFNetWorkType.init(interface: interface)
     }
-    static public  func updateEnvHWWithPath(_ path:NWPath?)  -> Bool{
+    static public  func updateEnvHWWithPath(_ path:NWPath)  -> Bool{
         var changed = false
-        if let p = path{
-            if p.isExpensive {
-                hwType = .cell
-            }else {
-                hwType = .wifi
-            }
-            
-            let wifiaddr = SFNetworkInterfaceManager.WiFiIPAddress
-            SFNetworkInterfaceManager.updateIPAddress()
-            let newaddr =  SFNetworkInterfaceManager.WiFiIPAddress
-            if wifiaddr != newaddr {
+     
+        if path.isExpensive {
+            hwType = .cell
+        }else {
+            hwType = .wifi
+        }
+        let celladdr = SFNetworkInterfaceManager.WWANIPAddress
+        let wifiaddr = SFNetworkInterfaceManager.WiFiIPAddress
+        SFNetworkInterfaceManager.updateIPAddress()
+        let newaddr =  SFNetworkInterfaceManager.WiFiIPAddress
+        let newcelladdr = SFNetworkInterfaceManager.WWANIPAddress
+        if wifiaddr != newaddr {
+            changed = true
+        }else {
+            if newcelladdr != celladdr {
                 changed = true
             }
+        }
+        if hwType == .wifi {
             let wifi  = currentSSIDs()
             if !wifi.isEmpty{
                 XRuler.log("Now Network Type: \(hwType.description) SSID:\(wifi.first!) connected",level:.Info)
             }
-            
         }
+        
         return changed
     }
     static var SOCKS_RECV_BUF_SIZE:UInt {
