@@ -231,6 +231,26 @@ public class SFConfig {
                         general?.loglevel = q!.trimmingCharacters(in: .whitespacesAndNewlines)
                        
                     }
+                }else if item.hasPrefix("interface"){
+                    let p = item.components(separatedBy: "=")
+                    if p.count == 2 {
+                        if let q = p.last {
+                            general?.interface = q.trimmingCharacters(in: .whitespacesAndNewlines)
+                        }
+                        
+                        
+                    }
+                }else if item.hasPrefix("port"){
+                    let p = item.components(separatedBy: "=")
+                    if p.count == 2 {
+                        if let q = p.last ,let x = Int(q.trimmingCharacters(in: .whitespacesAndNewlines)){
+                            general?.port = x
+                        }
+                        
+                        
+                    }
+                }else {
+                    print("General not process " + item)
                 }
 
 

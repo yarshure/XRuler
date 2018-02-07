@@ -18,6 +18,8 @@ public class General {
     public var skipproxy:[String] = []
     public var bypasssystem:Bool = false
     public var dnsserver:[String] = []
+    public var port:Int = 0
+    public var interface:String = ""
     public var cellSuspend:Bool = false //Project-FI 可以不用翻墙
     //var config:JSON
     public init (name:String) {
