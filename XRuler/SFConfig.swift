@@ -167,6 +167,7 @@ public class SFConfig {
                 type = .rule
                 continue
             }else if item.hasPrefix("[General]") {
+                self.general = General.init(c: "")
                 type = .general
                 continue
             }else if item.hasPrefix("[ProxyGroup]") &&  item.hasPrefix("[Proxy Group]"){

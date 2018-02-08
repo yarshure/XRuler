@@ -54,7 +54,10 @@ class SFRule:SFConfig {
         XRuler.log("AGENT:\(agentRuler.count)",level: .Info)
         XRuler.log("IPCIDR:\(ipcidrRulers.count)",level: .Info)
         XRuler.log("FINAL:\(finalRuler.proxyName)",level: .Info)
-        XRuler.log("HTTP Proxy:\(general!.interface):\(general!.port)",level: .Info)
+        if let general = general {
+            XRuler.log("HTTP Proxy:\(general.interface):\(general.port)",level: .Info)
+        }
+        
         let count = hosts.count + keyworldRulers.count + sufixRulers.count + geoipRulers.count + agentRuler.count + ipcidrRulers.count
 
         if self.ipRuleEnable {

@@ -14,7 +14,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        XRuler.groupIdentifier = "group.com.yarshure.Surf"
+       
+        prepare("group.com.yarshure.Surf", app: "xxxx", config: "surf.con")
+        
+       // XRuler.groupIdentifier = "group.com.yarshure.Surf"
         
         
         SFNetworkInterfaceManager.updateIPAddress()
@@ -22,6 +25,31 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    func prepare(_ bundle:String,app:String, config:String){
+        //SKit.groupIdentifier = bundle
+        //SKit.app = app
+        XRuler.groupIdentifier =  bundle
+        
+        
+        
+        ProxyGroupSettings.share.historyEnable = true
+        if ProxyGroupSettings.share.historyEnable {
+            
+            //let helper = RequestHelper.shared
+            //let session = SFEnv.session.idenString()
+            
+            
+            //helper.open( session,readonly: false,session: session)
+        }
+        
+        
+        if !config.isEmpty {
+            ProxyGroupSettings.share.config = config
+        }
+        SFSettingModule.setting.config(config)
+        
+
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
