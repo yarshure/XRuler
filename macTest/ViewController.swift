@@ -9,12 +9,13 @@
 import Cocoa
 import XRuler
 import Xcon
+import DarwinCore
 class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        
+        testIPAddress()
         testMitm()
        // testFindProxy()
         
@@ -22,6 +23,10 @@ class ViewController: NSViewController {
         // Do any additional setup after loading the view.
     }
 
+    func testIPAddress(){
+        let x = DCIPAddr.cellAddress()
+        print(x)
+    }
     func testFindProxy(){
         XRuler.groupIdentifier = "745WQDK4L7.com.yarshure.Surf"
         SFSettingModule.setting.config("abigt.conf")
