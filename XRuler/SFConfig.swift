@@ -167,7 +167,7 @@ public class SFConfig {
         let rlist = ["http://www.google.cn":"http://www.google.com","http://m.baidu.com/s\\?from=1099b&word=":"http://www.google.com/search\\?q=","http://www.baidu.com/s\\?wd=":"http://www.google.com/search\\?q="]
         for (rk,rv) in rlist {
             let r = SFRuler.init()
-            r.type = SFRulerType.HEADER
+            r.type = SFRulerType.header
             r.name = rk
             r.proxyName = rv
             rewrite.append(r)
