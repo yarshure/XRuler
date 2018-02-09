@@ -20,6 +20,7 @@ public class General {
     public var dnsserver:[String] = []
     public var port:Int = 0
     public var interface:String = ""
+    public var ipv6:Bool = false
     public var cellSuspend:Bool = false //Project-FI 可以不用翻墙
     //var config:JSON
     public init (name:String) {
@@ -130,6 +131,6 @@ public class General {
         }
     }
     deinit{
-        
+        XRuler.log("General dinit", level: .Notify)
     }
 }

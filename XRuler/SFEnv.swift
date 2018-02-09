@@ -171,7 +171,7 @@ public class SFEnv {
         }
         let celladdr = SFNetworkInterfaceManager.WWANIPAddress
         let wifiaddr = SFNetworkInterfaceManager.WiFiIPAddress
-        SFNetworkInterfaceManager.updateIPAddress()
+        SFNetworkInterfaceManager.updateIPAddress(path)
         let newaddr =  SFNetworkInterfaceManager.WiFiIPAddress
         let newcelladdr = SFNetworkInterfaceManager.WWANIPAddress
         if wifiaddr != newaddr {

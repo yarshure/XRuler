@@ -9,6 +9,7 @@
 import Foundation
 import DarwinCore
 import AxLogger
+import NetworkExtension
 func getIFAddresses() -> [NetInfo] {
     var addresses = [NetInfo]()
     let x = DCIPAddr.cellAddress()
@@ -24,16 +25,17 @@ public class SFNetworkInterfaceManager: NSObject {
      static public var WiFiIPAddress:String = ""
      static public var WWANIPAddress:String = ""
     
-      static   var networkInfo:[NetInfo] = []
+     static   var networkInfo:[NetInfo] = []
     
 
 
-     static public  func updateIPAddress(){
+     static public  func updateIPAddress(_ path:NWPath){
         XRuler.log("clear ipaddress",level: .Info)
 
         networkInfo  = getIFAddresses()
         //en1 pdp_ip1
         for info in networkInfo{
+            
             if info.ifName.hasPrefix("en") && (info.ip.range(of: "169.254") == nil){
                 WiFiIPAddress = info.ip
             }
@@ -57,6 +59,16 @@ public class SFNetworkInterfaceManager: NSObject {
         
     }
  
+    static public func ipForType(_ ip:String) ->SFNetWorkType{
+        for v  in networkInfo{
+            if v.ip == ip {
+                if let _ =  v.ifName.range(of: "pdp_ip"){
+                    return .cell
+                }
+            }
+        }
+        return .wifi
+    }
    
      static public  func interfaceMTUWithName(_ name:String) ->Int {
         return 1500

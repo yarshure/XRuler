@@ -84,6 +84,7 @@ public class SFConfig {
     public var rewrite:[SFRuler] = []
     public var changed:Bool = false
     public var loadResult:Bool = true
+    
     public var  general:General?
     public  var delegate:SFConfigDelegate?
     public var mitmConfig:Mitm!
@@ -124,6 +125,40 @@ public class SFConfig {
                 return true
             }
         }
+    }
+    func parser(_ line:String) ->String {
+        let p = line.components(separatedBy: "=")
+        if p.count == 2 {
+            let q = p.last
+            return  q!.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+        }
+        return ""
+    }
+    func parser(_ line:String) ->([String]) {
+        let x = line.components(separatedBy: "=")
+        var result:[String] = []
+        if x.count == 2 {
+            let last = x.last!
+            let items = last.components(separatedBy: ",")
+            for i in items {
+                result.append(i.trimmingCharacters(in: .whitespacesAndNewlines))
+            }
+        }
+        
+       
+        return result
+    }
+    func parserM(_ line:String) ->(String,[String]) {
+        let x = line.components(separatedBy: "=")
+        if x.count == 2 {
+            //found record
+            let name = x.first!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let v = x.last!.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            return(name,[v])
+        }
+        return ("",[])
     }
     public init(path:String, loadRule:Bool){
         if let fn = path.components(separatedBy: "/").last,let conf  = fn.components(separatedBy: ".conf").first {
@@ -183,73 +218,37 @@ public class SFConfig {
             switch type {
             case .general:
                 if  item.hasPrefix("dns-server")  {
+                    let items:[String] = parser(item)
+                    general?.dnsserver = items
                     
-                    let p = item.components(separatedBy: "=")
-                    if p.count == 2 {
-                        let q = p.last
-                        let x = q?.components(separatedBy: ",")
-                        for y in x! {
-                            let z = y.trimmingCharacters(in: .whitespacesAndNewlines)
-                            if !z.isEmpty {
-                                general?.dnsserver.append(z)
-                            }
-                            
-                        }
-                    }
                 }else if item.hasPrefix("skip-proxy") {
-                    let p = item.components(separatedBy: "=")
-                    if p.count == 2 {
-                        let q = p.last!
-                        let x = q.components(separatedBy: ",")
-                        for y in x {
-                            let z = y.trimmingCharacters(in: .whitespacesAndNewlines)
-                            if !z.isEmpty {
-                                general?.skipproxy.append(z)
-                            }
-                            
-                        }
-                    }
+                    let items:[String] = parser(item)
+                    general?.skipproxy = items
+                  
                     
                 }else if  item.hasPrefix("bypass-tun") {
-                    
-                    let p = item.components(separatedBy: "=")
-                    if p.count == 2 {
-                        let q = p.last
-                        let x = q?.components(separatedBy: ",")
-                        for y in x! {
-                            let z = y.trimmingCharacters(in: .whitespacesAndNewlines)
-                            if !z.isEmpty{
-                                general?.bypasstun.append(z)
-                            }
-                            
-                        }
-                    }
+                    let items:[String] = parser(item)
+                    general?.bypasstun = items
+                 
                 }else if  item.hasPrefix("logleve") {
+                    general?.loglevel = parser(item)
                     
-                    let p = item.components(separatedBy: "=")
-                    if p.count == 2 {
-                        let q = p.last
-                        general?.loglevel = q!.trimmingCharacters(in: .whitespacesAndNewlines)
-                       
-                    }
                 }else if item.hasPrefix("interface"){
-                    let p = item.components(separatedBy: "=")
-                    if p.count == 2 {
-                        if let q = p.last {
-                            general?.interface = q.trimmingCharacters(in: .whitespacesAndNewlines)
-                        }
-                        
-                        
+                    general?.interface = parser(item)
+                   
+                }else if item.hasPrefix("ipv6"){
+                    if  parser(item) == "true"{
+                        general?.ipv6  = true
+                    }else {
+                        general?.ipv6  = false
                     }
+                    
                 }else if item.hasPrefix("port"){
-                    let p = item.components(separatedBy: "=")
-                    if p.count == 2 {
-                        if let q = p.last ,let x = Int(q.trimmingCharacters(in: .whitespacesAndNewlines)){
-                            general?.port = x
-                        }
-                        
-                        
+                    let p:String = parser(item)
+                    if let x = Int(p.trimmingCharacters(in: .whitespacesAndNewlines)){
+                        general?.port = x
                     }
+                    
                 }else {
                     print("General not process " + item)
                 }
@@ -304,15 +303,12 @@ public class SFConfig {
                 }
                 
             case .host:
-                let x = item.components(separatedBy: "=")
-                if x.count == 2 {
-                    //found record
-                    var d = DNSRecord(name:"",ips: "")
-                    d.name = x.first!.trimmingCharacters(in: .whitespacesAndNewlines)
-                    d.ips += x.last!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let x = parserM(item)
+                if !x.0.isEmpty {
+                    let d  = DNSRecord(name:x.0,ips: x.1.first!)
                     hosts.append(d)
-                    
                 }
+                
 
             case .proxyGroup:
                 print("ProxyGroup Don't support")

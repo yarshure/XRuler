@@ -224,6 +224,14 @@ open  class SFSettingModule {
         XRuler.log("Config load Finished ",level: .Info)
     }
 
+    public var ipv6Enable:Bool{
+        get {
+            if let r = rule {
+                return r.general!.ipv6
+            }
+            return false
+        }
+    }
     public var ipRuleEnable:Bool{
         get {
             if let r = rule {

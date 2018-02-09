@@ -25,6 +25,8 @@ class ViewController: NSViewController {
 
     func testIPAddress(){
         let x = DCIPAddr.cellAddress()
+        let p = SFNetworkInterfaceManager.ipForType("192.168.11.3")
+        print(p)
         print(x)
     }
     func testFindProxy(){

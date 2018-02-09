@@ -56,6 +56,9 @@ class SFRule:SFConfig {
         XRuler.log("FINAL:\(finalRuler.proxyName)",level: .Info)
         if let general = general {
             XRuler.log("HTTP Proxy:\(general.interface):\(general.port)",level: .Info)
+            XRuler.log("DNS:\(general.dnsserver)",level: .Info)
+            XRuler.log("SKIP-Proxy:\(general.skipproxy)",level: .Info)
+            XRuler.log("Bypass-Tun:\(general.bypasstun)",level: .Info)
         }
         
         let count = hosts.count + keyworldRulers.count + sufixRulers.count + geoipRulers.count + agentRuler.count + ipcidrRulers.count
