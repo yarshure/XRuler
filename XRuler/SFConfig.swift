@@ -164,14 +164,14 @@ public class SFConfig {
         if let fn = path.components(separatedBy: "/").last,let conf  = fn.components(separatedBy: ".conf").first {
             configName = conf
         }
-//        let rlist = ["http://www.google.cn":"http://www.google.com","http://m.baidu.com/s\\?from=1099b&word=":"http://www.google.com/search\\?q=","http://www.baidu.com/s\\?wd=":"http://www.google.com/search\\?q="]
-//        for (rk,rv) in rlist {
-//            let r = SFRuler.init()
-//            r.type = SFRulerType.HEADER
-//            r.name = rk
-//            r.proxyName = rv
-//            rewrite.append(r)
-//        }
+        let rlist = ["http://www.google.cn":"http://www.google.com","http://m.baidu.com/s\\?from=1099b&word=":"http://www.google.com/search\\?q=","http://www.baidu.com/s\\?wd=":"http://www.google.com/search\\?q="]
+        for (rk,rv) in rlist {
+            let r = SFRuler.init()
+            r.type = SFRulerType.HEADER
+            r.name = rk
+            r.proxyName = rv
+            rewrite.append(r)
+        }
         
         print(" \(path) \(configName)")
         var content = ""

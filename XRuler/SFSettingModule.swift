@@ -62,31 +62,44 @@ open  class SFSettingModule {
         }
         return excludedRoutes
     }
-    public func rewrite(url:String) {
+    public func exceptionList() -> [String] {
+        var excludedList = [String]()
+        guard let rule = rule else  {
+            
+            return excludedList
+        }
+        
+        if let general =  rule.general  {
+            excludedList.append(contentsOf: general.skipproxy)
+        }
+        return excludedList
+    }
+    public func rewrite(url:String) ->(String,String) {
+        var result:String = url
         //MARK: --todo url rewrite feature
-//        if  let r =  SFSettingModule.setting.rule{
-//            if let ruler = r.rewriteRule(url){
-//                if ruler.type == .header {
-//                    if let r = self.Url.range(of: ruler.name){
-//                        self.Url.replaceSubrange(r, with: ruler.proxyName)
-//                        let dest = ruler.proxyName
-//                        let dlist = dest.components(separatedBy: "/")
-//                        for dd in dlist {
-//                            if !dd.isEmpty && !dd.hasPrefix("http"){
-//                                self.params["Host"] = dd
-//                                return true
-//                            }
-//
-//                        }
-//
-//
-//
-//                    }
-//                }
-//
-//
-//            }
-//        }
+        if  let r =  SFSettingModule.setting.rule{
+            if let ruler = r.rewriteRule(url){
+                if ruler.type == .header {
+                    if let r = url.range(of: ruler.name){
+                        result.replaceSubrange(r, with: ruler.proxyName)
+                        let dest = ruler.proxyName
+                        let dlist = dest.components(separatedBy: "/")
+                        for dd in dlist {
+                            if !dd.isEmpty && !dd.hasPrefix("http"){
+                                //self.params["Host"] = dd
+                                return (url,dd)
+                            }
+
+                        }
+
+
+                    }
+                }
+
+
+            }
+        }
+        return ("","")
     }
     public var mode:HTTPProxyMode = .tunnel
     
