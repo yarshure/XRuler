@@ -104,7 +104,8 @@ open  class SFSettingModule {
     public var mode:HTTPProxyMode = .tunnel
     
     public func updateProxySetting(setting:NEProxySettings){
-        if let g =  rule!.general{
+        
+        if let r = rule, let g =  r.general{
             if !g.skipproxy.isEmpty {
                 setting.exceptionList  = g.skipproxy
             }
