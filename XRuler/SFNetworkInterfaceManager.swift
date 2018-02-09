@@ -60,6 +60,9 @@ public class SFNetworkInterfaceManager: NSObject {
     }
  
     static public func ipForType(_ ip:String) ->SFNetWorkType{
+        if ip.isEmpty {
+            return SFEnv.hwType
+        }
         for v  in networkInfo{
             if v.ip == ip {
                 if let _ =  v.ifName.range(of: "pdp_ip"){
