@@ -25,8 +25,9 @@ open  class SFSettingModule {
         
     }
     public func custormDNS() ->[String]{
-        if let r = rule{
-            return r.general!.dnsserver
+        if let r = rule,let general = r.general{
+            
+            return general.dnsserver
         }
         return []
     }

@@ -20,8 +20,10 @@ class ViewController: UIViewController {
        // XRuler.groupIdentifier = "group.com.yarshure.Surf"
         
         
-        SFNetworkInterfaceManager.updateIPAddress()
+       // SFNetworkInterfaceManager.updateIPAddress()
         testFindProxy()
+       let x = SFSettingModule.setting.custormDNS()
+        print(x)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
