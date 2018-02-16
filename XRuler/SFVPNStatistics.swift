@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class SFStatistics:Codable {
+public final class SFStatistics:Codable {
    
     public var startDate = Date()
     public var sessionStartTime = Date()

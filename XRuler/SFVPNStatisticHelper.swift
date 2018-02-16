@@ -78,4 +78,14 @@ public final class SFVPNStatisticHelper {
             }
         }
     }
+    public func test(){
+        
+        do {
+            let d =  try JSONEncoder().encode(statistic)
+            let new = try JSONDecoder().decode(SFStatistics.self, from: d)
+            print(new)
+        }catch let e{
+            print(e.localizedDescription)
+        }
+    }
 }

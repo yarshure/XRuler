@@ -14,12 +14,13 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        SFVPNStatisticHelper.shared.startReporting()
+        
         testIPAddress()
         testMitm()
         testFindProxy()
         
-        
+        SFVPNStatisticHelper.shared.test()
         // Do any additional setup after loading the view.
     }
 
@@ -55,7 +56,7 @@ class ViewController: NSViewController {
 //            _  = ProxyGroupSettings.share.addProxy(p)
 //        }
         print(ProxyGroupSettings.share.proxys)
-        SFVPNStatistics.shared.startReporting()
+        
     }
     override var representedObject: Any? {
         didSet {

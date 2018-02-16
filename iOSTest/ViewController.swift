@@ -15,6 +15,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        let s = SFStatistics()
+        do {
+           let d =  try JSONEncoder().encode(s)
+        }catch let e{
+            print(e.localizedDescription)
+        }
+        
         prepare("group.com.yarshure.Surf", app: "xxxx", config: "surf.con")
         
        // XRuler.groupIdentifier = "group.com.yarshure.Surf"
