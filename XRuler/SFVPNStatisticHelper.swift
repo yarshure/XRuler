@@ -44,4 +44,11 @@ public final class SFVPNStatisticHelper {
     public func flowData(memory:UInt64) ->Data{
         return statistic.flowData(memory: memory)
     }
+    public func updateFlow(count:Int,tx:Bool){
+        if tx {
+            statistic.currentTraffice.addTx(x: count)
+        }else {
+            statistic.currentTraffice.addRx(x: count)
+        }
+    }
 }
