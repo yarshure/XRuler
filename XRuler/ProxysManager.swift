@@ -8,7 +8,7 @@
 
 import Foundation
 import Xcon
-import ObjectMapper
+
 public class Proxys:Codable {
     public var chainProxys:[SFProxy] = []
     public var proxys:[SFProxy] = []
