@@ -10,10 +10,10 @@ import Foundation
 
 public final class SFStatistics:Codable {
    
-    public var startDate = Date()
-    public var sessionStartTime = Date()
-    public var reportTime = Date()
-    public var startTimes = 0
+    public var startDate:Date = Date()
+    public var sessionStartTime:Date = Date()
+    public var reportTime:Date = Date()
+    public var startTimes:Int = 0
     public var show:Bool = false
     public var total:SFTraffic = SFTraffic()
     public var current:SFTraffic = SFTraffic()
@@ -29,6 +29,29 @@ public final class SFStatistics:Codable {
     public var finishedCount:Int = 0
     public var workingCount:Int = 0
     public var netflow:NetFlow = NetFlow()
+    enum CodingKeys: String, CodingKey {
+        case startDate = "startDate"
+        case sessionStartTime = "sessionStartTime"
+        case reportTime = "reportTime"
+        case startTimes =  "startTimes"
+        
+        
+        case show = "show"  //http socks5 user
+        case total   = "total"
+        case current   = "current"
+        case last  = "last"
+        case max  = "max"
+        case wifi =   "wifi"
+        case cell =     "cell"
+        case direct =     "direct"
+        case proxy =      "proxy"
+        case memoryUsed  = "memoryUsed"
+        case finishedCount  = "finishedCount"
+        case workingCount  = "workingCount"
+        case netflow  = "netflow"
+       
+        
+    }
     public var runing:String {
         get {
             let now = Date()
