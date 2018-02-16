@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import SwiftyJSON
-public struct SFTraffic {
+
+public struct SFTraffic:Codable {
     public var rx: UInt = 0
     public var tx: UInt = 0
     public init(){
@@ -79,10 +79,7 @@ public struct SFTraffic {
     public func resp ()-> [String:NSNumber] {
         return ["rx":NSNumber.init(value: rx) ,"tx":NSNumber.init(value: tx)]
     }
-    public mutating func mapObject(j:JSON)  {
-        rx = UInt(j["rx"].int64Value)
-        tx = UInt(j["tx"].int64Value)
-    }
+  
 }
 
 public enum FlowType:Int {
@@ -95,7 +92,7 @@ public enum FlowType:Int {
     case direct = 7
     case proxy = 8
 }
-public final class NetFlow{
+public final class NetFlow:Codable{
     //public static let shared = NetFlow()
     public var totalFlows:[SFTraffic] = []
     public var currentFlows:[SFTraffic] = []
@@ -155,23 +152,7 @@ public final class NetFlow{
         }
         
     }
-    public func resp() -> [String : AnyObject] {
-        var result:[String:AnyObject] = [:]
-        var x:[AnyObject] = []
-        for xx in totalFlows{
-            x.append(xx.resp() as AnyObject)
-        }
-        result["total"] = x as AnyObject
-        return result
-    }
-    public func mapObject(j: SwiftyJSON.JSON){
-        totalFlows.removeAll(keepingCapacity: true)
-        for xx in j["total"].arrayValue {
-            var x = SFTraffic()
-            x.mapObject(j: xx)
-            totalFlows.append(x)
-        }
-    }
+   
     public func flow(_ type:FlowType) ->[Double]{
         var r:[Double] = []
         for x in totalFlows {

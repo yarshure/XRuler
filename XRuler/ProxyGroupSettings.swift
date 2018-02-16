@@ -7,34 +7,34 @@
 //
 
 import Foundation
-import SwiftyJSON
+
 import ObjectMapper
 import AxLogger
 import Xcon
+extension DateFormatter {
+    static let iso8601Full: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
+}
 
-
-public class SFItem:CommonModel {
+public struct SFItem:Codable {
     public var original_purchase_date:String = ""
     public var original_purchase_date_ms:String = ""
     public var product_id:String = ""
-    
-    public override func mapping(map: Map) {
-        original_purchase_date  <- map["original_purchase_date"]
-        original_purchase_date_ms <- map["original_purchase_date_ms"]
-        product_id <- map["product_id"]
-    }
 }
-public class SFStoreReceiptResult: CommonModel {
+public class SFStoreReceiptResult: Codable {
     public var status:Int = 0
     public var receipt:Receipt?
     public var environment:String = ""
-    public override func mapping(map: Map) {
-        status  <- map["status"]
-        receipt <- map["receipt"]
-        environment <- map["environment"]
-    }
+   
 }
-public class Receipt:CommonModel {
+public struct Receipt:Codable {
     public var adam_id:Int = 0
     public var app_item_id:Int  = 0
     public var application_version:Int = 0
@@ -45,45 +45,29 @@ public class Receipt:CommonModel {
     public var original_purchase_date:String = ""
     public var original_purchase_date_ms:String = ""
     
-    public override func mapping(map: Map) {
-        adam_id  <- map["adam_id"]
-        app_item_id <- map["app_item_id"]
-        application_version <- map["application_version"]
-        
-        bundle_id  <- map["bundle_id"]
-        download_id <- map["download_id"]
-        original_application_version <- map["original_application_version"]
-        
-        original_purchase_date  <- map["original_purchase_date"]
-        original_purchase_date_ms <- map["original_purchase_date_ms"]
-        in_app <- map["in_app"]
-        //original_application_version <- map["original_application_version"]
-        
-    }
 }
-public class ProxyGroupSettings:CommonModel {
+public class ProxyGroupSettings:Codable {
     public static let share:ProxyGroupSettings = {
         assert(XRuler.groupIdentifier.count != 0)
         let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyGroupFile)
-        var content:String = "{}"
+        print(url)
+        
         do {
-            content = try String.init(contentsOf: url, encoding: .utf8)
-        }catch let e {
+            let content:Data = try Data.init(contentsOf: url)
+            let decoder = JSONDecoder()
+            
+            
+            if #available(OSXApplicationExtension 10.12, *) {
+                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+            } else {
+                // Fallback on earlier versions
+            } //JSONDecoder.DateDecodingStrategy.formatted(formater)
+            let set =  try decoder.decode(ProxyGroupSettings.self, from: content)
+            return set
+        } catch let e {
             print("\(#file)\(e)")
         }
-        
-        guard let set = Mapper<ProxyGroupSettings>().map(JSONString: content) else {
-            fatalError()
-        }
-        if set.proxyMan == nil {
-            guard let ps = Mapper<Proxys>().map(JSONString: "{}") else {
-                fatalError()
-            }
-            set.proxyMan = ps
-        }
-        
-        print("ProxyGroup store:\(content.count)")
-        return set
+        return ProxyGroupSettings()
     }()
     //var defaults:NSUserDefaults?// =
     public var editing:Bool = false
@@ -103,52 +87,9 @@ public class ProxyGroupSettings:CommonModel {
     public var widgetFlow:Bool = false
     public var lastupData:Date = Date()
     public var receipt:Receipt?
-    public required init?(map: Map) {
-        //super.init(map: map)
-        super.init(map: map)
-//        editing  <- map["editing"]
-//        historyEnable <- map["historyEnable"]
-//        proxyMan <- map["proxyMan"]
-//        
-//        
-//        disableWidget  <- map["disableWidget"]
-//        dynamicSelected <- map["dynamicSelected"]
-//        proxyChain <- map["proxyChain"]
-//        
-//        
-//        proxyChainIndex  <- map["proxyChainIndex"]
-//        showCountry <- map["showCountry"]
-//        widgetProxyCount <- map["widgetProxyCount"]
-//        selectIndex <- map["selectIndex"]
-//        
-//        config  <- map["config"]
-//        saveDBIng <- map["saveDBIng"]
-//        lastupData <- (map["lastupData"],self.dateTransform)
-        //self.mapping(map: map)
+     init() {
     }
-    public override func mapping(map: Map) {
-        editing  <- map["editing"]
-        historyEnable <- map["historyEnable"]
-        proxyMan <- map["proxyMan"]
-        
-        
-        disableWidget  <- map["disableWidget"]
-        dynamicSelected <- map["dynamicSelected"]
-        proxyChain <- map["proxyChain"]
-        
-        
-        proxyChainIndex  <- map["proxyChainIndex"]
-        showCountry <- map["showCountry"]
-        widgetProxyCount <- map["widgetProxyCount"]
-        selectIndex <- map["selectIndex"]
-        
-        config  <- map["config"]
-        wwdcStyle <- map["wwdcStyle"]
-        saveDBIng <- map["saveDBIng"]
-        lastupData <- (map["lastupData"],self.dateTransform)
-        receipt <- map["receipt"]
-        widgetFlow <- map["widgetFlow"]
-    }
+    
     
     public func updateStyle(_ s:Bool){
         self.wwdcStyle = s
@@ -198,9 +139,11 @@ public class ProxyGroupSettings:CommonModel {
     }
     
     public func findProxy(_ proxyName:String) ->SFProxy? {
-        
-        return proxyMan!.findProxy(proxyName, dynamicSelected: dynamicSelected, selectIndex: selectIndex)
-        //return nil
+        if let proxyMan = proxyMan {
+            return proxyMan.findProxy(proxyName, dynamicSelected: dynamicSelected, selectIndex: selectIndex)
+        }
+    
+        return nil
         
     }
     public func cutCount() ->Int{
@@ -269,12 +212,15 @@ public class ProxyGroupSettings:CommonModel {
     }
     public func save() throws {//save to group dir
 
-        if let js = self.toJSONString() {
+        do {
+            let data = try JSONEncoder().encode(self)
             let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyGroupFile)
             XRuler.log("save to \(url)",level: .Info)
-            try js.write(to: url, atomically: true, encoding: .utf8)
+            if let p = proxyMan {
+                try p.save()
+            }
+            try data.write(to: url)
         }
-
     }
     
     public func loadProxyFromFile() throws {
@@ -283,17 +229,14 @@ public class ProxyGroupSettings:CommonModel {
         var content:Data
 
         do {
-            content = try Data.init(contentsOf: url)
-            let json = try JSON.init(data: content)
-            self.widgetProxyCount = json["widgetProxyCount"].intValue
-            self.widgetFlow =  json["widgetFlow"].boolValue
-            self.selectIndex = json["selectIndex"].intValue
-
-            if let man = Mapper<Proxys>().map(JSONObject: json["proxyMan"]){
-                self.proxyMan = man
-                XRuler.logX("loadProxyFromFile OK", level: .Info)
-            }
-
+            //FIXME:
+//            content = try Data.init(contentsOf: url)
+//            let json = try JSON.init(data: content)
+//            self.widgetProxyCount = json["widgetProxyCount"].intValue
+//            self.widgetFlow =  json["widgetFlow"].boolValue
+//            self.selectIndex = json["selectIndex"].intValue
+            
+            self.proxyMan =  try  Proxys.load()
         }catch let e {
             throw e
         }
@@ -307,7 +250,10 @@ public class ProxyGroupSettings:CommonModel {
     public var proxys:[SFProxy] {
 
         get {
-            return proxyMan!.proxys
+            if let proxyMan = proxyMan {
+                return proxyMan.proxys
+            }
+            return []
         }
         set {
             proxyMan?.proxys = newValue

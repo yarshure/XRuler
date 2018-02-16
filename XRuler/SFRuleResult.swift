@@ -8,7 +8,7 @@
 
 import Foundation
 import AxLogger
-public enum SFRuleResultMethod :Int, CustomStringConvertible{
+public enum SFRuleResultMethod :Int, CustomStringConvertible,Codable{
     case cache = 0
     case sync = 1
     case async = 2
@@ -21,7 +21,7 @@ public enum SFRuleResultMethod :Int, CustomStringConvertible{
         }
     }
 }
-public struct SFRuleResult {
+public struct SFRuleResult:Codable {
     public var req:String = ""
     public var result:SFRuler
     public var ipAddr:String = ""
@@ -30,10 +30,6 @@ public struct SFRuleResult {
         req = request
         result = r
     }
-    public func resp() -> [String:AnyObject] {
-        var r:[String:AnyObject] = [:]
-        r[req] = result.resp() as AnyObject?
-        return r
-    }
+   
    
 }

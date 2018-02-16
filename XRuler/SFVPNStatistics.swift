@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import SwiftyJSON
-open class SFVPNStatistics {
+
+open class SFVPNStatistics:Codable {
     public static let shared = SFVPNStatistics()
     public var startDate = Date()
     public var sessionStartTime = Date()
@@ -29,6 +29,12 @@ open class SFVPNStatistics {
     public var finishedCount:Int = 0
     public var workingCount:Int = 0
     public var netflow:NetFlow = NetFlow()
+    public required init(from decoder: Decoder) throws {
+    }
+    public func encode(to encoder: Encoder) throws
+    {
+        
+    }
     public var runing:String {
         get {
             let now = Date()
@@ -54,30 +60,7 @@ open class SFVPNStatistics {
         
         
     }
-    public func map(j:JSON) {
-        startDate = Date.init(timeIntervalSince1970: j["start"].doubleValue) as Date
-        sessionStartTime = Date.init(timeIntervalSince1970: j["sessionStartTime"].doubleValue)
-        reportTime = NSDate.init(timeIntervalSince1970: j["report_date"].doubleValue) as Date
-        totalTraffice.mapObject(j: j["total"])
-        lastTraffice.mapObject(j: j["last"])
-        maxTraffice.mapObject(j: j["max"])
-        
-        cellTraffice.mapObject(j:j["cell"])
-        wifiTraffice.mapObject(j: j["wifi"])
-        directTraffice.mapObject(j: j["direct"])
-        proxyTraffice.mapObject(j: j["proxy"])
-        netflow.mapObject(j: j["netflow"])
-        if let c  = j["memory"].uInt64 {
-            memoryUsed = c
-        }
-        if let tcp = j["finishedCount"].int {
-            finishedCount = tcp
-        }
-        if let tcp = j["workingCount"].int {
-            workingCount = tcp
-        }
-        
-    }
+  
     public func memoryString() ->String {
         let f = Float(memoryUsed)
         if memoryUsed < 1024 {
@@ -93,61 +76,26 @@ open class SFVPNStatistics {
         reportTime = Date()
         memoryUsed = memory
         
-        var status:[String:AnyObject] = [:]
-        status["start"] =  NSNumber.init(value: startDate.timeIntervalSince1970)
-        status["sessionStartTime"] =  NSNumber.init(value: sessionStartTime.timeIntervalSince1970)
-        status["report_date"] =  NSNumber.init(value: reportTime.timeIntervalSince1970)
-        //status["runing"] = NSNumber.init(double:runing)
-        status["total"] = totalTraffice.resp() as AnyObject?
-        status["last"] = lastTraffice.resp() as AnyObject?
-        status["max"] = maxTraffice.resp() as AnyObject?
-        status["memory"] = NSNumber.init(value: memoryUsed) //memoryUsed)
-        
-        
-        status["finishedCount"] = NSNumber.init(value: finishedCount) //
-        status["workingCount"] = NSNumber.init(value: count) //
-        
-        status["cell"] = cellTraffice.resp() as AnyObject?
-        status["wifi"] = wifiTraffice.resp() as AnyObject?
-        status["direct"] = directTraffice.resp() as AnyObject?
-        status["proxy"] = proxyTraffice.resp() as AnyObject?
-        status["netflow"] = netflow.resp() as AnyObject
-        let j = JSON(status)
-        
-        
-        
-        
-        //print("recentRequestData \(j)")
-        var data:Data
         do {
-            try data = j.rawData()
-        }catch let error  {
-            //AxLogger.log("ruleResultData error \(error.localizedDescription)")
-            //let x = error.localizedDescription
-            //let err = "report error"
-            data =  error.localizedDescription.data(using: .utf8)!// NSData()
+            return try JSONEncoder().encode(self)
+        }catch let e {
+            print("report error:" + e.localizedDescription)
+            return Data()
         }
-        return data
+        
     }
     public func flowData(memory:UInt64) ->Data{
         reportTime = Date()
         memoryUsed = memory
         
-        var status:[String:AnyObject] = [:]
-        
-        status["netflow"] = netflow.resp() as AnyObject
-        let j = JSON(status)
-        
-        var data:Data
+     
         do {
-            try data = j.rawData()
-        }catch let error  {
-            //AxLogger.log("ruleResultData error \(error.localizedDescription)")
-            //let x = error.localizedDescription
-            //let err = "report error"
-            data =  error.localizedDescription.data(using: .utf8)!// NSData()
+            return try JSONEncoder().encode(netflow)
+        }catch let e  {
+            print(e.localizedDescription)
+            return Data()
         }
-        return data
+        
     }
     //shoud every second update
     public func reportTask() {
@@ -167,10 +115,10 @@ open class SFVPNStatistics {
         updateMax()
     }
     init() {
-        reportTimer =  DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: 0), queue: DispatchQueue.main)
+        
         installTimer()
     }
-    fileprivate let reportTimer: DispatchSourceTimer
+    fileprivate let reportTimer: DispatchSourceTimer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: 0), queue: DispatchQueue.main)
     public func startReporting(){
         XRuler.log("Starting reportTimer ..", level: .Info)
 //        if reportTimer.isCancelled {

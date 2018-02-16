@@ -9,18 +9,36 @@
 import Foundation
 import Xcon
 import ObjectMapper
-public class Proxys:CommonModel {
+public class Proxys:Codable {
     public var chainProxys:[SFProxy] = []
     public var proxys:[SFProxy] = []
     var deleteproxys:[SFProxy] = []
-    public override func mapping(map: Map) {
-        chainProxys  <- map["chainProxys"]
-        proxys <- map["proxys"]
-        deleteproxys <- map["deleteproxys"]
-    }
-    public required init?(map: Map) {
-        super.init(map: map)
+
+  
+    public required init() {
+        
         //self.mapping(map: map)
+    }
+    func save() throws{
+        do {
+            let data = try JSONEncoder().encode(self)
+            let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyMainFile)
+            XRuler.log("proxy save to \(url)",level: .Info)
+            
+            try data.write(to: url)
+        }catch let e {
+            throw e
+        }
+    }
+    public static func load() throws ->Proxys {
+        let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyMainFile)
+        do {
+            let data = try Data.init(contentsOf: url)
+            let result = try  JSONDecoder().decode(Proxys.self, from: data)
+            return result
+        }catch let e {
+            throw e
+        }
     }
     public func  selectedProxy(_ selectIndex:Int ) ->SFProxy? {
         if proxys.count > 0 {
@@ -127,21 +145,20 @@ public class Proxys:CommonModel {
         proxylist.insert(r, at: dest)
         
     }
-    func save()  {
-        
-    }
+    
     static public func load(_ path:String)->Proxys?{
         do {
             let string  = try String.init(contentsOfFile: path)
-            guard let proxy = Mapper<Proxys>().map(JSONString: string) else {
-                return nil
+            if let data = string.data(using: .utf8) {
+                let proxys =  try JSONDecoder().decode(Proxys.self,from: data)
+                return proxys
             }
-            return proxy
+            
         }catch let e {
             print("\(e.localizedDescription)")
-            return nil
+            
         }
-        
+        return nil
     }
     public func updateProxy(_ p:SFProxy){
         //todo

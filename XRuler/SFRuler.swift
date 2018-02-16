@@ -8,7 +8,7 @@
 
 import Foundation
 
-import SwiftyJSON
+
 let  DOMAINKEYWORD =  "DOMAIN-KEYWORD"
 let IPCIDR = "IP-CIDR"
 let DOMAINSUFFIX = "DOMAIN-SUFFIX"
@@ -16,7 +16,7 @@ let GEOIP =  "GEOIP"
 let FINAL = "FINAL"
 let AGENT = "AGENT"
 
-public enum SFRulerType :Int{
+public enum SFRulerType :Int,Codable{
     case domainkeyword = 0
     case ipcidr = 1
     case domainsuffix = 2
@@ -64,7 +64,7 @@ public enum SFRulerType :Int{
     }
 }
 
-public class SFRuler {
+public class SFRuler:Codable {
     public var name:String = ""
     public var type:SFRulerType = .domainkeyword
     public var proxyName:String = ""
@@ -141,11 +141,7 @@ public class SFRuler {
         //这个方法是给主app 用的
         return proxyName
     }
- 
-    public func resp() ->[String:AnyObject] {
-        
-        return ["Proxy":proxyName as AnyObject,"Name":name as AnyObject,"Type":type.description as AnyObject,"timming":NSNumber.init(value: timming),"ipAddress":ipAddress as AnyObject]
-    }
+
     public func respString() ->String {
         if type == .final {
             return "\(type.description),\(proxyName)\n"
@@ -158,30 +154,7 @@ public class SFRuler {
         }
         return policy.description
     }
- 
-    public func mapObject(_ j:JSON) {
-        //print(j)
-        //NSLog("", <#T##args: CVarArgType...##CVarArgType#>)
-        if j["Proxy"].error == nil {
-            proxyName = j["Proxy"].stringValue
-        }
-        if j["Name"].error == nil {
-            name = j["Name"].stringValue
-        }
-        
-        let t = j["Type"].stringValue
-        type = SFRulerType.gen(t)
-        if let tt = j["timing"].double {
-            timming = tt
-        }
-        if  let tt =  j["ipAddress"].string {
-            ipAddress = tt
-        }
-//        let po = j["Policy"].stringValue
-//        if let ty = SFPolicy.init(rawValue: po ){
-//            policy = ty
-//        }
-    }
+
     public var typeId:Int64 {
         return Int64(type.rawValue)
     }

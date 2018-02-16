@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwiftyJSON
+
 import MMDB
 import AxLogger
 
@@ -38,7 +38,7 @@ class SFRule:SFConfig {
 
     
     ////
-    var geoIP:[String:JSON] = [:]//support multi
+    
     var ipcidrlist:[IPCidr] = []
     var db:MMDB?
     var cnIPList:Data?
@@ -229,30 +229,30 @@ class SFRule:SFConfig {
         //print(ipInt.byteSwapped)
         return (start,end.byteSwapped)
     }
-    func buildData(_ j:JSON){
-        
-        if ipRuleEnable {
-            let net = "17.0.0.0/8"
-            let result = ipFromString(net)
-            
-            var x = IPCidr(s: result.start.byteSwapped, e: result.end.byteSwapped, name: "DIRECT")
-            x.name = net
-            ipcidrlist.append(x)
-        }
-        if j.type == .dictionary {
-            for (key, value) in j.dictionaryValue{
-                //172.16.0.0/12
-                //Proxy: "DIRECT"
-                let result = ipFromString(key)
-                
-                
-                let pName = value["Proxy"]
-                var x = IPCidr(s: result.start.byteSwapped, e: result.end.byteSwapped, name: pName.stringValue)
-                x.name = key
-                ipcidrlist.append(x)
-            }
-        }
-    }
+//    func buildData(_ j:JSON){
+//        
+//        if ipRuleEnable {
+//            let net = "17.0.0.0/8"
+//            let result = ipFromString(net)
+//            
+//            var x = IPCidr(s: result.start.byteSwapped, e: result.end.byteSwapped, name: "DIRECT")
+//            x.name = net
+//            ipcidrlist.append(x)
+//        }
+//        if j.type == .dictionary {
+//            for (key, value) in j.dictionaryValue{
+//                //172.16.0.0/12
+//                //Proxy: "DIRECT"
+//                let result = ipFromString(key)
+//                
+//                
+//                let pName = value["Proxy"]
+//                var x = IPCidr(s: result.start.byteSwapped, e: result.end.byteSwapped, name: pName.stringValue)
+//                x.name = key
+//                ipcidrlist.append(x)
+//            }
+//        }
+//    }
     func createdb()->Bool{
         
         

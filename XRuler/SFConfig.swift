@@ -5,7 +5,7 @@
 //  Created by yarshure on 16/2/3.
 //  Copyright © 2016年 yarshure. All rights reserved.
 //
-import SwiftyJSON
+
 import Foundation
 import Xcon
 import AxLogger
@@ -88,13 +88,7 @@ public class SFConfig {
     public var  general:General?
     public  var delegate:SFConfigDelegate?
     public var mitmConfig:Mitm!
-    public func testJSON(_ json:JSON) ->Bool{
-        if json.error != nil {
-            //mylog(json)
-            loadResult = false
-        }
-        return loadResult
-    }
+  
     public  init(name:String){
         self.configName = name
         //let r = SFRuler.init()
@@ -386,90 +380,9 @@ public class SFConfig {
         
         return "\(count) Rules ," + geoIPCN + ",FINAL: " + finalRuler.proxyName
     }
-    public  func readProxy(_ config:JSON) {
-        
-        let p =  config["Proxy"]
-        for (name,value) in p {
-            let i = value
-            let px = i["protocol"].stringValue as NSString
-            let proto = px.uppercased
-            var type :SFProxyType
-            if proto == "HTTP"{
-                type = .HTTP
-            }else if proto == "HTTPS" {
-                type = .HTTPS
-            }else if proto == "CUSTOM" {
-                type = .SS
-            }else if proto == "SS" {
-                type = .SS
-            }else if proto == "SOCKS5" {
-                type = .SOCKS5
-            }else {
-                type = .LANTERN
-            }
-            
-            var tlsEnable = false
-            let a = i["host"].stringValue, p = i["port"].stringValue , pass = i["passwd"].stringValue , m = i["method"].stringValue
-            let tls = i["tls"]
-            if tls.error == nil {
-                tlsEnable = tls.boolValue
-            }
-            let sp =  SFProxy.create(name: name, type: type, address: a, port: p, passwd: pass, method: m,tls: tlsEnable)
-            proxys.append(sp!)
-        }
-        
-    }
+ 
     
-    public  func loadConfig(_ config:JSON){
-        
-//        let key = config["DOMAIN-KEYWORD"]
-//        loadRuler(&keyworldRulers,j: key, type: .DOMAINKEYWORD)
-//        let ipcidr = config["IP-CIDR"]
-//        loadRuler(&ipcidrRulers,j: ipcidr,type:.IPCIDR)
-//        let domain = config["DOMAIN-SUFFIX"]
-//        loadRuler(&sufixRulers,j: domain, type:.DOMAINSUFFIX)
-//        let geoip = config["GEOIP"]
-//        loadRuler(&geoipRulers,j: geoip, type:.GEOIP)
-//        let final = config["FINAL"]
-//        finalRuler.proxyName = final.stringValue
-//        
-//        finalRuler.type = .FINAL
-//        finalRuler.name = "FINAL"
-//        //loadRuler(&finalRuler,j: final, type:.FINAL)
-//        let agent = config["USER-AGENT"]
-//        loadRuler(&agentRuler,j: agent,type:.AGENT)
-    }
-//    func loadRuler( ruler: inout [SFRuler],j:JSON,type:SFRulerType) {
-//        if j.error == nil{
-//            //print(j)
-//            if j.type == .Dictionary {
-//                for (key,value) in j.dictionaryValue{
-//                    let r = SFRuler()
-//                    r.name = key
-//                    r.type = type
-//                    let p = value["Proxy"]
-//                    if p.error == nil {
-//                        r.proxyName = p.stringValue
-//                    }
-//                    ruler.append(r)
-//                }
-//            }else if  j.type == .String {
-//                let r = SFRuler()
-//                
-//                r.type = type
-//                r.proxyName = j.stringValue
-//                ruler.append(r)
-//            }
-//        }else {
-//            //show error
-//            let e = j.error!
-//            if e.code != 500 {//Optional(Error Domain=SwiftyJSONErrorDomain Code=500 "Dictionary["AGENT"] does not exist" UserInfo={NSLocalizedDescription=Dictionary["AGENT"] does not exist})
-//                print(j.error)
-//                loadResult = false
-//            }
-//            
-//        }
-//    }
+
     public func verifyRules(_ r:SFRuler) ->Bool {
         let up = r.proxyName
         if  up == "DIRECT" || up == "REJECT" || up == "RANDOM" || up == "PROXY" {
@@ -497,15 +410,7 @@ public class SFConfig {
         }
         return result
     }
-    public func genRuleDict(_ rules:[SFRuler]) ->[String:AnyObject]{
-        var list:[String:AnyObject] = [:]
-        for rule in rules {
-            let x = rule.resp()
-            print( x)
-            list[rule.name] = x as AnyObject?
-        }
-        return list
-    }
+   
     public func genData() ->String{
        
         

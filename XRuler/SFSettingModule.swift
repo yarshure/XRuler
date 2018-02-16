@@ -8,7 +8,7 @@
 
 import Foundation
 import Security
-import SwiftyJSON
+
 import AxLogger
 import Xcon
 import NetworkExtension
