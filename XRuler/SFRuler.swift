@@ -16,7 +16,7 @@ let GEOIP =  "GEOIP"
 let FINAL = "FINAL"
 let AGENT = "AGENT"
 
-public enum SFRulerType :Int,Codable{
+public enum SFRulerType :Int{
     case domainkeyword = 0
     case ipcidr = 1
     case domainsuffix = 2
@@ -62,6 +62,9 @@ public enum SFRulerType :Int,Codable{
         }
         
     }
+}
+extension SFRulerType:Codable{
+    
 }
 
 public class SFRuler:Codable {
@@ -178,3 +181,4 @@ public class SFRuler:Codable {
         }
     }
 }
+

@@ -8,7 +8,9 @@
 
 import Foundation
 import AxLogger
-public enum SFRuleResultMethod :Int, CustomStringConvertible,Codable{
+import Xcon
+
+public enum SFRuleResultMethod :Int, CustomStringConvertible{
     case cache = 0
     case sync = 1
     case async = 2
@@ -17,19 +19,21 @@ public enum SFRuleResultMethod :Int, CustomStringConvertible,Codable{
         case .cache: return "Cache"
         case .sync: return "Sync"
         case .async: return "Async"
-        
+            
         }
     }
+}
+extension SFRuleResultMethod:Codable{
+    
 }
 public struct SFRuleResult:Codable {
     public var req:String = ""
     public var result:SFRuler
     public var ipAddr:String = ""
-    public var method:SFRuleResultMethod = SFRuleResultMethod.init(rawValue: 0)!
+    public var method:SFRuleResultMethod = .cache
     public init(request:String, r:SFRuler) {
         req = request
         result = r
     }
-   
-   
 }
+

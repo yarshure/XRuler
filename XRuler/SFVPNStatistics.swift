@@ -8,8 +8,8 @@
 
 import Foundation
 
-open class SFVPNStatistics:Codable {
-    public static let shared = SFVPNStatistics()
+open class SFStatistics:Codable {
+   
     public var startDate = Date()
     public var sessionStartTime = Date()
     public var reportTime = Date()
@@ -29,12 +29,6 @@ open class SFVPNStatistics:Codable {
     public var finishedCount:Int = 0
     public var workingCount:Int = 0
     public var netflow:NetFlow = NetFlow()
-    public required init(from decoder: Decoder) throws {
-    }
-    public func encode(to encoder: Encoder) throws
-    {
-        
-    }
     public var runing:String {
         get {
             let now = Date()
@@ -72,19 +66,8 @@ open class SFVPNStatistics:Codable {
         return String(format: "%.2f MB", f/1024.0/1024.0)
         
     }
-    public func report(memory:UInt64,count:Int) ->Data{
-        reportTime = Date()
-        memoryUsed = memory
-        
-        do {
-            return try JSONEncoder().encode(self)
-        }catch let e {
-            print("report error:" + e.localizedDescription)
-            return Data()
-        }
-        
-    }
-    public func flowData(memory:UInt64) ->Data{
+   
+    func flowData(memory:UInt64) ->Data{
         reportTime = Date()
         memoryUsed = memory
         
@@ -114,34 +97,5 @@ open class SFVPNStatistics:Codable {
         
         updateMax()
     }
-    init() {
-        
-        installTimer()
-    }
-    fileprivate let reportTimer: DispatchSourceTimer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: 0), queue: DispatchQueue.main)
-    public func startReporting(){
-        XRuler.log("Starting reportTimer ..", level: .Info)
-//        if reportTimer.isCancelled {
-//            installTimer()
-//        }
-        reportTimer.resume()
-    }
-    func installTimer(){
-        reportTimer.schedule(deadline: .now(), repeating: DispatchTimeInterval.seconds(1), leeway: DispatchTimeInterval.seconds(1))
-        reportTimer.setEventHandler {
-            [weak self] in
-            
-            self?.reportTask()
-        }
-        reportTimer.setCancelHandler {
-            XRuler.log("cancel reportTimer ..", level: .Info)
-        }
-    }
-    public func pauseReporting(){
-        //reportTimer.
-        reportTimer.suspend()
-    }
-    public func cancelReporting(){
-        reportTimer.cancel()
-    }
+
 }

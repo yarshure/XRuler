@@ -21,6 +21,9 @@ public enum SFPolicy :String{
         }
     }
 }
+extension SFPolicy:Codable{
+    
+}
 func  groupContainerURL(_ iden:String) ->URL{
     return fm.containerURL(forSecurityApplicationGroupIdentifier: iden)!
 }
@@ -38,26 +41,5 @@ extension String{
         
     }
 }
-//public enum SFProxyType :Int, CustomStringConvertible{
-//    case HTTP = 0
-//    case HTTPS = 1
-//    case SS = 2
-//    case SS3 = 6
-//    case SOCKS5 = 3
-//    case HTTPAES  = 4
-//    case LANTERN  = 5
-//    //case KCPTUN = 7
-//    public var description: String {
-//        switch self {
-//        case .HTTP: return "HTTP"
-//        case .HTTPS: return "HTTPS"
-//        case .SS: return "SS"
-//        case .SS3: return "SS3"
-//        case .SOCKS5: return "SOCKS5"
-//        case .HTTPAES: return "GFW Press"
-//        case .LANTERN: return "LANTERN"
-//            //case .KCPTUN: return "KCPTUN"
-//        }
-//    }
-//}
+
 
