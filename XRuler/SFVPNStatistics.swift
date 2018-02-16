@@ -15,16 +15,16 @@ open class SFStatistics:Codable {
     public var reportTime = Date()
     public var startTimes = 0
     public var show:Bool = false
-    public var totalTraffice:SFTraffic = SFTraffic()
-    public var currentTraffice:SFTraffic = SFTraffic()
-    public var lastTraffice:SFTraffic = SFTraffic()
-    public  var maxTraffice:SFTraffic = SFTraffic()
+    public var total:SFTraffic = SFTraffic()
+    public var current:SFTraffic = SFTraffic()
+    public var last:SFTraffic = SFTraffic()
+    public  var max:SFTraffic = SFTraffic()
     
-    public var wifiTraffice:SFTraffic = SFTraffic()
-    public var cellTraffice:SFTraffic = SFTraffic()
+    public var wifi:SFTraffic = SFTraffic()
+    public var cell:SFTraffic = SFTraffic()
     
-    public var directTraffice:SFTraffic = SFTraffic()
-    public var proxyTraffice:SFTraffic = SFTraffic()
+    public var direct:SFTraffic = SFTraffic()
+    public var proxy:SFTraffic = SFTraffic()
     public var memoryUsed:UInt64 = 0
     public var finishedCount:Int = 0
     public var workingCount:Int = 0
@@ -37,11 +37,11 @@ open class SFStatistics:Codable {
         }
     }
     public func updateMax() {
-        if lastTraffice.tx > maxTraffice.tx{
-            maxTraffice.tx = lastTraffice.tx
+        if last.tx > max.tx{
+            max.tx = last.tx
         }
-        if lastTraffice.rx > maxTraffice.rx {
-            maxTraffice.rx = lastTraffice.rx
+        if last.rx > max.rx {
+            max.rx = last.rx
         }
     }
     public func secondToString(second:Int) ->String {
@@ -83,17 +83,17 @@ open class SFStatistics:Codable {
     //shoud every second update
     public func reportTask() {
         //let report = SFVPNStatistics.shared
-        lastTraffice.tx = currentTraffice.tx
-        lastTraffice.rx = currentTraffice.rx
+        last.tx = current.tx
+        last.rx = current.rx
         var snapShot = SFTraffic()
-        snapShot.tx = currentTraffice.tx
-        snapShot.rx = currentTraffice.rx
+        snapShot.tx = current.tx
+        snapShot.rx = current.rx
         netflow.update(snapShot, type: .total)
         
-        currentTraffice.tx = 0
-        currentTraffice.rx = 0
-        totalTraffice.addRx(x: Int(lastTraffice.rx))
-        totalTraffice.addTx(x: Int(lastTraffice.tx))
+        current.tx = 0
+        current.rx = 0
+        total.addRx(x: Int(last.rx))
+        total.addTx(x: Int(last.tx))
         
         updateMax()
     }

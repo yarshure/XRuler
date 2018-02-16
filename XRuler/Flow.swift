@@ -94,36 +94,37 @@ public enum FlowType:Int {
 }
 public final class NetFlow:Codable{
     //public static let shared = NetFlow()
-    public var totalFlows:[SFTraffic] = []
-    public var currentFlows:[SFTraffic] = []
-    public var lastFlows:[SFTraffic] = []
-    public var maxFlows:[SFTraffic] = []
+    public var total:[SFTraffic] = []
+    public var current:[SFTraffic] = []
+    public var last:[SFTraffic] = []
+    public var max:[SFTraffic] = []
     
-    public var wifiFlows:[SFTraffic] = []
-    public var cellFlows:[SFTraffic] = []
+    public var wifi:[SFTraffic] = []
+    public var cell:[SFTraffic] = []
     
-    public var directFlows:[SFTraffic] = []
-    public var proxyFlows:[SFTraffic] = []
+    public var direct:[SFTraffic] = []
+    public var proxy:[SFTraffic] = []
     //只保存最近60次采样
+   
     public func update(_ flow:SFTraffic, type:FlowType){
         var tmp:[SFTraffic]
         switch type {
         case .total:
-            tmp = totalFlows
+            tmp = total
         case .current :
-            tmp = currentFlows
+            tmp = current
         case .last :
-            tmp = lastFlows
+            tmp = last
         case .max:
-            tmp = maxFlows
+            tmp = max
         case .wifi:
-            tmp = wifiFlows
+            tmp = wifi
         case .cell:
-            tmp = cellFlows
+            tmp = cell
         case .direct:
-            tmp = directFlows
+            tmp = direct
         case .proxy:
-            tmp = proxyFlows
+            tmp = proxy
         }
         
         tmp.append(flow)
@@ -134,28 +135,28 @@ public final class NetFlow:Codable{
         //totalFlows = tmp
         switch type {
         case .total:
-            totalFlows  = tmp
+            total  = tmp
         case .current :
-            currentFlows = tmp
+            current = tmp
         case .last :
-             lastFlows = tmp
+             last = tmp
         case .max:
-            maxFlows = tmp
+            max = tmp
         case .wifi:
-              wifiFlows = tmp
+              wifi = tmp
         case .cell:
-             cellFlows = tmp
+             cell = tmp
         case .direct:
-              directFlows = tmp
+              direct = tmp
         case .proxy:
-             proxyFlows = tmp
+             proxy = tmp
         }
         
     }
    
     public func flow(_ type:FlowType) ->[Double]{
         var r:[Double] = []
-        for x in totalFlows {
+        for x in total {
             r.append(Double(x.rx))
         }
         return r

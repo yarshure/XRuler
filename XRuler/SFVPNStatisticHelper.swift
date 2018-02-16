@@ -46,35 +46,35 @@ public final class SFVPNStatisticHelper {
     }
     public func updateFlow(count:Int,tx:Bool){
         if tx {
-            statistic.currentTraffice.addTx(x: count)
+            statistic.current.addTx(x: count)
         }else {
-            statistic.currentTraffice.addRx(x: count)
+            statistic.current.addRx(x: count)
         }
     }
     public func updateTraffic(t:Int,tx:Bool,cell:Bool,proxy:Bool){
         if tx {
             if cell {
                 //WIFI
-                statistic.wifiTraffice.addTx(x: t)
+                statistic.wifi.addTx(x: t)
             }else {
-                statistic.cellTraffice.addTx(x: t)
+                statistic.cell.addTx(x: t)
             }
             if proxy {
-                statistic.proxyTraffice.addTx(x: t)
+                statistic.proxy.addTx(x: t)
             }else {
-                statistic.directTraffice.addTx(x: t)
+                statistic.direct.addTx(x: t)
             }
         }else {
             if cell  {
                 //WIFI
-                statistic.wifiTraffice.addRx(x: t)
+                statistic.wifi.addRx(x: t)
             }else {
-                statistic.cellTraffice.addRx(x: t)
+                statistic.cell.addRx(x: t)
             }
             if  proxy {
-                statistic.proxyTraffice.addRx(x: t)
+                statistic.proxy.addRx(x: t)
             }else {
-                statistic.directTraffice.addRx(x: t)
+                statistic.direct.addRx(x: t)
             }
         }
     }
