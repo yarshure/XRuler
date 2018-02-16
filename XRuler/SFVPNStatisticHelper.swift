@@ -8,10 +8,10 @@
 
 import Foundation
 
-class SFVPNStatisticHelper {
+public final class SFVPNStatisticHelper {
     public static let shared = SFVPNStatisticHelper()
     fileprivate let reportTimer: DispatchSourceTimer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: 0), queue: DispatchQueue.main)
-    var statistic:SFStatistics = SFStatistics()
+    public var statistic:SFStatistics = SFStatistics()
     
     init() {
         
