@@ -40,6 +40,7 @@
 		69ABFDCB203716CA006A355E /* SFVPNStatisticHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ABFDCA203716CA006A355E /* SFVPNStatisticHelper.swift */; };
 		69ABFDCD20371781006A355E /* SFVPNStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ABFDCC20371781006A355E /* SFVPNStatistics.swift */; };
 		69ABFDCE20371781006A355E /* SFVPNStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ABFDCC20371781006A355E /* SFVPNStatistics.swift */; };
+		69ABFDE82037EBBF006A355E /* SFVPNStatisticHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ABFDCA203716CA006A355E /* SFVPNStatisticHelper.swift */; };
 		69AD9CD32004916600C01011 /* CNIP.bin in Resources */ = {isa = PBXBuildFile; fileRef = 69AD9CD22004916600C01011 /* CNIP.bin */; };
 		69AD9CD42004916600C01011 /* CNIP.bin in Resources */ = {isa = PBXBuildFile; fileRef = 69AD9CD22004916600C01011 /* CNIP.bin */; };
 		69C7DC2D1FE2524800FB7FA2 /* XRuleriOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 69C7DC2B1FE2524800FB7FA2 /* XRuleriOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -559,6 +560,7 @@
 				69C7DC391FE253C700FB7FA2 /* SFConfig.swift in Sources */,
 				69C7DC331FE253B500FB7FA2 /* General.swift in Sources */,
 				69C7DC3C1FE253D000FB7FA2 /* ext.swift in Sources */,
+				69ABFDE82037EBBF006A355E /* SFVPNStatisticHelper.swift in Sources */,
 				694650451FF50CEE000AFBE3 /* ProxysManager.swift in Sources */,
 				69E4644620242137004AC291 /* NetInfo.swift in Sources */,
 				69C7DC371FE253C100FB7FA2 /* XRuler.swift in Sources */,
