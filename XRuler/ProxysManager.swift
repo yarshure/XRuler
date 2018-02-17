@@ -32,7 +32,11 @@ public class Proxys:Codable {
     }
     public static func load() throws ->Proxys {
         let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyMainFile)
+        if !FileManager.default.fileExists(atPath: url.path){
+            return Proxys()
+        }
         do {
+            
             let data = try Data.init(contentsOf: url)
             let result = try  JSONDecoder().decode(Proxys.self, from: data)
             return result

@@ -77,7 +77,7 @@ public class ProxyGroupSettings:Codable {
     public var editing:Bool = false
     public static let defaultConfig = ".surf"
     public var historyEnable:Bool = false
-    var proxyMan:Proxys?// = Proxys()
+    var proxyMan:Proxys!// = Proxys()
     public var disableWidget:Bool = false
     public var dynamicSelected:Bool = false
     public var proxyChain:Bool = false
@@ -100,7 +100,7 @@ public class ProxyGroupSettings:Codable {
         try! save()
     }
     public var selectedProxy:SFProxy? {
-        guard let proxyMan = proxyMan else {return nil}
+        
         return proxyMan.selectedProxy( selectIndex)
     }
     public func updateProxyChain(_ isOn:Bool) ->String?{
@@ -112,17 +112,17 @@ public class ProxyGroupSettings:Codable {
     }
     public var chainProxy:SFProxy?{
         get {
-            if proxyChainIndex < proxyMan!.chainProxys.count{
-                return proxyMan!.chainProxys[proxyChainIndex]
+            if proxyChainIndex < proxyMan.chainProxys.count{
+                return proxyMan.chainProxys[proxyChainIndex]
             }else {
-                return proxyMan!.chainProxys.first
+                return proxyMan.chainProxys.first
             }
             
         }
     }
     public func changeIndex(_ srcPath:IndexPath,destPath:IndexPath){
         //有个status section pass
-        proxyMan!.changeIndex(srcPath, destPath: destPath)
+        proxyMan.changeIndex(srcPath, destPath: destPath)
        
     }
     
@@ -152,10 +152,10 @@ public class ProxyGroupSettings:Codable {
         
     }
     public func cutCount() ->Int{
-        return proxyMan!.cutCount()
+        return proxyMan.cutCount()
     }
     public func removeProxy(_ Index:Int,chain:Bool = false) {
-        proxyMan!.removeProxy(Index, chain: chain)
+        proxyMan.removeProxy(Index, chain: chain)
         do {
             try save()
         }catch let e as NSError{
@@ -168,8 +168,8 @@ public class ProxyGroupSettings:Codable {
     public var proxysAll:[SFProxy] {
         get {
             var new:[SFProxy] = []
-            new.append(contentsOf: proxyMan!.proxys)
-            new.append(contentsOf: proxyMan!.chainProxys)
+            new.append(contentsOf: proxyMan.proxys)
+            new.append(contentsOf: proxyMan.chainProxys)
             return new
         }
     }
@@ -209,7 +209,7 @@ public class ProxyGroupSettings:Codable {
     
     public func updateProxy(_ p:SFProxy){
         //todo
-        proxyMan!.updateProxy(p)
+        proxyMan.updateProxy(p)
     }
     public func saveReceipt(_ r:Receipt) throws{
         self.receipt = r
@@ -251,19 +251,16 @@ public class ProxyGroupSettings:Codable {
     }
     public var chainProxys:[SFProxy]{
         get {
-            return proxyMan!.chainProxys
+            return proxyMan.chainProxys
         }
     }
     public var proxys:[SFProxy] {
 
         get {
-            if let proxyMan = proxyMan {
-                return proxyMan.proxys
-            }
-            return []
+            return proxyMan.proxys
         }
         set {
-            proxyMan?.proxys = newValue
+            proxyMan.proxys = newValue
         }
     }
 }
