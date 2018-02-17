@@ -50,11 +50,11 @@ class ViewController: NSViewController {
         testAddProxy()
     }
     func testAddProxy(){
-//        let x = "https,192.168.11.131,8000,,"
-//        if let p = SFProxy.createProxyWithLine(line: x, pname: "CN2"){
-//
-//            _  = ProxyGroupSettings.share.addProxy(p)
-//        }
+        let x = "https,192.168.11.131,8000,,"
+        if let p = SFProxy.createProxyWithLine(line: x, pname: "CN2"){
+
+            _  = ProxyGroupSettings.share.addProxy(p)
+        }
         print(ProxyGroupSettings.share.proxys)
         
     }

@@ -63,6 +63,10 @@ public class ProxyGroupSettings:Codable {
                 // Fallback on earlier versions
             } //JSONDecoder.DateDecodingStrategy.formatted(formater)
             let set =  try decoder.decode(ProxyGroupSettings.self, from: content)
+            if set.proxyMan == nil {
+                set.proxyMan = try  Proxys.load()
+            }
+            
             return set
         } catch let e {
             print("\(#file)\(e)")
@@ -73,7 +77,7 @@ public class ProxyGroupSettings:Codable {
     public var editing:Bool = false
     public static let defaultConfig = ".surf"
     public var historyEnable:Bool = false
-    var proxyMan:Proxys?
+    var proxyMan:Proxys?// = Proxys()
     public var disableWidget:Bool = false
     public var dynamicSelected:Bool = false
     public var proxyChain:Bool = false
