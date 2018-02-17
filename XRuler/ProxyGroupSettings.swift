@@ -96,7 +96,8 @@ public class ProxyGroupSettings:Codable {
         try! save()
     }
     public var selectedProxy:SFProxy? {
-        return proxyMan!.selectedProxy( selectIndex)
+        guard let proxyMan = proxyMan else {return nil}
+        return proxyMan.selectedProxy( selectIndex)
     }
     public func updateProxyChain(_ isOn:Bool) ->String?{
 
@@ -213,7 +214,9 @@ public class ProxyGroupSettings:Codable {
     public func save() throws {//save to group dir
 
         do {
-            let data = try JSONEncoder().encode(self)
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .formatted(DateFormatter.iso8601Full)
+            let data = try encoder.encode(self)
             let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyGroupFile)
             XRuler.log("save to \(url)",level: .Info)
             if let p = proxyMan {
