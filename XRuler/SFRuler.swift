@@ -8,7 +8,7 @@
 
 import Foundation
 
-import SwiftyJSON
+
 let  DOMAINKEYWORD =  "DOMAIN-KEYWORD"
 let IPCIDR = "IP-CIDR"
 let DOMAINSUFFIX = "DOMAIN-SUFFIX"
@@ -159,29 +159,26 @@ public class SFRuler {
         return policy.description
     }
  
-    public func mapObject(_ j:JSON) {
-        //print(j)
-        //NSLog("", <#T##args: CVarArgType...##CVarArgType#>)
-        if j["Proxy"].error == nil {
-            proxyName = j["Proxy"].stringValue
-        }
-        if j["Name"].error == nil {
-            name = j["Name"].stringValue
-        }
-        
-        let t = j["Type"].stringValue
-        type = SFRulerType.gen(t)
-        if let tt = j["timing"].double {
-            timming = tt
-        }
-        if  let tt =  j["ipAddress"].string {
-            ipAddress = tt
-        }
-//        let po = j["Policy"].stringValue
-//        if let ty = SFPolicy.init(rawValue: po ){
-//            policy = ty
+//    public func mapObject(_ j:JSON) {
+//        //print(j)
+//        //NSLog("", <#T##args: CVarArgType...##CVarArgType#>)
+//        if j["Proxy"].error == nil {
+//            proxyName = j["Proxy"].stringValue
 //        }
-    }
+//        if j["Name"].error == nil {
+//            name = j["Name"].stringValue
+//        }
+//        
+//        let t = j["Type"].stringValue
+//        type = SFRulerType.gen(t)
+//        if let tt = j["timing"].double {
+//            timming = tt
+//        }
+//        if  let tt =  j["ipAddress"].string {
+//            ipAddress = tt
+//        }
+//
+//    }
     public var typeId:Int64 {
         return Int64(type.rawValue)
     }

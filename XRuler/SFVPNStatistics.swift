@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwiftyJSON
+
 open class SFVPNStatistics {
     public static let shared = SFVPNStatistics()
     public var startDate = Date()
@@ -54,30 +54,30 @@ open class SFVPNStatistics {
         
         
     }
-    public func map(j:JSON) {
-        startDate = Date.init(timeIntervalSince1970: j["start"].doubleValue) as Date
-        sessionStartTime = Date.init(timeIntervalSince1970: j["sessionStartTime"].doubleValue)
-        reportTime = NSDate.init(timeIntervalSince1970: j["report_date"].doubleValue) as Date
-        totalTraffice.mapObject(j: j["total"])
-        lastTraffice.mapObject(j: j["last"])
-        maxTraffice.mapObject(j: j["max"])
-        
-        cellTraffice.mapObject(j:j["cell"])
-        wifiTraffice.mapObject(j: j["wifi"])
-        directTraffice.mapObject(j: j["direct"])
-        proxyTraffice.mapObject(j: j["proxy"])
-        netflow.mapObject(j: j["netflow"])
-        if let c  = j["memory"].uInt64 {
-            memoryUsed = c
-        }
-        if let tcp = j["finishedCount"].int {
-            finishedCount = tcp
-        }
-        if let tcp = j["workingCount"].int {
-            workingCount = tcp
-        }
-        
-    }
+//    public func map(j:JSON) {
+//        startDate = Date.init(timeIntervalSince1970: j["start"].doubleValue) as Date
+//        sessionStartTime = Date.init(timeIntervalSince1970: j["sessionStartTime"].doubleValue)
+//        reportTime = NSDate.init(timeIntervalSince1970: j["report_date"].doubleValue) as Date
+//        totalTraffice.mapObject(j: j["total"])
+//        lastTraffice.mapObject(j: j["last"])
+//        maxTraffice.mapObject(j: j["max"])
+//
+//        cellTraffice.mapObject(j:j["cell"])
+//        wifiTraffice.mapObject(j: j["wifi"])
+//        directTraffice.mapObject(j: j["direct"])
+//        proxyTraffice.mapObject(j: j["proxy"])
+//        netflow.mapObject(j: j["netflow"])
+//        if let c  = j["memory"].uInt64 {
+//            memoryUsed = c
+//        }
+//        if let tcp = j["finishedCount"].int {
+//            finishedCount = tcp
+//        }
+//        if let tcp = j["workingCount"].int {
+//            workingCount = tcp
+//        }
+//
+//    }
     public func memoryString() ->String {
         let f = Float(memoryUsed)
         if memoryUsed < 1024 {
@@ -112,42 +112,29 @@ open class SFVPNStatistics {
         status["direct"] = directTraffice.resp() as AnyObject?
         status["proxy"] = proxyTraffice.resp() as AnyObject?
         status["netflow"] = netflow.resp() as AnyObject
-        let j = JSON(status)
-        
-        
-        
-        
-        //print("recentRequestData \(j)")
-        var data:Data
-        do {
-            try data = j.rawData()
-        }catch let error  {
-            //AxLogger.log("ruleResultData error \(error.localizedDescription)")
-            //let x = error.localizedDescription
-            //let err = "report error"
-            data =  error.localizedDescription.data(using: .utf8)!// NSData()
-        }
-        return data
+       
+        return Data()
     }
     public func flowData(memory:UInt64) ->Data{
         reportTime = Date()
         memoryUsed = memory
         
-        var status:[String:AnyObject] = [:]
-        
-        status["netflow"] = netflow.resp() as AnyObject
-        let j = JSON(status)
-        
-        var data:Data
-        do {
-            try data = j.rawData()
-        }catch let error  {
-            //AxLogger.log("ruleResultData error \(error.localizedDescription)")
-            //let x = error.localizedDescription
-            //let err = "report error"
-            data =  error.localizedDescription.data(using: .utf8)!// NSData()
-        }
-        return data
+//        var status:[String:AnyObject] = [:]
+//
+//        status["netflow"] = netflow.resp() as AnyObject
+//        let j = JSON(status)
+//
+//        var data:Data
+//        do {
+//            try data = j.rawData()
+//        }catch let error  {
+//            //AxLogger.log("ruleResultData error \(error.localizedDescription)")
+//            //let x = error.localizedDescription
+//            //let err = "report error"
+//            data =  error.localizedDescription.data(using: .utf8)!// NSData()
+//        }
+//        return data
+        return Data()
     }
     //shoud every second update
     public func reportTask() {

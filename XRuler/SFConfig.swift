@@ -5,7 +5,7 @@
 //  Created by yarshure on 16/2/3.
 //  Copyright © 2016年 yarshure. All rights reserved.
 //
-import SwiftyJSON
+
 import Foundation
 import Xcon
 import AxLogger
@@ -88,13 +88,7 @@ public class SFConfig {
     public var  general:General?
     public  var delegate:SFConfigDelegate?
     public var mitmConfig:Mitm!
-    public func testJSON(_ json:JSON) ->Bool{
-        if json.error != nil {
-            //mylog(json)
-            loadResult = false
-        }
-        return loadResult
-    }
+
     public  init(name:String){
         self.configName = name
         //let r = SFRuler.init()
@@ -386,41 +380,41 @@ public class SFConfig {
         
         return "\(count) Rules ," + geoIPCN + ",FINAL: " + finalRuler.proxyName
     }
-    public  func readProxy(_ config:JSON) {
+    public  func readProxy() {
         
-        let p =  config["Proxy"]
-        for (name,value) in p {
-            let i = value
-            let px = i["protocol"].stringValue as NSString
-            let proto = px.uppercased
-            var type :SFProxyType
-            if proto == "HTTP"{
-                type = .HTTP
-            }else if proto == "HTTPS" {
-                type = .HTTPS
-            }else if proto == "CUSTOM" {
-                type = .SS
-            }else if proto == "SS" {
-                type = .SS
-            }else if proto == "SOCKS5" {
-                type = .SOCKS5
-            }else {
-                type = .LANTERN
-            }
-            
-            var tlsEnable = false
-            let a = i["host"].stringValue, p = i["port"].stringValue , pass = i["passwd"].stringValue , m = i["method"].stringValue
-            let tls = i["tls"]
-            if tls.error == nil {
-                tlsEnable = tls.boolValue
-            }
-            let sp =  SFProxy.create(name: name, type: type, address: a, port: p, passwd: pass, method: m,tls: tlsEnable)
-            proxys.append(sp!)
-        }
+//        let p =  config["Proxy"]
+//        for (name,value) in p {
+//            let i = value
+//            let px = i["protocol"].stringValue as NSString
+//            let proto = px.uppercased
+//            var type :SFProxyType
+//            if proto == "HTTP"{
+//                type = .HTTP
+//            }else if proto == "HTTPS" {
+//                type = .HTTPS
+//            }else if proto == "CUSTOM" {
+//                type = .SS
+//            }else if proto == "SS" {
+//                type = .SS
+//            }else if proto == "SOCKS5" {
+//                type = .SOCKS5
+//            }else {
+//                type = .LANTERN
+//            }
+//            
+//            var tlsEnable = false
+//            let a = i["host"].stringValue, p = i["port"].stringValue , pass = i["passwd"].stringValue , m = i["method"].stringValue
+//            let tls = i["tls"]
+//            if tls.error == nil {
+//                tlsEnable = tls.boolValue
+//            }
+//            let sp =  SFProxy.create(name: name, type: type, address: a, port: p, passwd: pass, method: m,tls: tlsEnable)
+//            proxys.append(sp!)
+//        }
         
     }
     
-    public  func loadConfig(_ config:JSON){
+ //   public  func loadConfig(_ config:JSON){
         
 //        let key = config["DOMAIN-KEYWORD"]
 //        loadRuler(&keyworldRulers,j: key, type: .DOMAINKEYWORD)
@@ -438,7 +432,7 @@ public class SFConfig {
 //        //loadRuler(&finalRuler,j: final, type:.FINAL)
 //        let agent = config["USER-AGENT"]
 //        loadRuler(&agentRuler,j: agent,type:.AGENT)
-    }
+  //  }
 //    func loadRuler( ruler: inout [SFRuler],j:JSON,type:SFRulerType) {
 //        if j.error == nil{
 //            //print(j)
@@ -543,8 +537,8 @@ public class SFConfig {
     
 
     
-    public func findProxy(_ line:String, type:SFProxyType) ->SFProxy?{
-        guard let proxy = SFProxy.create(name: "", type: .SS, address: "", port: "", passwd: "", method: "",tls:false) else {return nil}
+    public  func findProxy(_ line:String, type:SFProxyType) ->SFProxy?{
+        guard var proxy = SFProxy.create(name: "", type: .SS, address: "", port: "", passwd: "", method: "",tls:false) else {return nil}
         proxy.type = type
         let x = line.components(separatedBy: "=")
         if x.count == 2 {

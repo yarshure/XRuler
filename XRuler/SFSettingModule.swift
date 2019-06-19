@@ -8,7 +8,7 @@
 
 import Foundation
 import Security
-import SwiftyJSON
+
 import AxLogger
 import Xcon
 import NetworkExtension
@@ -213,7 +213,7 @@ open  class SFSettingModule {
                 if  fm.fileExists(atPath:destPath) {
                     XRuler.log("Read Config From :\(destPath)", level: .Info)
                 }else {
-                    let    fn = ProxyGroupSettings.share.config
+                    let    fn = ProxyGroupSettings.share.config!.config
                     if !fn.isEmpty {
                         
                         destPath = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(fn).path

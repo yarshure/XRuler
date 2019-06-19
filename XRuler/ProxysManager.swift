@@ -8,20 +8,13 @@
 
 import Foundation
 import Xcon
-import ObjectMapper
-public class Proxys:CommonModel {
+
+public struct Proxys:Codable {
     public var chainProxys:[SFProxy] = []
     public var proxys:[SFProxy] = []
     var deleteproxys:[SFProxy] = []
-    public override func mapping(map: Map) {
-        chainProxys  <- map["chainProxys"]
-        proxys <- map["proxys"]
-        deleteproxys <- map["deleteproxys"]
-    }
-    public required init?(map: Map) {
-        super.init(map: map)
-        //self.mapping(map: map)
-    }
+
+ 
     public func  selectedProxy(_ selectIndex:Int ) ->SFProxy? {
         if proxys.count > 0 {
             if selectIndex >= proxys.count {
@@ -93,7 +86,7 @@ public class Proxys:CommonModel {
         return 3
     }
     
-    public func removeProxy(_ Index:Int,chain:Bool = false) {
+    public mutating func removeProxy(_ Index:Int,chain:Bool = false) {
         var p:SFProxy
         if chain {
             p = chainProxys.remove(at: Index)
@@ -131,17 +124,17 @@ public class Proxys:CommonModel {
         
     }
     static public func load(_ path:String)->Proxys?{
-        do {
-            let string  = try String.init(contentsOfFile: path)
-            guard let proxy = Mapper<Proxys>().map(JSONString: string) else {
-                return nil
-            }
-            return proxy
-        }catch let e {
-            print("\(e.localizedDescription)")
-            return nil
-        }
-        
+//        do {
+//            let string  = try String.init(contentsOfFile: path)
+//            guard let proxy = Mapper<Proxys>().map(JSONString: string) else {
+//                return nil
+//            }
+//            return proxy
+//        }catch let e {
+//            print("\(e.localizedDescription)")
+//            return nil
+//        }
+        return nil
     }
     public func updateProxy(_ p:SFProxy){
         //todo
@@ -154,7 +147,7 @@ public class Proxys:CommonModel {
             oldArray = proxys
             newArray = chainProxys
         }
-        if let firstSuchElement = oldArray.index(where: { $0 == p })
+        if let firstSuchElement = oldArray.firstIndex(where: { $0 == p })
             .map({ oldArray.remove(at: $0) }) {
             
             
@@ -163,7 +156,7 @@ public class Proxys:CommonModel {
     }
     
     
-    public func addProxy(_ proxy:SFProxy) ->Int {
+    public mutating func addProxy(_ proxy:SFProxy) ->Int {
         var index  = 0
         var found = false
         for p in deleteproxys {

@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import SwiftyJSON
-public struct SFTraffic {
+
+public struct SFTraffic:Codable {
     public var rx: UInt = 0
     public var tx: UInt = 0
     public init(){
@@ -79,10 +79,10 @@ public struct SFTraffic {
     public func resp ()-> [String:NSNumber] {
         return ["rx":NSNumber.init(value: rx) ,"tx":NSNumber.init(value: tx)]
     }
-    public mutating func mapObject(j:JSON)  {
-        rx = UInt(j["rx"].int64Value)
-        tx = UInt(j["tx"].int64Value)
-    }
+//    public mutating func mapObject(j:JSON)  {
+//        rx = UInt(j["rx"].int64Value)
+//        tx = UInt(j["tx"].int64Value)
+//    }
 }
 
 public enum FlowType:Int {
@@ -95,7 +95,7 @@ public enum FlowType:Int {
     case direct = 7
     case proxy = 8
 }
-public final class NetFlow{
+public  struct NetFlow:Codable{
     //public static let shared = NetFlow()
     public var totalFlows:[SFTraffic] = []
     public var currentFlows:[SFTraffic] = []
@@ -108,7 +108,7 @@ public final class NetFlow{
     public var directFlows:[SFTraffic] = []
     public var proxyFlows:[SFTraffic] = []
     //只保存最近60次采样
-    public func update(_ flow:SFTraffic, type:FlowType){
+    public mutating  func update(_ flow:SFTraffic, type:FlowType){
         var tmp:[SFTraffic]
         switch type {
         case .total:
@@ -135,24 +135,25 @@ public final class NetFlow{
         }
         //value type write back
         //totalFlows = tmp
-        switch type {
-        case .total:
-            totalFlows  = tmp
-        case .current :
-            currentFlows = tmp
-        case .last :
-             lastFlows = tmp
-        case .max:
-            maxFlows = tmp
-        case .wifi:
-              wifiFlows = tmp
-        case .cell:
-             cellFlows = tmp
-        case .direct:
-              directFlows = tmp
-        case .proxy:
-             proxyFlows = tmp
-        }
+        //MARK: todo fix
+//        switch type {
+//        case .total:
+//            totalFlows  = tmp
+//        case .current :
+//            currentFlows = tmp
+//        case .last :
+//             lastFlows = tmp
+//        case .max:
+//            maxFlows = tmp
+//        case .wifi:
+//              wifiFlows = tmp
+//        case .cell:
+//             cellFlows = tmp
+//        case .direct:
+//              directFlows = tmp
+//        case .proxy:
+//             proxyFlows = tmp
+//        }
         
     }
     public func resp() -> [String : AnyObject] {
@@ -164,14 +165,14 @@ public final class NetFlow{
         result["total"] = x as AnyObject
         return result
     }
-    public func mapObject(j: SwiftyJSON.JSON){
-        totalFlows.removeAll(keepingCapacity: true)
-        for xx in j["total"].arrayValue {
-            var x = SFTraffic()
-            x.mapObject(j: xx)
-            totalFlows.append(x)
-        }
-    }
+//    public func mapObject(j: SwiftyJSON.JSON){
+//        totalFlows.removeAll(keepingCapacity: true)
+//        for xx in j["total"].arrayValue {
+//            var x = SFTraffic()
+//            x.mapObject(j: xx)
+//            totalFlows.append(x)
+//        }
+//    }
     public func flow(_ type:FlowType) ->[Double]{
         var r:[Double] = []
         for x in totalFlows {
