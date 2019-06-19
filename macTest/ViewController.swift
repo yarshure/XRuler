@@ -17,7 +17,7 @@ class ViewController: NSViewController {
        
         testIPAddress()
         testMitm()
-       // testFindProxy()
+        testFindProxy()
         
         
         // Do any additional setup after loading the view.

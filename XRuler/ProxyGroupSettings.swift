@@ -37,7 +37,33 @@ public struct Receipt:Codable {
     public var original_purchase_date_ms:String = ""
     
 }
-
+func customDataEncoder(data: Data, encoder: Encoder) throws {
+    let str = (0..<data.count).map {
+        String(data[$0], radix: 16, uppercase: true)
+        }.joined(separator: " ")
+    
+    var container = encoder.singleValueContainer()
+    try container.encode(str)
+}
+func customDataDecoder(decoder: Decoder) throws -> Data {
+    let container = try decoder.singleValueContainer()
+    let str = try container.decode(String.self)
+    
+    let bytes = str.components(separatedBy: " ").map {
+        UInt8($0, radix: 16)!
+    }
+    return Data(bytes)
+}
+extension Formatter {
+    static let iso8601: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX" //2019-06-05T16:40:19.814GMT+08:00",
+        return formatter
+    }()
+}
 public struct ProxySettings:Codable
 {
 //    let wwdcStyle: Bool
@@ -73,8 +99,9 @@ public struct ProxySettings:Codable
     public var config:String = "surf.conf"
     public var saveDBIng:Bool = false
     public var widgetFlow:Bool = false
-    public var lastupData:Date = Date()
+    public var lastupData:Date? = Date()
     public var receipt:Receipt?
+    
     static func load() throws  ->ProxySettings {
         assert(XRuler.groupIdentifier.count != 0)
         let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyGroupFile)
@@ -82,7 +109,20 @@ public struct ProxySettings:Codable
         var setting:ProxySettings
         do {
             content = try Data.init(contentsOf: url)
-            setting =  try JSONDecoder().decode(ProxySettings.self ,from:content)
+            let dateFormatterWithTime: DateFormatter = {
+                let formatter = DateFormatter()
+                
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"
+                
+                return formatter
+            }()
+            let decoder = JSONDecoder()
+            
+            
+             decoder.dateDecodingStrategy = .formatted(Formatter.iso8601)
+
+            //dateDecodingStrategyFormatters = [dateFormatterWithTime]
+            setting =  try decoder.decode(ProxySettings.self ,from:content)
         }catch let e {
             
             print("\(#file)\(e)")
