@@ -66,23 +66,7 @@ extension Formatter {
 }
 public struct ProxySettings:Codable
 {
-//    let wwdcStyle: Bool
-//    let selectIndex: Int
-//    let historyEnable: Bool
-//    let proxyChain: Bool
-//    let disableWidget: Bool
-//    let config: String
-//    let editing: Bool
-//    let lastupData: Date
-//    let proxyChainIndex: Int
-//    
-//    
-//    let saveDBIng: Bool
-//    let dynamicSelected: Bool
-//    let widgetFlow: Bool
-//    let widgetProxyCount: Int
-//    let showCountry: Bool
-//    
+
     
     public var editing:Bool = false
     public static let defaultConfig = ".surf"
@@ -96,7 +80,6 @@ public struct ProxySettings:Codable
     public var showCountry:Bool = true
     public var widgetProxyCount:Int = 3
     public var selectIndex:Int = 0
-    public var config:String = "surf.conf"
     public var saveDBIng:Bool = false
     public var widgetFlow:Bool = false
     public var lastupData:Date? = Date()
@@ -109,13 +92,13 @@ public struct ProxySettings:Codable
         var setting:ProxySettings
         do {
             content = try Data.init(contentsOf: url)
-            let dateFormatterWithTime: DateFormatter = {
-                let formatter = DateFormatter()
-                
-                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"
-                
-                return formatter
-            }()
+//            let dateFormatterWithTime: DateFormatter = {
+//                let formatter = DateFormatter()
+//
+//                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"
+//
+//                return formatter
+//            }()
             let decoder = JSONDecoder()
             
             
@@ -143,7 +126,7 @@ public class ProxyGroupSettings {
        
         let st = ProxyGroupSettings()
         do{
-            st.config = try ProxySettings.load()
+            st.configManager = try ProxySettings.load()
         }catch let e  {
             fatalError()
         }
@@ -151,38 +134,93 @@ public class ProxyGroupSettings {
         return st
     }()
     //var defaults:NSUserDefaults?// =
-    public var config:ProxySettings!
+    public var configManager:ProxySettings!
  
+    public var config:String = "surf.conf" {
+        didSet {
+            do{
+                self.configManager = try ProxySettings.load()
+            }catch let e  {
+                print(e)
+                fatalError()
+            }
+        }
+    }
+    public var eventSource:DispatchSource?
 
 
+    private var filePath:String {
+        get {
+            return ""
+        }
+    }
+    private func fileExists() ->Bool{
     
+        return true
+    }
+    public func startObservingFileChanges(){
+        guard fileExists() == true else {
+            return
+        }
+        
+        let descriptor = open(self.filePath, O_EVTONLY)
+        if descriptor == -1 {
+            return
+        }
+        self.eventSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: descriptor, eventMask: DispatchSource.FileSystemEvent.write, queue: DispatchQueue.main) as! DispatchSource
+
+        self.eventSource?.setEventHandler {
+            [weak self] in
+            do{
+                self!.configManager = try ProxySettings.load()
+            }catch let e  {
+                fatalError()
+            }
+        }
+
+        self.eventSource?.setCancelHandler() {
+            close(descriptor)
+        }
+        
+        self.eventSource?.resume()
+    }
+    public var onFileEvent: (() -> ())? {
+        willSet {
+            self.eventSource?.cancel()
+        }
+        didSet {
+            if (onFileEvent != nil) {
+                self.startObservingFileChanges()
+            }
+        }
+    }
     public func updateStyle(_ s:Bool){
-        self.config.wwdcStyle = s
+        self.configManager.wwdcStyle = s
         try! save()
     }
     public var selectedProxy:SFProxy? {
-        return self.config.proxyMan!.selectedProxy( self.config.selectIndex)
+        return self.configManager.proxyMan!.selectedProxy( self.configManager.selectIndex)
     }
     public func updateProxyChain(_ isOn:Bool) ->String?{
 
-        config.proxyChain = isOn
+        configManager.proxyChain = isOn
         try! save()
         return nil
         // todo dynamic send tunnel provider
     }
     public var chainProxy:SFProxy?{
         get {
-            if config.proxyChainIndex < config.proxyMan!.chainProxys.count{
-                return config.proxyMan!.chainProxys[config.proxyChainIndex]
+            if configManager.proxyChainIndex < configManager.proxyMan!.chainProxys.count{
+                return configManager.proxyMan!.chainProxys[configManager.proxyChainIndex]
             }else {
-                return config.proxyMan!.chainProxys.first
+                return configManager.proxyMan!.chainProxys.first
             }
             
         }
     }
     public func changeIndex(_ srcPath:IndexPath,destPath:IndexPath){
         //有个status section pass
-        config.proxyMan!.changeIndex(srcPath, destPath: destPath)
+        configManager.proxyMan!.changeIndex(srcPath, destPath: destPath)
        
     }
     
@@ -205,15 +243,15 @@ public class ProxyGroupSettings {
     
     public func findProxy(_ proxyName:String) ->SFProxy? {
         
-        return config.proxyMan!.findProxy(proxyName, dynamicSelected: config.dynamicSelected, selectIndex: config.selectIndex)
+        return configManager.proxyMan!.findProxy(proxyName, dynamicSelected: configManager.dynamicSelected, selectIndex: configManager.selectIndex)
         //return nil
         
     }
     public func cutCount() ->Int{
-        return config.proxyMan!.cutCount()
+        return configManager.proxyMan!.cutCount()
     }
     public func removeProxy(_ Index:Int,chain:Bool = false) {
-        config.proxyMan!.removeProxy(Index, chain: chain)
+        configManager.proxyMan!.removeProxy(Index, chain: chain)
         do {
             try save()
         }catch let e as NSError{
@@ -226,19 +264,19 @@ public class ProxyGroupSettings {
     public var proxysAll:[SFProxy] {
         get {
             var new:[SFProxy] = []
-            new.append(contentsOf: config.proxyMan!.proxys)
-            new.append(contentsOf: config.proxyMan!.chainProxys)
+            new.append(contentsOf: configManager.proxyMan!.proxys)
+            new.append(contentsOf: configManager.proxyMan!.chainProxys)
             return new
         }
     }
    
 
     public func cleanDeleteProxy(){
-        config.cleanDeleteProxy()
+        configManager.cleanDeleteProxy()
     }
     public func addProxy(_ proxy:SFProxy) -> Bool {
        
-        return config.addProxy(proxy)
+        return configManager.addProxy(proxy)
 //        if let p = config.proxyMan {
 //            let x  = p.addProxy(proxy)
 //            if x != -1 {
@@ -261,10 +299,10 @@ public class ProxyGroupSettings {
     
     public func updateProxy(_ p:SFProxy){
         //todo
-        config.proxyMan!.updateProxy(p)
+        configManager.proxyMan!.updateProxy(p)
     }
     public func saveReceipt(_ r:Receipt) throws{
-        self.config.receipt = r
+        self.configManager.receipt = r
         try save()
     }
     public func save() throws {//save to group dir
@@ -298,7 +336,7 @@ public class ProxyGroupSettings {
     }
     public var chainProxys:[SFProxy]{
         get {
-            guard let c = self.config else {
+            guard let c = self.configManager else {
                 return []
             }
             return c.proxyMan!.chainProxys
@@ -307,13 +345,13 @@ public class ProxyGroupSettings {
     public var proxys:[SFProxy] {
 
         get {
-            guard let c = self.config else {
+            guard let c = self.configManager else {
                return []
             }
              return c.proxyMan!.proxys
         }
         set {
-            guard var c = self.config else{
+            guard var c = self.configManager else{
                 return
             }
             
