@@ -70,6 +70,7 @@ public struct ProxySettings:Codable
     
     public var editing:Bool = false
     public static let defaultConfig = ".surf"
+    public var config:String = "surf.conf"
     public var historyEnable:Bool = false
     var proxyMan:Proxys?
     public var disableWidget:Bool = false
@@ -92,16 +93,7 @@ public struct ProxySettings:Codable
         var setting:ProxySettings
         do {
             content = try Data.init(contentsOf: url)
-//            let dateFormatterWithTime: DateFormatter = {
-//                let formatter = DateFormatter()
-//
-//                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"
-//
-//                return formatter
-//            }()
             let decoder = JSONDecoder()
-            
-            
              decoder.dateDecodingStrategy = .formatted(Formatter.iso8601)
 
             //dateDecodingStrategyFormatters = [dateFormatterWithTime]
@@ -112,6 +104,18 @@ public struct ProxySettings:Codable
             throw e
         }
         return setting
+    }
+    public func save() throws{
+        let en = JSONEncoder()
+        en.dateEncodingStrategy = .formatted(Formatter.iso8601)
+        //en.dateDecodingStrategy = .formatted(Formatter.iso8601)
+        do {
+           let data =  try en.encode(self)
+            let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyGroupFile)
+            try data.write(to: url)
+        }catch let e {
+            throw e
+        }
     }
    
     mutating func cleanDeleteProxy() {
@@ -130,16 +134,19 @@ public class ProxyGroupSettings {
         }catch let e  {
             fatalError()
         }
-        
+        //CONTAIN APP ALSO RELOAD CONFIG?
+        st.startObservingFileChanges()
         return st
     }()
     //var defaults:NSUserDefaults?// =
     public var configManager:ProxySettings!
  
+    //Ruler config path
     public var config:String = "surf.conf" {
         didSet {
             do{
-                self.configManager = try ProxySettings.load()
+                self.configManager.config = self.config
+                try self.configManager.save()
             }catch let e  {
                 print(e)
                 fatalError()
@@ -151,7 +158,7 @@ public class ProxyGroupSettings {
 
     private var filePath:String {
         get {
-            return ""
+            return groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyGroupFile).path
         }
     }
     private func fileExists() ->Bool{
@@ -167,13 +174,14 @@ public class ProxyGroupSettings {
         if descriptor == -1 {
             return
         }
-        self.eventSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: descriptor, eventMask: DispatchSource.FileSystemEvent.write, queue: DispatchQueue.main) as! DispatchSource
+        self.eventSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: descriptor, eventMask: DispatchSource.FileSystemEvent.write, queue: DispatchQueue.main) as? DispatchSource
 
         self.eventSource?.setEventHandler {
             [weak self] in
             do{
                 self!.configManager = try ProxySettings.load()
             }catch let e  {
+                print(e)
                 fatalError()
             }
         }
@@ -307,33 +315,11 @@ public class ProxyGroupSettings {
     }
     public func save() throws {//save to group dir
 
-        let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyGroupFile)
-        //MARK: todo
+       try  self.configManager.save()
 
     }
     
-    public func loadProxyFromFile() throws {
-      
-        let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyGroupFile)
-        var content:Data
 
-        do {
-            content = try Data.init(contentsOf: url)
-//            let json = try JSON.init(data: content)
-//            self.widgetProxyCount = json["widgetProxyCount"].intValue
-//            self.widgetFlow =  json["widgetFlow"].boolValue
-//            self.selectIndex = json["selectIndex"].intValue
-//
-//            if let man = Mapper<Proxys>().map(JSONObject: json["proxyMan"]){
-//                self.proxyMan = man
-//                XRuler.logX("loadProxyFromFile OK", level: .Info)
-//            }
-
-        }catch let e {
-            throw e
-        }
-
-    }
     public var chainProxys:[SFProxy]{
         get {
             guard let c = self.configManager else {
