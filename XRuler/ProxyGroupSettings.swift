@@ -110,6 +110,7 @@ public struct ProxySettings:Codable
         en.dateEncodingStrategy = .formatted(Formatter.iso8601)
         //en.dateDecodingStrategy = .formatted(Formatter.iso8601)
         do {
+            
            let data =  try en.encode(self)
             let url = groupContainerURL(XRuler.groupIdentifier).appendingPathComponent(XRuler.kProxyGroupFile)
             try data.write(to: url)
@@ -132,7 +133,8 @@ public class ProxyGroupSettings {
         do{
             st.configManager = try ProxySettings.load()
         }catch let e  {
-            fatalError()
+            print(e)
+            st.configManager = ProxySettings()
         }
         //CONTAIN APP ALSO RELOAD CONFIG?
         st.startObservingFileChanges()
@@ -149,7 +151,6 @@ public class ProxyGroupSettings {
                 try self.configManager.save()
             }catch let e  {
                 print(e)
-                fatalError()
             }
         }
     }
