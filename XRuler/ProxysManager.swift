@@ -96,22 +96,22 @@ public struct Proxys:Codable {
         deleteproxys.append(p)
         
     }
-    public func changeIndex(_ srcPath:IndexPath,destPath:IndexPath){
+    public mutating func changeIndex(_ srcPath:IndexPath,destPath:IndexPath){
         #if os(iOS)
             if srcPath.section == destPath.section {
-//                if srcPath.section == 0 {
-//                    changeIndex(srcPath.row, dest: destPath.row, proxylist: &proxys)
-//                }else {
-//                    changeIndex(srcPath.row, dest: destPath.row, proxylist: &chainProxys)
-//                }
-//            }else {
-//                if srcPath.section == 0{
-//                    let p = proxys.remove(at: srcPath.row)
-//                    chainProxys.insert(p, at: destPath.row)
-//                }else {
-//                    let p = chainProxys.remove(at: srcPath.row)
-//                    proxys.insert(p, at: destPath.row)
-//                }
+                if srcPath.section == 0 {
+                    changeIndex(srcPath.row, dest: destPath.row, proxylist: &proxys)
+                }else {
+                    changeIndex(srcPath.row, dest: destPath.row, proxylist: &chainProxys)
+                }
+            }else {
+                if srcPath.section == 0{
+                    let p = proxys.remove(at: srcPath.row)
+                    chainProxys.insert(p, at: destPath.row)
+                }else {
+                    let p = chainProxys.remove(at: srcPath.row)
+                    proxys.insert(p, at: destPath.row)
+                }
             }
         #endif
     }
@@ -123,19 +123,8 @@ public struct Proxys:Codable {
     func save()  {
         
     }
-    static public func load(_ path:String)->Proxys?{
-//        do {
-//            let string  = try String.init(contentsOfFile: path)
-//            guard let proxy = Mapper<Proxys>().map(JSONString: string) else {
-//                return nil
-//            }
-//            return proxy
-//        }catch let e {
-//            print("\(e.localizedDescription)")
-//            return nil
-//        }
-        return nil
-    }
+
+    
     public func updateProxy(_ p:SFProxy){
         //todo
         var oldArray:[SFProxy]

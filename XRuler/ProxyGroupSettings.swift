@@ -122,20 +122,47 @@ public struct ProxySettings:Codable
     mutating func cleanDeleteProxy() {
         proxyMan!.deleteproxys.removeAll()
     }
-    public func addProxy(_ proxy:SFProxy) -> Bool {
-        return false
+    public mutating func addProxy(_ proxy:SFProxy) -> Bool {
+        let x  = proxyMan!.addProxy(proxy)
+        if x != -1 {
+            selectIndex = x
+        }
+        
+        do {
+            try save()
+        }catch let e {
+            print("add proxy failure \(e.localizedDescription)")
+        }
+        
+        return true
+    }
+    public mutating func updateProxy(_ idx:Int,proxy:SFProxy) {
+        self.proxyMan!.proxys[idx] = proxy
+        do {
+            try save()
+        }catch let e {
+            print("add proxy failure \(e.localizedDescription)")
+        }
     }
 }
 public class ProxyGroupSettings {
     public static let share:ProxyGroupSettings = {
        
         let st = ProxyGroupSettings()
+        var configManager:ProxySettings
         do{
-            st.configManager = try ProxySettings.load()
+            configManager = try ProxySettings.load()
+            
         }catch let e  {
             print(e)
-            st.configManager = ProxySettings()
+            configManager  = ProxySettings()
+           
         }
+        if configManager.proxyMan ==  nil {
+            configManager.proxyMan = Proxys()
+        }
+        
+        st.configManager = configManager
         //CONTAIN APP ALSO RELOAD CONFIG?
         st.startObservingFileChanges()
         return st
@@ -285,24 +312,9 @@ public class ProxyGroupSettings {
     }
     public func addProxy(_ proxy:SFProxy) -> Bool {
        
-        return configManager.addProxy(proxy)
-//        if let p = config.proxyMan {
-//            let x  = p.addProxy(proxy)
-//            if x != -1 {
-//                config.selectIndex = x
-//            }
-//
-//            do {
-//                try save()
-//            }catch let e {
-//                print("add proxy failure \(e.localizedDescription)")
-//            }
-//
-//            return true
-//        }else {
-//            return false
-//        }
+        let result =  configManager.addProxy(proxy)
         
+        return result
         
     }
     
@@ -337,13 +349,13 @@ public class ProxyGroupSettings {
             }
              return c.proxyMan!.proxys
         }
-        set {
-            guard var c = self.configManager else{
-                return
-            }
-            
-            c.proxyMan!.proxys = newValue
-        }
+//        set {
+//            guard var c = self.configManager else{
+//                return
+//            }
+//            
+//            c.proxyMan!.proxys = newValue
+//        }
     }
 }
 
