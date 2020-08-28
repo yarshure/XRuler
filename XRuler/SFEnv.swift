@@ -144,19 +144,25 @@ public class SFEnv {
         guard let interfaceNames = CNCopySupportedInterfaces() as? [String] else {
             return []
         }
-        #if os(iOS)
-        return interfaceNames.flatMap { name in
-            guard let info = CNCopyCurrentNetworkInfo(name as CFString) as? [String:AnyObject] else {
-                return nil
+        if #available(macCatalystApplicationExtension 14.0, *) {
+            #if os(iOS)
+            return interfaceNames.flatMap { name in
+                guard let info = CNCopyCurrentNetworkInfo(name as CFString) as? [String:AnyObject] else {
+                    return nil
+                }
+                guard let ssid = info[kCNNetworkInfoKeySSID as String] as? String else {
+                    return nil
+                }
+                return ssid
             }
-            guard let ssid = info[kCNNetworkInfoKeySSID as String] as? String else {
-                return nil
-            }
-            return ssid
-        }
-        #else
+            #else
             return []
-        #endif
+            #endif
+        } else {
+            return []
+            // Fallback on earlier versions
+        }
+        return []
     }
     static func updateEnvHW(_ interface:String){
         hwType = SFNetWorkType.init(interface: interface)

@@ -210,7 +210,7 @@ public class ProxyGroupSettings {
                 self!.configManager = try ProxySettings.load()
             }catch let e  {
                 print(e)
-                fatalError()
+                
             }
         }
 

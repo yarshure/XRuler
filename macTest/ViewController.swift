@@ -15,10 +15,10 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        testIPAddress()
-        testMitm()
+//        testIPAddress()
+//        testMitm()
         testFindProxy()
-        
+        //testAddProxy()
         
         // Do any additional setup after loading the view.
     }
@@ -49,13 +49,14 @@ class ViewController: NSViewController {
         testAddProxy()
     }
     func testAddProxy(){
-        let x = "https,192.168.11.131,8000,,"
+        print(ProxyGroupSettings.share.proxys.count)
+        let x = "https,192.168.11.131,8002,,"
         if let p = SFProxy.createProxyWithLine(line: x, pname: "CN2"){
             
             _  = ProxyGroupSettings.share.addProxy(p)
         }
-        print(ProxyGroupSettings.share.proxys)
-        SFVPNStatistics.shared.startReporting()
+        print(ProxyGroupSettings.share.proxys.count)
+       // SFVPNStatistics.shared.startReporting()
     }
     override var representedObject: Any? {
         didSet {
