@@ -86,6 +86,8 @@ extension NWPathStatus{
                 
             case .satisfiable:
                 return "satisfiable"
+            @unknown default:
+                fatalError()
             }
         }
     }

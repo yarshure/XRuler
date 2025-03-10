@@ -12,6 +12,7 @@ import Security
 import AxLogger
 import Xcon
 import NetworkExtension
+//import FileLogging
 open  class SFSettingModule {
     //static let setting = SFSettingModule()
     public static var config:String = ""

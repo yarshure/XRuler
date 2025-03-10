@@ -177,6 +177,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		188AE68F2815A6E500530901 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		6913C3C91FE0BF16006483C1 /* macTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +208,7 @@
 		693A35841FC69B47007FDE26 = {
 			isa = PBXGroup;
 			children = (
+				188AE68F2815A6E500530901 /* Packages */,
 				69C1770F200DA5FF004BDB3A /* README.md */,
 				693A35901FC69B47007FDE26 /* XRuler */,
 				6913C3C91FE0BF16006483C1 /* macTest */,
@@ -328,8 +336,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				188AE68628159BE800530901 /* PBXTargetDependency */,
 			);
 			name = XRuler;
+			packageProductDependencies = (
+			);
 			productName = XRuler;
 			productReference = 693A358E1FC69B47007FDE26 /* XRuler.framework */;
 			productType = "com.apple.product-type.framework";
@@ -368,6 +379,8 @@
 			dependencies = (
 			);
 			name = XRuleriOS;
+			packageProductDependencies = (
+			);
 			productName = XRuleriOS;
 			productReference = 69C7DC291FE2524700FB7FA2 /* XRuler.framework */;
 			productType = "com.apple.product-type.framework";
@@ -421,6 +434,8 @@
 				Base,
 			);
 			mainGroup = 693A35841FC69B47007FDE26;
+			packageReferences = (
+			);
 			productRefGroup = 693A358F1FC69B47007FDE26 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -486,7 +501,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export CODESIGN_ALLOCATE=/Applications/Xcode-Beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate\nfpath=\"${SRCROOT}/Carthage/Build/Mac\"\ncd \"$fpath\"\nmkdir -p  \"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\ntar -c *.framework |tar -xvC \"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\nfind . -name '*.framework' -type d | while read -r FRAMEWORK\ndo\necho \"codesign $FRAMEWORK disable\"\n/usr/bin/codesign --sign  $EXPANDED_CODE_SIGN_IDENTITY --force --preserve-metadata=identifier,entitlements,flags --timestamp=none \"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/$FRAMEWORK/Versions/A\"\ndone\n";
+			shellScript = "
+";
 		};
 		6959400A1FFC61E600CB8ADF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -499,7 +515,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate\nfpath=\"${SRCROOT}/Carthage/Build/iOS\"\ncd \"$fpath\"\n\ntar -c *.framework |tar -xvC \"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\nfind . -name '*.framework' -type d | while read -r FRAMEWORK\ndo\necho \"codesign $FRAMEWORK\"\n/usr/bin/codesign --sign  $EXPANDED_CODE_SIGN_IDENTITY --force --preserve-metadata=identifier,entitlements,flags --timestamp=none \"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/$FRAMEWORK\"\ndone";
+			shellScript = "export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate\nfpath=\"${SRCROOT}/Carthage/Build/iOS\"\ncd \"$fpath\"\n\ntar -c *.framework |tar -xvC \"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\nfind . -name '*.framework' -type d | while read -r FRAMEWORK\ndo\necho \"codesign $FRAMEWORK\"\n/usr/bin/codesign --sign  $EXPANDED_CODE_SIGN_IDENTITY --force --preserve-metadata=identifier,entitlements,flags --timestamp=none \"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/$FRAMEWORK\"\ndone\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -573,6 +589,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		188AE68628159BE800530901 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 188AE68528159BE800530901 /* FileLogging */;
+		};
 		695940081FFBA6D400CB8ADF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 69C7DC281FE2524700FB7FA2 /* XRuleriOS */;
@@ -784,6 +804,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -816,6 +837,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -891,9 +913,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = armv7;
 				INFOPLIST_FILE = XRuleriOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yarshure.XRuler;
 				PRODUCT_MODULE_NAME = XRuler;
@@ -918,9 +941,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = armv7;
 				INFOPLIST_FILE = XRuleriOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yarshure.XRuler;
 				PRODUCT_MODULE_NAME = XRuler;
@@ -983,6 +1007,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		188AE682281596E000530901 /* XCRemoteSwiftPackageReference "swift-log-file" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/crspybits/swift-log-file";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		188AE68528159BE800530901 /* FileLogging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 188AE682281596E000530901 /* XCRemoteSwiftPackageReference "swift-log-file" */;
+			productName = FileLogging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 693A35851FC69B47007FDE26 /* Project object */;
 }

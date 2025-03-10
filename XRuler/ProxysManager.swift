@@ -136,6 +136,7 @@ public struct Proxys:Codable {
             oldArray = proxys
             newArray = chainProxys
         }
+        //bug here 
         if let firstSuchElement = oldArray.firstIndex(where: { $0 == p })
             .map({ oldArray.remove(at: $0) }) {
             
