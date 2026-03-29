@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Security
 
 public struct Mitm {
     var hosts:[String] = []
